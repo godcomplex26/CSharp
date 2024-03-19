@@ -29,9 +29,9 @@ namespace HelloCSharp001_3
             // 반지름 -> 둘레, 넓이
             Console.WriteLine("반지름 입력해 보세요.");
             double rad = double.Parse(Console.ReadLine());
-            double pi = 3.14;
-            double cir = 2 * pi * rad;
-            double area = pi * rad * rad;
+            const double PI = 3.14;
+            double cir = 2 * PI * rad;
+            double area = PI * rad * rad;
             Console.WriteLine("반지름이 " + rad + "인 원 둘레는 " + cir + "입니다.");
             Console.WriteLine("반지름이 " + rad + "인 원 넓이는 " + area + "입니다.");
 
