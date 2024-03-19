@@ -12,7 +12,7 @@ namespace HelloCSharp001_4
         static void Main(string[] args)
         {
             Random rnd = new Random();
-            int num = rnd.Next(6) + 1;
+            int num = rnd.Next(6) + 1; // 0~5까지 정수 인데 +1 이라서 1~6까지 정수
 
             switch (num)
             {
