@@ -19,10 +19,10 @@ namespace HelloCSharp002_6
 
         private void button1_Click(object sender, EventArgs e)
         {
+            List<string> fruits = new List<string>{ "사과", "딸기", "배", "포도", "복숭아", "수박", "체리", "꽝" };
+            
             Random rn = new Random();
-            int num = rn.Next(8);
-
-            string[] fruits = { "사과", "딸기", "배", "포도", "복숭아", "수박", "체리", "꽝" };
+            int num = rn.Next(fruits.Count);
             label1.Text = fruits[num];
         }
     }
