@@ -42,5 +42,15 @@ namespace HelloCSharp002_1_1
             label2.Text = String.Join(", ", lotto);
             label2.Text += ", 보너스 번호 : " + bns;
         }
+
+        // 버튼 클릭 시 없던 텍스트 박스 하나 새로 생기게 됨
+        private void button2_Click(object sender, EventArgs e)
+        {
+            TextBox temp = new TextBox();
+            temp.Text = "임시 텍스트 박스";
+            temp.Location = new Point(100, 100);
+            // Controls = 화면 안에 있는 Button, TextBox 등 을 관리
+            Controls.Add(temp);
+        }
     }
 }
