@@ -18,6 +18,7 @@ namespace HelloCSharp002_2
             InitializeComponent();
             ListText.Text = "";
 
+            Console.WriteLine("안녕!"); // f5 하면 나오고, ctrl+f5에는 안나옴
             Random rn = new Random(); 
             button1.Text = rn.Next (100).ToString ();
             button5.Text = button1.Text;
