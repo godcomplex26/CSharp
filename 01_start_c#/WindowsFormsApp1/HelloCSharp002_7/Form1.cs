@@ -16,25 +16,36 @@ namespace HelloCSharp002_7
         {
             InitializeComponent();
             label1.Text = "정답";
-            label2.Text = "결과";
         }
+
+        Random rn = new Random();
+        int rNum;
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Random rn = new Random();
-            int rNum = rn.Next(10);
-            int num = int.Parse(textBox1.Text);
-
-            label1.Text = rNum.ToString();
+           int num = int.Parse(textBox1.Text);
 
             if (num == rNum)
             {
-                label2.Text = "성공";
+                MessageBox.Show("정답");
+                label1.Text = rNum.ToString();
             }
-            else 
+            
+            if (num > rNum)
             {
-                label2.Text = "실패";
+                MessageBox.Show("다운");
             }
+
+            if(num < rNum)
+            {
+                MessageBox.Show("업");
+            }
+        }
+
+        // 1~9까지 난수 생성
+        private void start_Click(object sender, EventArgs e)
+        {
+            rNum = rn.Next(9)+1;
         }
     }
 }
