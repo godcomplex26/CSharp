@@ -49,6 +49,13 @@ namespace HelloCSharp002_8
             Product p1 = new Product("고구마", 500);
             Console.WriteLine(p1.name + "의 가격 : " + p1.price);
             Product p2 = new Product("대게");
+
+            // private인 것들을 다른 곳에서
+            // 접근하려면 public인 메서드가 필요하다. 
+            // p2.description // 불가능
+            // p2.vipPrice // 불가능
+            // 보통 c#에서는 웬만하면 public, get, set 쓴다
+            // java에서 웬만하면 getter, setter 쓰듯
         }
     }
 }
