@@ -32,6 +32,8 @@ namespace HelloCSharp002_4
                 Controls.Add(label);
             }
 
+            // 지워나가는 방식이기 때문에, 앞에서 부터 지우면 뒷 부분이 짤릴 수 있음
+            // 따라서 지울때는 뒤에서 부터 지워나간다.
             for(int i = students.Count-1;  i >= 0; i--)
             {
                 if (students[i].grade > 1)
