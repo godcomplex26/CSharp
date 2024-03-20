@@ -40,6 +40,7 @@ namespace HelloCSharp002_5
             Random rn = new Random();
             int n = rn.Next(3); // 0, 1, 2 중 랜덤
             
+            // 컴퓨터의 결과
             if (n == 0)
             {
                 rNum.Text = "가위";
@@ -53,6 +54,7 @@ namespace HelloCSharp002_5
                 rNum.Text = "보";
             }
             
+            // 승부 결과
             if (n == 0 && select.Text.Equals("가위") || 
                 n == 1 && select.Text.Equals("바위") ||
                 n == 2 && select.Text.Equals("보"))
