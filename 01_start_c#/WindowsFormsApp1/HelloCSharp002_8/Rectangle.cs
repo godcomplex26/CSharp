@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HelloCSharp002_8
 {
-    internal class Rectangle // 사각형
+    public class Rectangle // 사각형
     {
         public int width {  get; set; } // 각 사각형마다
         public int height { get; set; } // 너비, 높이 다름

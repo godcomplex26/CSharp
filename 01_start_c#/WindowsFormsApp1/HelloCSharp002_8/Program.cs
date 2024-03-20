@@ -31,6 +31,24 @@ namespace HelloCSharp002_8
             introduce(30);
             introduce("이종운");
             introduce();
+            Rectangle.color = "파란색";
+            Rectangle rec1 = new Rectangle();
+            rec1.width = 10;
+            rec1.height = 5;
+            Rectangle rec2 = new Rectangle();
+            rec2.width = 7;
+            rec2.height = 8;
+            Rectangle rec3 = new Rectangle();
+
+            Console.WriteLine(rec1.getArea());
+            Console.WriteLine(rec2.getArea());
+            Console.WriteLine(rec3.getArea());
+            Console.WriteLine(Rectangle.calcRecArea(100,200));
+
+            // Product p1 = new Product() // 불가능
+            Product p1 = new Product("고구마", 500);
+            Console.WriteLine(p1.name + "의 가격 : " + p1.price);
+            Product p2 = new Product("대게");
         }
     }
 }
