@@ -37,6 +37,17 @@ namespace HelloCSharp005_2
 
             Console.WriteLine(a); // 3
             Console.WriteLine(b); // 5
+
+            Student s = new Student();
+            s.name = "홍길동";
+            s.age = 30;
+            s.score = 90;
+            Student s2 = s;
+            s2.name = "김길동";
+            s2.score = 50;
+
+            Console.WriteLine(s.name + ", " +  s.age + ", " + s.score);
+            Console.WriteLine(s2.name + ", " +  s2.age + ", " + s2.score);
         }
     }
 }
