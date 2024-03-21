@@ -88,12 +88,18 @@ namespace Spidermine
             time--;
             label1.Text = time + "초 남음";
 
+            if (time <= 10)
+            {
+                label1.ForeColor = Color.Red;
+            }
+
             if (time == 0)
             {
+                label1.ForeColor = Color.Black;
                 timer1.Enabled = false;
                 MessageBox.Show("TimeOVer");
                 button1.Text = "다시하기";
-            }    
+            }
         }
     }
 }
