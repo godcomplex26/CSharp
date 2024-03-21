@@ -41,6 +41,12 @@ namespace Inheritance
             d.LivingWorld();
             d.Sleep();
             d.Bark();
+
+            List<Animal> zoo = new List<Animal>();
+            zoo.Add(a);
+            zoo.Add(b);
+            zoo.Add(c);
+            zoo.Add(d);
         }
     }
 }
