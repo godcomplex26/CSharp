@@ -150,7 +150,7 @@ namespace Inheritance
             foreach(Animal animal in animals)
             {
                 animal.Eat();
-                animal.Charm();
+                animal.Charm(); // 오버라이딩은 해당 클래스의 메서드가 무조건 나옴
                 animal.Cry();
             }
 
