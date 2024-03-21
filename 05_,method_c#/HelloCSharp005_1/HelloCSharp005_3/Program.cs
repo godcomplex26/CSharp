@@ -47,9 +47,9 @@ namespace HelloCSharp005_3
         static void Main(string[] args)
         {
             Console.WriteLine(DateTime.Now.ToString("mm분ss초fff"));
-            Fibo(100);
+            Fibo(40);
             Console.WriteLine(DateTime.Now.ToString("mm분ss초fff"));
-            Fibo2(100);
+            Fibo2(40);
             Console.WriteLine(DateTime.Now.ToString("mm분ss초fff"));
         }
     }
