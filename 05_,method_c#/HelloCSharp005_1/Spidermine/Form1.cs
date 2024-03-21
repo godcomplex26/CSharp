@@ -67,7 +67,7 @@ namespace Spidermine
         // 지뢰 버튼의 클릭 이벤트 핸들러
         private void Button_Click_m(object sender, EventArgs e)
         {
-            Button button = sender as Button;
+            Button button = (Button)sender;
             button.Enabled = false; // 버튼 비활성화
             button.Text = "지뢰"; // 버튼 텍스트 변경
             timer1.Enabled = false;
@@ -78,7 +78,7 @@ namespace Spidermine
         // 나머지 버튼의 클릭 이벤트 핸들러
         private void Button_Click_Default(object sender, EventArgs e)
         {
-            Button button = sender as Button;
+            Button button = (Button)sender;
             button.Enabled = false; // 버튼 비활성화
             button.Text = "OK"; // 버튼 텍스트 변경
         }
