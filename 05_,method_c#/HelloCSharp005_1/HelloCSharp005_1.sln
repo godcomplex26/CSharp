@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modal2", "Modal2\Modal2.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modal3", "Modal3\Modal3.csproj", "{7047087D-0D5D-4FFA-9BDC-EE7F3E58B059}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloCSharp005_6", "HelloCSharp005_6\HelloCSharp005_6.csproj", "{853CB822-B2C2-4ED5-8653-C4015289BB0B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{7047087D-0D5D-4FFA-9BDC-EE7F3E58B059}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7047087D-0D5D-4FFA-9BDC-EE7F3E58B059}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7047087D-0D5D-4FFA-9BDC-EE7F3E58B059}.Release|Any CPU.Build.0 = Release|Any CPU
+		{853CB822-B2C2-4ED5-8653-C4015289BB0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{853CB822-B2C2-4ED5-8653-C4015289BB0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{853CB822-B2C2-4ED5-8653-C4015289BB0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{853CB822-B2C2-4ED5-8653-C4015289BB0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
