@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice4", "Practice4\Prac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice5", "Practice5\Practice5.csproj", "{38CF9CA6-19AB-4560-AEED-F0C01DA6113A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupBoxPrac", "GroupBoxPrac\GroupBoxPrac.csproj", "{949760F5-A44F-4831-A300-4453A88286B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{38CF9CA6-19AB-4560-AEED-F0C01DA6113A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38CF9CA6-19AB-4560-AEED-F0C01DA6113A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38CF9CA6-19AB-4560-AEED-F0C01DA6113A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{949760F5-A44F-4831-A300-4453A88286B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{949760F5-A44F-4831-A300-4453A88286B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{949760F5-A44F-4831-A300-4453A88286B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{949760F5-A44F-4831-A300-4453A88286B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
