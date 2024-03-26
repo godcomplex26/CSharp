@@ -8,6 +8,23 @@ namespace ConsoleApp3
 {
     internal class Program
     {
+        // 반환형이 없고 매개변수가 Product 인 개인 자료형
+        delegate void printProduct(Product p);
+
+        static void printObject(printProduct pp, Product p, int count)
+        {
+            for(int i = 0; i < count; i++)
+            {
+                pp(p);
+            }
+        }
+
+        static void myproductinfo(Product p)
+        {
+            Console.WriteLine("제품명 : " + p.Name);
+            Console.WriteLine("제품가격 : " + p.Price);
+        }
+
         static void Main(string[] args)
         {
             List<Product> products = new List<Product>();
@@ -57,6 +74,24 @@ namespace ConsoleApp3
             {
                 Console.WriteLine(products[i].Name + products[i].Price);
             }
-        }
+
+            printObject(myproductinfo, products[0], 5);
+            printObject(delegate (Product p)
+            {
+                Console.WriteLine("이름 : " + p.Name + ", " + p.Price +"원");
+            }, products[0], 5);
+            printObject(p => { Console.WriteLine("이름 : " + p.Name + ", " + p.Price + "원"); }, products[0], 5);
+
+            printProduct myp = myproductinfo;
+            myp = delegate (Product p)
+            {
+                Console.WriteLine("이름 : " + p.Name + ", " + p.Price + "원");
+            };
+            myp = p =>
+            {
+                Console.WriteLine("이름 : " + p.Name + ", " + p.Price + "원");
+            };
+            printObject(myp, products[0], 3);
+            }
     }
 }
