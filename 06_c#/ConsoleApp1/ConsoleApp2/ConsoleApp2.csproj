@@ -46,14 +46,21 @@
     <Compile Include="Animal.cs" />
     <Compile Include="Bulbasaur.cs" />
     <Compile Include="Cat.cs" />
+    <Compile Include="Chameleon.cs" />
     <Compile Include="Dog.cs" />
+    <Compile Include="IBird.cs" />
+    <Compile Include="ICreatures.cs" />
+    <Compile Include="IFantasy.cs" />
     <Compile Include="IPlant.cs" />
     <Compile Include="IPocketmon.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reptilia.cs" />
+    <Compile Include="Venusaur.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
