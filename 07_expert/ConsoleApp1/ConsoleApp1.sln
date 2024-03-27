@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp4", "ConsoleApp4\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookManager", "BookManager\BookManager.csproj", "{57FFC6B7-A5F7-4175-B21D-4BA30ED30A21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp5", "ConsoleApp5\ConsoleApp5.csproj", "{7467ECD1-7EE2-42EA-BCBD-A39F766BB2F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{57FFC6B7-A5F7-4175-B21D-4BA30ED30A21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57FFC6B7-A5F7-4175-B21D-4BA30ED30A21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57FFC6B7-A5F7-4175-B21D-4BA30ED30A21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7467ECD1-7EE2-42EA-BCBD-A39F766BB2F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7467ECD1-7EE2-42EA-BCBD-A39F766BB2F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7467ECD1-7EE2-42EA-BCBD-A39F766BB2F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7467ECD1-7EE2-42EA-BCBD-A39F766BB2F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
