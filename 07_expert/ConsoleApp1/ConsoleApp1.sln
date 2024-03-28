@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObserverPrac", "ObserverPra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObserverPracConsole", "ObserverPracConsole\ObserverPracConsole.csproj", "{A200BD2B-0836-4238-AD24-EA5E72B3CE7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartPrac", "ChartPrac\ChartPrac.csproj", "{07C6C31F-D7A4-4DCC-99BB-7D17D83D2906}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSON_api_Lotto", "JSON_api_Lotto\JSON_api_Lotto.csproj", "{0026B8BE-070E-4986-A26F-2627210D939B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{A200BD2B-0836-4238-AD24-EA5E72B3CE7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A200BD2B-0836-4238-AD24-EA5E72B3CE7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A200BD2B-0836-4238-AD24-EA5E72B3CE7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07C6C31F-D7A4-4DCC-99BB-7D17D83D2906}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07C6C31F-D7A4-4DCC-99BB-7D17D83D2906}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07C6C31F-D7A4-4DCC-99BB-7D17D83D2906}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07C6C31F-D7A4-4DCC-99BB-7D17D83D2906}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0026B8BE-070E-4986-A26F-2627210D939B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0026B8BE-070E-4986-A26F-2627210D939B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0026B8BE-070E-4986-A26F-2627210D939B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0026B8BE-070E-4986-A26F-2627210D939B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
