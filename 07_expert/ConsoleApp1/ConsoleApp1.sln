@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartPrac", "ChartPrac\Char
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSON_api_Lotto", "JSON_api_Lotto\JSON_api_Lotto.csproj", "{0026B8BE-070E-4986-A26F-2627210D939B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectDB_MSSQL", "ConnectDB_MSSQL\ConnectDB_MSSQL.csproj", "{F2773619-1873-4CC0-B1D3-C4F56AC04E6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{0026B8BE-070E-4986-A26F-2627210D939B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0026B8BE-070E-4986-A26F-2627210D939B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0026B8BE-070E-4986-A26F-2627210D939B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2773619-1873-4CC0-B1D3-C4F56AC04E6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2773619-1873-4CC0-B1D3-C4F56AC04E6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2773619-1873-4CC0-B1D3-C4F56AC04E6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2773619-1873-4CC0-B1D3-C4F56AC04E6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
