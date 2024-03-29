@@ -52,6 +52,9 @@ namespace ParkingLot
         // contents = 로그 기록용
         public static bool Save(string cmd, string ps, out string contents) // 주차 공간 추가 삭제용 Save
         {
+            // 해당 공간 이미 있는지 여부 확인
+            mssql.DoQuery(ps);
+
             contents = "";
             if (cmd.Equals("insert"))
             {
@@ -60,7 +63,7 @@ namespace ParkingLot
             else
             {
                 return DBDelete(ps, ref contents);
-            }
+            }       
         }
 
         private static bool DBDelete(string ps, ref string contents)
@@ -88,7 +91,7 @@ namespace ParkingLot
             }
             else
             {
-                contents = "해당 공간 이미 없음";
+                contents = "해당 공간 이미 있음";
                 return false;
             }
         }

@@ -62,8 +62,10 @@ namespace ParkingLot
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-                System.Windows.Forms.MessageBox.Show(ex.StackTrace);
+                //System.Windows.Forms.MessageBox.Show(ex.Message);
+                //System.Windows.Forms.MessageBox.Show(ex.StackTrace);
+                DataManager.PrintLog(ex.Message);
+                DataManager.PrintLog(ex.StackTrace);
             }
             finally 
             { 
@@ -79,14 +81,20 @@ namespace ParkingLot
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
                 string sql = "";
-                sql = "upate parkingLot set carnumber=@carnumber, " +
-                    "drivername=@drivermname, phonenumber=@phonenumber, " +
-                    "parkingTime=@parkingTime where parkingspot=@parkingspot";
+                sql = "update parkingLot set carnumber=@carnumber, drivername=@drivername, phonenumber=@phonenumber, parkingTime=@parkingTime where parkingspot=@parkingspot";
                 cmd.Parameters.AddWithValue("@carnumber", car.carnumber);
                 cmd.Parameters.AddWithValue("@drivername", car.drivername);
                 cmd.Parameters.AddWithValue("@phonenumber", car.phonenumber);
-                cmd.Parameters.AddWithValue("@parkingtime]", car.parkingtime);
+                cmd.Parameters.AddWithValue("@parkingtime", car.parkingtime);
                 cmd.Parameters.AddWithValue("@parkingspot", car.parkingspot);
+
+                if (car.carnumber == "") // 출차 시
+                {
+                    sql = "update parkingLot set carnumber=@carnumber," +
+                        "drivername=@drivername,phonenumber=@phonenumber," +
+                        "parkingtime='' where parkingspot=@parkingspot";
+                    cmd.Parameters.RemoveAt(3);  // @parkingtime 삭제
+                }
 
                 cmd.CommandText= sql;
                 cmd.ExecuteNonQuery();
@@ -94,8 +102,10 @@ namespace ParkingLot
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-                System.Windows.Forms.MessageBox.Show(ex.StackTrace);
+                //System.Windows.Forms.MessageBox.Show(ex.Message);
+                //System.Windows.Forms.MessageBox.Show(ex.StackTrace);
+                DataManager.PrintLog(ex.Message);
+                DataManager.PrintLog(ex.StackTrace);
             }
             finally
             {
@@ -114,7 +124,7 @@ namespace ParkingLot
             }
             else
             {
-                sql = "delete from parkingLot where parkingspot(@ps)";
+                sql = "delete from parkingLot where parkingspot = @ps";
             }
 
             try
@@ -128,8 +138,10 @@ namespace ParkingLot
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-                System.Windows.Forms.MessageBox.Show(ex.StackTrace);
+                //System.Windows.Forms.MessageBox.Show(ex.Message);
+                //System.Windows.Forms.MessageBox.Show(ex.StackTrace);
+                DataManager.PrintLog(ex.Message);
+                DataManager.PrintLog(ex.StackTrace);
             }
             finally
             {
