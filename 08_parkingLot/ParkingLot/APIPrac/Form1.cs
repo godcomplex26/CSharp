@@ -26,7 +26,7 @@ namespace APIPrac
 
             // XML도 기상청에서 이미 해봤고, 승인받고 가져다 쓰는 방식은 유사하다.
             // XML은 태그 형태에 따라서 코드가 좀 달라질 수 있다.
-            string url = "https://api.odcloud.kr/api/3082925/v1/uddi:b4759786-c28c-41dd-b600-a9abdbec3ae1?page=1&perPage=10&returnType=JSON&serviceKey=pR%2BsfLke7qwiEQPi9HJ3%2FYZZeU9xvpxhMQqwLvAQf67%2BJapLqVLTODWiFbw3pnVqd4XER2bByN6%2Bm%2FtevVxBDQ%3D%3D";
+            string url = "https://apis.data.go.kr/B551172/getPreventDrinking/AgeAdultDrinkingTrend?serviceKey=pR%252BsfLke7qwiEQPi9HJ3%252FYZZeU9xvpxhMQqwLvAQf67%252BJapLqVLTODWiFbw3pnVqd4XER2bByN6%252Bm%252FtevVxBDQ%253D%253D&pageNo=1&numOfRows=50&resultType=json";
             WebClient wc = new WebClient();
             wc.Encoding = Encoding.UTF8;
             var json = wc.DownloadString(url);
