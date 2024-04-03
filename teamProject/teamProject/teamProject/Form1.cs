@@ -118,7 +118,7 @@ namespace teamProject
             dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; // 가운데 정렬
             */
             
-            label1.Text = "현재 선택 : ";
+            // label1.Text = "현재 선택 : ";
             Utils.reScreen(dataGridView1, dataGridView2);
         }
 

@@ -31,14 +31,11 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.testCount = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.menuStrip1 = new System.Windows.Forms.ToolStrip();
@@ -47,8 +44,6 @@
             this.ToolStrip2 = new System.Windows.Forms.ToolStripLabel();
             this.ToolStrip3 = new System.Windows.Forms.ToolStripLabel();
             this.ToolStrip4 = new System.Windows.Forms.ToolStripLabel();
-            this.button5 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -83,49 +78,6 @@
             this.textBox1.Size = new System.Drawing.Size(219, 21);
             this.textBox1.TabIndex = 3;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1232, 47);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 12);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "label1";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(1370, 36);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "삭제";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(1370, 80);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(129, 31);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "테스트데이터 생성";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(1187, 86);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(144, 21);
-            this.textBox4.TabIndex = 12;
-            // 
-            // testCount
-            // 
-            this.testCount.AutoSize = true;
-            this.testCount.Location = new System.Drawing.Point(1337, 89);
-            this.testCount.Name = "testCount";
-            this.testCount.Size = new System.Drawing.Size(17, 12);
-            this.testCount.TabIndex = 13;
-            this.testCount.Text = "개";
-            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(6, 19);
@@ -159,6 +111,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "데이터 조회";
             // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(133, 80);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(219, 21);
+            this.textBox2.TabIndex = 16;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(6, 78);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(121, 23);
+            this.button5.TabIndex = 15;
+            this.button5.Text = "QC 조건 조회";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dataGridView1);
@@ -189,7 +158,7 @@
             this.ToolStrip4});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1172, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(1170, 25);
             this.menuStrip1.TabIndex = 18;
             this.menuStrip1.Text = "데이터 관리";
             // 
@@ -228,37 +197,15 @@
             this.ToolStrip4.Text = "[QC 차트]";
             this.ToolStrip4.Click += new System.EventHandler(this.ToolStrip4_Click);
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(6, 78);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(121, 23);
-            this.button5.TabIndex = 15;
-            this.button5.Text = "QC 조건 조회";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(133, 80);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(219, 21);
-            this.textBox2.TabIndex = 16;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1172, 1214);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(1170, 1214);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.testCount);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -279,11 +226,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label testCount;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.GroupBox groupBox1;
