@@ -227,29 +227,37 @@ namespace teamProject
             button1_Click(sender, e);
         }
 
+        // 공정 데이터 관리
         private void ToolStrip1_Click(object sender, EventArgs e)
         {
             new Form2().ShowDialog();
+            Utils.reScreen(dataGridView1, "PData");
         }
 
+        // QC 데이터 관리
         private void ToolStrip2_Click(object sender, EventArgs e)
         {
             new Form3().ShowDialog();
+            Utils.reScreen( dataGridView2, "QData");
         }
 
+
+        // 공정 데이터 차트
         private void ToolStrip3_Click(object sender, EventArgs e)
         {
             new Form4().ShowDialog();
         }
 
+        // QC 데이터 차트
         private void ToolStrip4_Click(object sender, EventArgs e)
         {
             new Form5().ShowDialog();
         }
 
+        // 메인
         private void ToolStrip0_Click(object sender, EventArgs e)
         {
-
+            Utils.reScreen(dataGridView1, dataGridView2);
         }
     }     
 }
