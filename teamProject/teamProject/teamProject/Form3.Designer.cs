@@ -56,7 +56,7 @@
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Location = new System.Drawing.Point(11, 149);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(644, 203);
+            this.groupBox2.Size = new System.Drawing.Size(863, 396);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "QC 데이터";
@@ -67,7 +67,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(10, 21);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(623, 166);
+            this.dataGridView1.Size = new System.Drawing.Size(847, 369);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -90,7 +90,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(643, 131);
+            this.groupBox1.Size = new System.Drawing.Size(862, 131);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "QC 데이터 관리";
@@ -223,7 +223,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(666, 365);
+            this.ClientSize = new System.Drawing.Size(886, 557);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form3";

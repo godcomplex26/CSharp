@@ -11,25 +11,26 @@ namespace teamProject
 {
     public class DataManager
     {
-        public static List<PData> datas = new List<PData>();
-        public static List<QData> datas2 = new List<QData>();
+        public static List<PData> datasP = new List<PData>();
+        public static List<QData> datasQ = new List<QData>();
 
         // 앞으로 DB와의 연락은 mssql이 모두 수행
         private static DBHelper_MSSQL mssql = DBHelper_MSSQL.getInstance; // 싱글톤
 
         public DataManager()
         {
-            Load();
+            LoadP();
+            LoadQ();
         }
         
-        // 전체 불러오기
-        public static void Load()
+        // PData 전체 불러오기
+        public static void LoadP()
         {
             try
             {
                 // Process_Data
-                mssql.DoQueryR(); // Process_Data 전체 조회
-                datas.Clear(); // datas 초기화
+                mssql.DoQueryRP(); // Process_Data 전체 조회
+                datasP.Clear(); // datas 초기화
                 foreach (DataRow item in mssql.dt.Rows)
                 {
                     // Process_Data
@@ -55,31 +56,7 @@ namespace teamProject
                     data.CurrentA = double.Parse(item["CurrentA"].ToString());
                     data.CurrentB = double.Parse(item["CurrentB"].ToString());
                     data.CurrentC = double.Parse(item["CurrentC"].ToString());
-                    datas.Add(data);
-                }
-
-                // QC_Data
-                mssql.DoQueryR2(); // QC_Data 전체 조회
-                datas2.Clear(); // datas2 초기화
-                foreach (DataRow item in mssql.dt.Rows)
-                {
-                    QData data2 = new QData();
-                    // datetime2 값을 밀리세컨드까지 포함하여 가져옴
-                    if (item["date"] != DBNull.Value)
-                    {
-                        data2.date = (DateTime)item["date"];
-                    }
-                    else
-                    {
-                        data2.date = new DateTime(); // 또는 다른 기본값 설정
-                    }
-
-                    data2.weight = item["weight"] != DBNull.Value && item["weight"] != null ? double.Parse(item["weight"].ToString()) : 0; // 혹은 다른 기본값 사용
-                    data2.water = item["water"] != DBNull.Value && item["water"] != null ? double.Parse(item["water"].ToString()) : 0;
-                    data2.material = item["material"] != DBNull.Value && item["material"] != null ? double.Parse(item["material"].ToString()) : 0;
-                    data2.HSO = item["HSO"] != DBNull.Value && item["HSO"] != null ? double.Parse(item["HSO"].ToString()) : 0;
-                    data2.pH = item["pH"] != DBNull.Value && item["pH"] != null ? double.Parse(item["pH"].ToString()) : 0;
-                    datas2.Add(data2);
+                    datasP.Add(data);
                 }
             }
             catch (Exception ex)
@@ -93,13 +70,54 @@ namespace teamProject
             }
         }
 
-        // 조건 불러오기
-        public static void Load(string sql)
+        // QData 전체 불러오기
+        public static void LoadQ()
         {
             try
             {
-                mssql.DoQueryR(sql); // 전달된 SQL 쿼리 실행
-                datas.Clear(); // datas 초기화
+                // QC_Data
+                mssql.DoQueryRQ(); // QC_Data 전체 조회
+                datasQ.Clear(); // datas2 초기화
+                foreach (DataRow item in mssql.dt.Rows)
+                {
+                    QData data = new QData();
+                    // datetime2 값을 밀리세컨드까지 포함하여 가져옴
+                    if (item["date"] != DBNull.Value)
+                    {
+                        data.date = (DateTime)item["date"];
+                    }
+                    else
+                    {
+                        data.date = new DateTime(); // 또는 다른 기본값 설정
+                    }
+
+                    data.weight = item["weight"] != DBNull.Value && item["weight"] != null ? double.Parse(item["weight"].ToString()) : 0; // 혹은 다른 기본값 사용
+                    data.water = item["water"] != DBNull.Value && item["water"] != null ? double.Parse(item["water"].ToString()) : 0;
+                    data.material = item["material"] != DBNull.Value && item["material"] != null ? double.Parse(item["material"].ToString()) : 0;
+                    data.HSO = item["HSO"] != DBNull.Value && item["HSO"] != null ? double.Parse(item["HSO"].ToString()) : 0;
+                    data.pH = item["pH"] != DBNull.Value && item["pH"] != null ? double.Parse(item["pH"].ToString()) : 0;
+                    datasQ.Add(data);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+                PrintLog(ex.StackTrace + "from Load");
+            }
+            finally
+            {
+
+            }
+        }
+
+        // PData 조건 불러오기
+        public static void LoadP(string sql)
+        {
+            try
+            {
+                // Process_Data
+                mssql.DoQueryRP(sql); // 전달된 SQL 쿼리 실행
+                datasP.Clear(); // datas 초기화
                 foreach (DataRow item in mssql.dt.Rows)
                 {
                     PData data = new PData();
@@ -124,7 +142,7 @@ namespace teamProject
                     data.CurrentA = double.Parse(item["CurrentA"].ToString());
                     data.CurrentB = double.Parse(item["CurrentB"].ToString());
                     data.CurrentC = double.Parse(item["CurrentC"].ToString());
-                    datas.Add(data);
+                    datasP.Add(data);
                 }
             }
             catch (Exception ex)
@@ -138,24 +156,71 @@ namespace teamProject
             }
         }
 
-        // 데이터 추가
+        // QData 조건 불러오기
+        public static void LoadQ(string sql)
+        {
+            try
+            {
+                // QC_Data
+                mssql.DoQueryRQ(sql); // QC_Data 전체 조회
+                datasQ.Clear(); // datas2 초기화
+                foreach (DataRow item in mssql.dt.Rows)
+                {
+                    QData data = new QData();
+                    // datetime2 값을 밀리세컨드까지 포함하여 가져옴
+                    if (item["date"] != DBNull.Value)
+                    {
+                        data.date = (DateTime)item["date"];
+                    }
+                    else
+                    {
+                        data.date = new DateTime(); // 또는 다른 기본값 설정
+                    }
+
+                    data.weight = item["weight"] != DBNull.Value && item["weight"] != null ? double.Parse(item["weight"].ToString()) : 0; // 혹은 다른 기본값 사용
+                    data.water = item["water"] != DBNull.Value && item["water"] != null ? double.Parse(item["water"].ToString()) : 0;
+                    data.material = item["material"] != DBNull.Value && item["material"] != null ? double.Parse(item["material"].ToString()) : 0;
+                    data.HSO = item["HSO"] != DBNull.Value && item["HSO"] != null ? double.Parse(item["HSO"].ToString()) : 0;
+                    data.pH = item["pH"] != DBNull.Value && item["pH"] != null ? double.Parse(item["pH"].ToString()) : 0;
+                    datasQ.Add(data);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+                PrintLog(ex.StackTrace + "from Load");
+            }
+            finally
+            {
+
+            }
+        }
+
+        // 데이터 추가 PData
         public static void Save(PData data)
         {
-            mssql.DoQueryC(data);
+            mssql.DoQueryCP(data);
             PrintLog(data.datetime.ToString() + " 데이터 추가");
+        }
+
+        // 데이터 추가 QData
+        public static void Save(QData data)
+        {
+            mssql.DoQueryCQ(data);
+            PrintLog(data.date.ToString() + " 데이터 추가");
         }
 
         // 데이터 삭제 PData
         public static void Delete(PData data)
         {
-            mssql.DoQueryD(data);
+            mssql.DoQueryDP(data);
             PrintLog(data.datetime.ToString() + " 데이터 삭제");
         }
 
         // 데이터 삭제 QData
         public static void Delete(QData data)
         {
-            mssql.DoQueryD2(data);
+            mssql.DoQueryDQ(data);
             PrintLog(data.date.ToString() + " 데이터 삭제");
         }
 

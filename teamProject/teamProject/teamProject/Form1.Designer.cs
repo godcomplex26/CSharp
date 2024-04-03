@@ -47,6 +47,8 @@
             this.ToolStrip2 = new System.Windows.Forms.ToolStripLabel();
             this.ToolStrip3 = new System.Windows.Forms.ToolStripLabel();
             this.ToolStrip4 = new System.Windows.Forms.ToolStripLabel();
+            this.button5 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -68,15 +70,15 @@
             // 
             this.button1.Location = new System.Drawing.Point(6, 49);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(121, 23);
             this.button1.TabIndex = 1;
-            this.button1.Text = "조회";
+            this.button1.Text = "공정 조건 조회";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(87, 51);
+            this.textBox1.Location = new System.Drawing.Point(133, 51);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(219, 21);
             this.textBox1.TabIndex = 3;
@@ -128,9 +130,9 @@
             // 
             this.button4.Location = new System.Drawing.Point(6, 19);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(121, 23);
             this.button4.TabIndex = 14;
-            this.button4.Text = "초기화";
+            this.button4.Text = "전체 조회";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -145,6 +147,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.button5);
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.textBox1);
@@ -224,6 +228,23 @@
             this.ToolStrip4.Text = "[QC 차트]";
             this.ToolStrip4.Click += new System.EventHandler(this.ToolStrip4_Click);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(6, 78);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(121, 23);
+            this.button5.TabIndex = 15;
+            this.button5.Text = "QC 조건 조회";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(133, 80);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(219, 21);
+            this.textBox2.TabIndex = 16;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -274,6 +295,8 @@
         private System.Windows.Forms.ToolStripLabel ToolStrip3;
         private System.Windows.Forms.ToolStripLabel ToolStrip4;
         private System.Windows.Forms.ToolStripLabel ToolStrip0;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 

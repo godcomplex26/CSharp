@@ -41,7 +41,7 @@ namespace teamProject
         private void button3_Click(object sender, EventArgs e)
         {
             // textBox1.Text와 동일한 datetime을 갖는 PData 객체 찾기
-            PData data = DataManager.datas.SingleOrDefault(x => x.datetime.ToString("yyyy-MM-dd HH:mm:ss.fff") == textBox1.Text);
+            PData data = DataManager.datasP.SingleOrDefault(x => x.datetime.ToString("yyyy-MM-dd HH:mm:ss.fff") == textBox1.Text);
             if (data != null)
             {
                 DataManager.Delete(data);

@@ -66,14 +66,22 @@ namespace teamProject
         public static void reScreen(DataGridView dgv, string data)
         {
             dgv.DataSource = null;
-            DataManager.Load();
-            if (data.Equals("PData") && DataManager.datas.Count > 0)
+            if (data.Equals("PData"))
             {
-                dgv.DataSource = DataManager.datas;
+                DataManager.LoadP();
             }
-            if (data.Equals("QData") && DataManager.datas2.Count > 0)
+            if (data.Equals("QData"))
             {
-                dgv.DataSource = DataManager.datas2;
+                DataManager.LoadQ();
+            }
+
+            if (data.Equals("PData") && DataManager.datasP.Count > 0)
+            {
+                dgv.DataSource = DataManager.datasP;
+            }
+            if (data.Equals("QData") && DataManager.datasQ.Count > 0)
+            {
+                dgv.DataSource = DataManager.datasQ;
             }
             Format(dgv, data);
         }
@@ -83,11 +91,12 @@ namespace teamProject
         {
             dgv1.DataSource = null;
             dgv2.DataSource = null;
-            DataManager.Load();
-            if (DataManager.datas.Count > 0)
+            DataManager.LoadP();
+            DataManager.LoadQ();
+            if (DataManager.datasP.Count > 0 && DataManager.datasQ.Count > 0)
             {
-                dgv1.DataSource = DataManager.datas;
-                dgv2.DataSource = DataManager.datas2;
+                dgv1.DataSource = DataManager.datasP;
+                dgv2.DataSource = DataManager.datasQ;
                 Format(dgv1, dgv2);
             }
         }
@@ -96,14 +105,27 @@ namespace teamProject
         public static void reScreen(DataGridView dgv, string data, string sql)
         {
             dgv.DataSource = null;
-            DataManager.Load(sql);
-            if (DataManager.datas.Count > 0)
+            if (data.Equals("PData"))
             {
-                dgv.DataSource = DataManager.datas;
-                Format(dgv, data);
+                DataManager.LoadP(sql);
             }
+            if (data.Equals("QData"))
+            {
+                DataManager.LoadQ(sql);
+            }
+
+            if (data.Equals("PData") && DataManager.datasP.Count > 0)
+            {
+                dgv.DataSource = DataManager.datasP;
+            }
+            if (data.Equals("QData") && DataManager.datasQ.Count > 0)
+            {
+                dgv.DataSource = DataManager.datasQ;
+            }
+            Format(dgv, data);
         }
 
+        // sql 컨버터
         public static string sqlQueryConverter(string text)
         {
             string query = "";
