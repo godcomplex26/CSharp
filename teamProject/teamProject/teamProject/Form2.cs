@@ -13,44 +13,6 @@ namespace teamProject
 {
     public partial class Form2 : Form
     {
-/*
-        // 데이터 표시 포맷, 시간은 초까지, 소수점은 두 자리까지
-        public void Format()
-        {
-            dataGridView1.Columns["datetime"].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
-
-            // gridview1 소수점 이하 두 자리까지만 표시되도록 설정
-            string[] columns = { "ReactA_Temp", "ReactB_Temp", "ReactC_Temp", "ReactD_Temp", "ReactE_Temp",
-            "ReactF_Temp", "ReactF_PH", "Power", "CurrentA", "CurrentB","CurrentC"};
-            for (int i = 0; i < columns.Length; i++)
-            {
-                dataGridView1.Columns[columns[i]].DefaultCellStyle.Format = "N2";
-            }
-        }
-
-        // 화면 리프레시
-        public void reScreen()
-        {
-            dataGridView1.DataSource = null;
-            DataManager.Load();
-            if (DataManager.datas.Count > 0)
-            {
-                dataGridView1.DataSource = DataManager.datas;
-                Format();
-            }
-        }
-
-        public void reScreen(string c1, string c2, string c3)
-        {
-            dataGridView1.DataSource = null;
-            DataManager.Load(c1, c2, c3);
-            if (DataManager.datas.Count > 0)
-            {
-                dataGridView1.DataSource = DataManager.datas;
-                Format();
-            }
-        }
-*/
         public Form2()
         {
             InitializeComponent();

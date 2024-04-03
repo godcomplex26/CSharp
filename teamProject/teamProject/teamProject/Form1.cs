@@ -105,8 +105,6 @@ namespace teamProject
         public void resetCon()
         {
             textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
             MessageBox.Show("조건이 초기화되었습니다.");
         }
 
@@ -126,25 +124,15 @@ namespace teamProject
         // 데이터 조회
         private void button1_Click(object sender, EventArgs e)
         {
-            string c1, c2, c3;
-            c1 = textBox1.Text;
-            c2 = textBox2.Text;
-            c3 = textBox3.Text;
+            string sql;
+            sql = Utils.sqlQueryConverter(textBox1.Text);
 
             if (textBox1.Text.Trim().Equals("") )
             {
-                c1 = "-1";
-            }
-            if (textBox2.Text.Trim().Equals(""))
-            {
-                c2 = "-1";
-            }
-            if (textBox3.Text.Trim().Equals(""))
-            {
-                c3 = "-1";
+                sql = "-1";
             }
 
-            Utils.reScreen(dataGridView1, "PData", c1, c2, c3);
+            Utils.reScreen(dataGridView1, "PData", sql);
         }
 /*
         // 셀 선택 시 할당되는 값

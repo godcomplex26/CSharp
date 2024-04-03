@@ -86,11 +86,11 @@ namespace teamProject
         }
 
         // 조건 불러오기
-        public static void Load(string c1, string c2, string c3)
+        public static void Load(string sql)
         {
             try
             {
-                mssql.DoQueryR(c1, c2, c3); // 전달된 SQL 쿼리 실행
+                mssql.DoQueryR(sql); // 전달된 SQL 쿼리 실행
                 datas.Clear(); // datas 초기화
                 foreach (DataRow item in mssql.dt.Rows)
                 {

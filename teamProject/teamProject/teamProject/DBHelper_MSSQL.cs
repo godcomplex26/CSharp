@@ -36,29 +36,20 @@ namespace teamProject
 
         // DoQueryR() // 추가 조건 설정 없으면, ps 값은 자동으로 "-1"을 대입
         // select 전체 or 특정 데이터 정보
-        public override void DoQueryR(string c1 = "-1", string c2 = "-1", string c3 = "-1")
+        public override void DoQueryR(string sql = "-1")
         {
             try
             {
                 ConnectDB();
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
-                // c1.IndexOf("#")
-                if (c1.Equals("-1")) // 추가 조건 없는 경우
+                
+                if (sql.Equals("-1")) // 추가 조건 없는 경우
                 {
                     cmd.CommandText = "select * from Process_Data";
                 }
-                else if (c2.Equals("-1")) // 추가 조건 1개인 경우
-                {
-                    cmd.CommandText = "select * from Process_Data where " + c1; // sql로 직접 검색
-                }
-                else if (c3.Equals("-1")) // 추가 조건 2개인 경우
-                {
-                    cmd.CommandText = "select * from Process_Data where " + c1 + " and " + c2; // sql로 직접 검색
-                }
-                else // 추가 조건 3개인 경우
-                {
-                    cmd.CommandText = "select * from Process_Data where " + c1 + " and " + c2 + " and " + c3; // sql로 직접 검색
+                else { 
+                    cmd.CommandText = "select * from Process_Data where " + sql; // sql로 직접 검색
                 }
 
                 da = new SqlDataAdapter(cmd);
@@ -77,7 +68,7 @@ namespace teamProject
             }
         }
 
-        public override void DoQueryR2(string c1 = "-1", string c2 = "-1", string c3 = "-1")
+        public override void DoQueryR2(string sql = "-1")
         {
             try
             {
@@ -85,21 +76,12 @@ namespace teamProject
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
 
-                if (c1.Equals("-1")) // 추가 조건 없는 경우
+                if (sql.Equals("-1")) // 추가 조건 없는 경우
                 {
                     cmd.CommandText = "select * from QC_Data";
                 }
-                else if (c2.Equals("-1")) // 추가 조건 1개인 경우
-                {
-                    cmd.CommandText = "select * from QC_Data where " + c1; // sql로 직접 검색
-                }
-                else if (c3.Equals("-1")) // 추가 조건 2개인 경우
-                {
-                    cmd.CommandText = "select * from QC_Data where " + c1 + " and " + c2; // sql로 직접 검색
-                }
-                else // 추가 조건 3개인 경우
-                {
-                    cmd.CommandText = "select * from QC_Data where " + c1 + " and " + c2 + " and " + c3; // sql로 직접 검색
+                else { 
+                    cmd.CommandText = "select * from QC_Data where " + sql; // sql로 직접 검색
                 }
 
                 da = new SqlDataAdapter(cmd);

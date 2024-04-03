@@ -31,12 +31,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.c1 = new System.Windows.Forms.Label();
-            this.c2 = new System.Windows.Forms.Label();
-            this.c3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -81,24 +76,10 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(144, 51);
+            this.textBox1.Location = new System.Drawing.Point(87, 51);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(219, 21);
             this.textBox1.TabIndex = 3;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(433, 51);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(219, 21);
-            this.textBox2.TabIndex = 4;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(729, 51);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(219, 21);
-            this.textBox3.TabIndex = 5;
             // 
             // label1
             // 
@@ -108,33 +89,6 @@
             this.label1.Size = new System.Drawing.Size(38, 12);
             this.label1.TabIndex = 6;
             this.label1.Text = "label1";
-            // 
-            // c1
-            // 
-            this.c1.AutoSize = true;
-            this.c1.Location = new System.Drawing.Point(97, 54);
-            this.c1.Name = "c1";
-            this.c1.Size = new System.Drawing.Size(35, 12);
-            this.c1.TabIndex = 7;
-            this.c1.Text = "조건1";
-            // 
-            // c2
-            // 
-            this.c2.AutoSize = true;
-            this.c2.Location = new System.Drawing.Point(386, 54);
-            this.c2.Name = "c2";
-            this.c2.Size = new System.Drawing.Size(35, 12);
-            this.c2.TabIndex = 8;
-            this.c2.Text = "조건2";
-            // 
-            // c3
-            // 
-            this.c3.AutoSize = true;
-            this.c3.Location = new System.Drawing.Point(682, 54);
-            this.c3.Name = "c3";
-            this.c3.Size = new System.Drawing.Size(35, 12);
-            this.c3.TabIndex = 9;
-            this.c3.Text = "조건3";
             // 
             // button2
             // 
@@ -193,12 +147,7 @@
             // 
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.c1);
             this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.c3);
-            this.groupBox1.Controls.Add(this.c2);
             this.groupBox1.Location = new System.Drawing.Point(12, 28);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1151, 116);
@@ -309,12 +258,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label c1;
-        private System.Windows.Forms.Label c2;
-        private System.Windows.Forms.Label c3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBox4;

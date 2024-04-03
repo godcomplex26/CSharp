@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace teamProject
 {
@@ -88,10 +89,10 @@ namespace teamProject
         }
 
         // 화면 리프레시 - 조건
-        public static void reScreen(DataGridView dgv, string data, string c1, string c2, string c3)
+        public static void reScreen(DataGridView dgv, string data, string sql)
         {
             dgv.DataSource = null;
-            DataManager.Load(c1, c2, c3);
+            DataManager.Load(sql);
             if (DataManager.datas.Count > 0)
             {
                 dgv.DataSource = DataManager.datas;
@@ -102,7 +103,7 @@ namespace teamProject
         public static string sqlQueryConverter(string text)
         {
             string query = "";
-            string pattern = @"BETWEEN\((.+?),(.+?)\)";
+            string pattern = @"BETWEEN\((.+?),(.+?),(.+?)\)";
 
             char[] separators = { ';' };
 
