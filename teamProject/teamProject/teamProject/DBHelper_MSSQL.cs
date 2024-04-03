@@ -36,6 +36,7 @@ namespace teamProject
 
         // DoQueryR() // 추가 조건 설정 없으면, ps 값은 자동으로 "-1"을 대입
         // select 전체 or 특정 데이터 정보
+        // 데이터 불러오기 PData
         public override void DoQueryR(string sql = "-1")
         {
             try
@@ -68,6 +69,7 @@ namespace teamProject
             }
         }
 
+        // 데이터 불러오기 QData
         public override void DoQueryR2(string sql = "-1")
         {
             try
@@ -100,7 +102,7 @@ namespace teamProject
             }
         }
 
-        // 데이터 추가
+        // 데이터 추가 PData
         public override void DoQueryC(PData data)
         {
             try
@@ -140,7 +142,7 @@ namespace teamProject
             }
         }
 
-        // 데이터 삭제
+        // 데이터 삭제 PData
         public override void DoQueryD(PData data)
         {
             try
@@ -151,6 +153,33 @@ namespace teamProject
                 string sql = "";
                 sql = "delete from Process_Data where datetime=@datetime;";
                 cmd.Parameters.Add("@datetime", SqlDbType.DateTime2).Value = data.datetime;
+
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                DataManager.PrintLog(ex.Message);
+                DataManager.PrintLog(ex.StackTrace);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        // 데이터 삭제 QData
+        public override void DoQueryD2(QData data)
+        {
+            try
+            {
+                ConnectDB();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                string sql = "";
+                sql = "delete from QC_Data where date=@date;";
+                cmd.Parameters.Add("@date", SqlDbType.DateTime2).Value = data.date;
 
                 cmd.CommandText = sql;
                 cmd.ExecuteNonQuery();

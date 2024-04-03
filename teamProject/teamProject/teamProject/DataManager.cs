@@ -64,7 +64,15 @@ namespace teamProject
                 foreach (DataRow item in mssql.dt.Rows)
                 {
                     QData data2 = new QData();
-                    data2.date = (DateTime)item["date"];
+                    // datetime2 값을 밀리세컨드까지 포함하여 가져옴
+                    if (item["date"] != DBNull.Value)
+                    {
+                        data2.date = (DateTime)item["date"];
+                    }
+                    else
+                    {
+                        data2.date = new DateTime(); // 또는 다른 기본값 설정
+                    }
 
                     data2.weight = item["weight"] != DBNull.Value && item["weight"] != null ? double.Parse(item["weight"].ToString()) : 0; // 혹은 다른 기본값 사용
                     data2.water = item["water"] != DBNull.Value && item["water"] != null ? double.Parse(item["water"].ToString()) : 0;
@@ -131,17 +139,24 @@ namespace teamProject
         }
 
         // 데이터 추가
-        public static void Save(PData random)
+        public static void Save(PData data)
         {
-            mssql.DoQueryC(random);
-            PrintLog(random.datetime.ToString() + " 데이터 추가");
+            mssql.DoQueryC(data);
+            PrintLog(data.datetime.ToString() + " 데이터 추가");
         }
 
-        // 데이터 삭제
+        // 데이터 삭제 PData
         public static void Delete(PData data)
         {
             mssql.DoQueryD(data);
             PrintLog(data.datetime.ToString() + " 데이터 삭제");
+        }
+
+        // 데이터 삭제 QData
+        public static void Delete(QData data)
+        {
+            mssql.DoQueryD2(data);
+            PrintLog(data.date.ToString() + " 데이터 삭제");
         }
 
 

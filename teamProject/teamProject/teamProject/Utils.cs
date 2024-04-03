@@ -67,11 +67,15 @@ namespace teamProject
         {
             dgv.DataSource = null;
             DataManager.Load();
-            if (DataManager.datas.Count > 0)
+            if (data.Equals("PData") && DataManager.datas.Count > 0)
             {
                 dgv.DataSource = DataManager.datas;
-                Format(dgv, data);
             }
+            if (data.Equals("QData") && DataManager.datas2.Count > 0)
+            {
+                dgv.DataSource = DataManager.datas2;
+            }
+            Format(dgv, data);
         }
 
         // 화면 리프레시 - 2개(Form1)

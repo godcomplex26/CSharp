@@ -21,6 +21,7 @@ namespace teamProject
         public abstract void DoQueryR2(string sql = "-1"); // select 용
 
         public abstract void DoQueryC(PData data); // insert용
-        public abstract void DoQueryD(PData data); // delete 용
+        public abstract void DoQueryD(PData data); // PData delete 용
+        public abstract void DoQueryD2(QData data); // QData delete 용
     }
 }
