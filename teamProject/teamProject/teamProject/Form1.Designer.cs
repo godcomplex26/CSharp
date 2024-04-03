@@ -29,71 +29,167 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.c1 = new System.Windows.Forms.Label();
+            this.c2 = new System.Windows.Forms.Label();
+            this.c3 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.testCount = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 78);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 133);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1486, 431);
+            this.dataGridView1.Size = new System.Drawing.Size(1486, 949);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1422, 35);
+            this.button1.Location = new System.Drawing.Point(679, 19);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
-            this.button1.Text = "getData";
+            this.button1.Text = "조회";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(12, 566);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(1485, 313);
-            this.dataGridView2.TabIndex = 2;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(1059, 37);
+            this.textBox1.Location = new System.Drawing.Point(454, 21);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(164, 21);
+            this.textBox1.Size = new System.Drawing.Size(219, 21);
             this.textBox1.TabIndex = 3;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(1243, 37);
+            this.textBox2.Location = new System.Drawing.Point(454, 48);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(164, 21);
+            this.textBox2.Size = new System.Drawing.Size(219, 21);
             this.textBox2.TabIndex = 4;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(454, 75);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(219, 21);
+            this.textBox3.TabIndex = 5;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(29, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 12);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "label1";
+            // 
+            // c1
+            // 
+            this.c1.AutoSize = true;
+            this.c1.Location = new System.Drawing.Point(407, 24);
+            this.c1.Name = "c1";
+            this.c1.Size = new System.Drawing.Size(35, 12);
+            this.c1.TabIndex = 7;
+            this.c1.Text = "조건1";
+            // 
+            // c2
+            // 
+            this.c2.AutoSize = true;
+            this.c2.Location = new System.Drawing.Point(407, 51);
+            this.c2.Name = "c2";
+            this.c2.Size = new System.Drawing.Size(35, 12);
+            this.c2.TabIndex = 8;
+            this.c2.Text = "조건2";
+            // 
+            // c3
+            // 
+            this.c3.AutoSize = true;
+            this.c3.Location = new System.Drawing.Point(407, 78);
+            this.c3.Name = "c3";
+            this.c3.Size = new System.Drawing.Size(35, 12);
+            this.c3.TabIndex = 9;
+            this.c3.Text = "조건3";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(305, 19);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "삭제";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(251, 69);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(129, 31);
+            this.button3.TabIndex = 11;
+            this.button3.Text = "테스트데이터 생성";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(68, 75);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(144, 21);
+            this.textBox4.TabIndex = 12;
+            // 
+            // testCount
+            // 
+            this.testCount.AutoSize = true;
+            this.testCount.Location = new System.Drawing.Point(218, 78);
+            this.testCount.Name = "testCount";
+            this.testCount.Size = new System.Drawing.Size(17, 12);
+            this.testCount.TabIndex = 13;
+            this.testCount.Text = "개";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(679, 46);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 14;
+            this.button4.Text = "초기화";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1510, 1214);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.testCount);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.c3);
+            this.Controls.Add(this.c2);
+            this.Controls.Add(this.c1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -102,11 +198,19 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label c1;
+        private System.Windows.Forms.Label c2;
+        private System.Windows.Forms.Label c3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label testCount;
+        private System.Windows.Forms.Button button4;
     }
 }
 

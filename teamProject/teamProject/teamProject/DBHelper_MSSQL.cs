@@ -34,26 +34,33 @@ namespace teamProject
             conn.Open();
         }
 
-        // DoQuery() // ps 값은 자동으로 "-1"을 대입
-        // DoQuery("123") // ps 값을 "123"을 대입함
-        // 즉, 기본값 설정하는 방법
-        public override void DoQuery(string ps = "-1", string ps2 = "-1") // select 전체 or 특정 데이터 정보
+        // DoQueryR() // 추가 조건 설정 없으면, ps 값은 자동으로 "-1"을 대입
+        // select 전체 or 특정 데이터 정보
+        public override void DoQueryR(string c1 = "-1", string c2 = "-1", string c3 = "-1")
         {
             try
             {
                 ConnectDB();
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
-                if (ps.Equals("-1")) // 매개 변수 없는 경우
+                // c1.IndexOf("#")
+                if (c1.Equals("-1")) // 추가 조건 없는 경우
                 {
                     cmd.CommandText = "select * from Process_Data";
                 }
-                else
+                else if (c2.Equals("-1")) // 추가 조건 1개인 경우
                 {
-                    cmd.CommandText = "select * from Process_Data where datetime between  @start AND @end;";
-                    cmd.Parameters.AddWithValue("@a", ps);
-                    cmd.Parameters.AddWithValue("@b", ps2);
+                    cmd.CommandText = "select * from Process_Data where " + c1; // sql로 직접 검색
                 }
+                else if (c3.Equals("-1")) // 추가 조건 2개인 경우
+                {
+                    cmd.CommandText = "select * from Process_Data where " + c1 + " and " + c2; // sql로 직접 검색
+                }
+                else // 추가 조건 3개인 경우
+                {
+                    cmd.CommandText = "select * from Process_Data where " + c1 + " and " + c2 + " and " + c3; // sql로 직접 검색
+                }
+
                 da = new SqlDataAdapter(cmd);
                 ds = new DataSet();
                 da.Fill(ds, "Process_Data");
@@ -61,8 +68,6 @@ namespace teamProject
             }
             catch (Exception ex)
             {
-                //System.Windows.Forms.MessageBox.Show(ex.Message);
-                //System.Windows.Forms.MessageBox.Show(ex.StackTrace);
                 DataManager.PrintLog(ex.Message);
                 DataManager.PrintLog(ex.StackTrace);
             }
@@ -72,7 +77,8 @@ namespace teamProject
             }
         }
 
-        public override void DoQuery(PData data)
+        // 데이터 추가
+        public override void DoQueryC(PData data)
         {
             try
             {
@@ -80,14 +86,21 @@ namespace teamProject
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
                 string sql = "";
-                sql = "update Process_Data set currentA=@currentA where currentB=@currentB";
-                cmd.Parameters.AddWithValue("@currentA", data.CurrentA);
-                cmd.Parameters.AddWithValue("@currentB", data.CurrentB);
-
-                if (data.CurrentA.ToString() == "") // 삭제 시
-                {
-                    sql = "update parkingLot set currentA=@currentA where currentB=@currentB";
-                }
+                sql = "insert into Process_Data values (@datetime, @ReactA_Temp, @ReactB_Temp, @ReactC_Temp, "
+                        + "@ReactD_Temp, @ReactE_Temp, @ReactF_Temp, @ReactF_PH, @Power, @CurrentA, "
+                        + "@CurrentB, @CurrentC);";
+                cmd.Parameters.AddWithValue("@datetime", data.datetime);
+                cmd.Parameters.AddWithValue("@ReactA_Temp", data.ReactA_Temp);
+                cmd.Parameters.AddWithValue("@ReactB_Temp", data.ReactB_Temp);
+                cmd.Parameters.AddWithValue("@ReactC_Temp", data.ReactC_Temp);
+                cmd.Parameters.AddWithValue("@ReactD_Temp", data.ReactD_Temp);
+                cmd.Parameters.AddWithValue("@ReactE_Temp", data.ReactE_Temp);
+                cmd.Parameters.AddWithValue("@ReactF_Temp", data.ReactF_Temp);
+                cmd.Parameters.AddWithValue("@ReactF_PH", data.ReactF_PH);
+                cmd.Parameters.AddWithValue("@Power", data.Power);
+                cmd.Parameters.AddWithValue("@CurrentA", data.CurrentA);
+                cmd.Parameters.AddWithValue("@CurrentB", data.CurrentB);
+                cmd.Parameters.AddWithValue("@CurrentC", data.CurrentC);
 
                 cmd.CommandText = sql;
                 cmd.ExecuteNonQuery();
@@ -95,8 +108,6 @@ namespace teamProject
             }
             catch (Exception ex)
             {
-                //System.Windows.Forms.MessageBox.Show(ex.Message);
-                //System.Windows.Forms.MessageBox.Show(ex.StackTrace);
                 DataManager.PrintLog(ex.Message);
                 DataManager.PrintLog(ex.StackTrace);
             }
@@ -106,13 +117,31 @@ namespace teamProject
             }
         }
 
-        public void deleteData(string ps)
+        // 데이터 삭제
+        public override void DoQueryD(PData data)
         {
+            try
+            {
+                ConnectDB();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                string sql = "";
+                sql = "delete from Process_Data where datetime=@datetime;";
+                cmd.Parameters.Add("@datetime", SqlDbType.DateTime2).Value = data.datetime;
 
-        }
-        public void insertData(string ps)
-        {
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
 
+            }
+            catch (Exception ex)
+            {
+                DataManager.PrintLog(ex.Message);
+                DataManager.PrintLog(ex.StackTrace);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }
