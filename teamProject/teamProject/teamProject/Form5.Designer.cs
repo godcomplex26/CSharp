@@ -39,10 +39,10 @@
             // 
             // plotView1
             // 
-            this.plotView1.Location = new System.Drawing.Point(12, 113);
+            this.plotView1.Location = new System.Drawing.Point(12, 104);
             this.plotView1.Name = "plotView1";
             this.plotView1.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.plotView1.Size = new System.Drawing.Size(330, 137);
+            this.plotView1.Size = new System.Drawing.Size(369, 138);
             this.plotView1.TabIndex = 0;
             this.plotView1.Text = "plotView1";
             this.plotView1.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
@@ -51,10 +51,10 @@
             // 
             // plotView2
             // 
-            this.plotView2.Location = new System.Drawing.Point(458, 113);
+            this.plotView2.Location = new System.Drawing.Point(419, 114);
             this.plotView2.Name = "plotView2";
             this.plotView2.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.plotView2.Size = new System.Drawing.Size(330, 137);
+            this.plotView2.Size = new System.Drawing.Size(369, 138);
             this.plotView2.TabIndex = 1;
             this.plotView2.Text = "plotView2";
             this.plotView2.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
@@ -63,10 +63,10 @@
             // 
             // plotView3
             // 
-            this.plotView3.Location = new System.Drawing.Point(12, 256);
+            this.plotView3.Location = new System.Drawing.Point(12, 248);
             this.plotView3.Name = "plotView3";
             this.plotView3.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.plotView3.Size = new System.Drawing.Size(330, 137);
+            this.plotView3.Size = new System.Drawing.Size(369, 138);
             this.plotView3.TabIndex = 2;
             this.plotView3.Text = "plotView3";
             this.plotView3.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
@@ -75,10 +75,10 @@
             // 
             // plotView4
             // 
-            this.plotView4.Location = new System.Drawing.Point(458, 256);
+            this.plotView4.Location = new System.Drawing.Point(419, 248);
             this.plotView4.Name = "plotView4";
             this.plotView4.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.plotView4.Size = new System.Drawing.Size(330, 137);
+            this.plotView4.Size = new System.Drawing.Size(369, 138);
             this.plotView4.TabIndex = 3;
             this.plotView4.Text = "plotView4";
             this.plotView4.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
@@ -87,10 +87,10 @@
             // 
             // plotView5
             // 
-            this.plotView5.Location = new System.Drawing.Point(12, 399);
+            this.plotView5.Location = new System.Drawing.Point(12, 392);
             this.plotView5.Name = "plotView5";
             this.plotView5.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.plotView5.Size = new System.Drawing.Size(330, 137);
+            this.plotView5.Size = new System.Drawing.Size(350, 138);
             this.plotView5.TabIndex = 4;
             this.plotView5.Text = "plotView5";
             this.plotView5.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
@@ -99,18 +99,18 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(241, 37);
+            this.textBox1.Location = new System.Drawing.Point(116, 38);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 21);
+            this.textBox1.Size = new System.Drawing.Size(246, 21);
             this.textBox1.TabIndex = 5;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(363, 34);
+            this.button1.Location = new System.Drawing.Point(368, 36);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 6;
-            this.button1.Text = "button1";
+            this.button1.Text = "조회";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
