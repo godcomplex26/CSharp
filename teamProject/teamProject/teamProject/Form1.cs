@@ -77,7 +77,7 @@ namespace teamProject
                 Format();
             }
         }
-
+/*
         // 랜덤 데이터 생성
         public PData makeRandom()
         {  Random rn = new Random();
@@ -98,7 +98,7 @@ namespace teamProject
 
             return data;
         }
-
+*/
         // 조건 초기화
         public void resetCon()
         {
@@ -144,7 +144,7 @@ namespace teamProject
 
             reScreen(c1, c2, c3);
         }
-
+/*
         // 셀 선택 시 할당되는 값
         string select = "";
 
@@ -155,7 +155,8 @@ namespace teamProject
             select = data.datetime.ToString("yyyy-MM-dd HH:mm:ss.fff");
             label1.Text = "현재 선택 : " + select + " 기록 데이터";
         }
-
+*/
+/*
         // 선택 데이터 삭제
         private void button2_Click(object sender, EventArgs e)
         {
@@ -174,7 +175,8 @@ namespace teamProject
                 MessageBox.Show("해당하는 데이터가 없습니다.");
             }
         }
-
+*/
+/*
         // 테스트 데이터 n개 입력
         private void button3_Click(object sender, EventArgs e)
         {
@@ -211,13 +213,38 @@ namespace teamProject
                 MessageBox.Show("테스트 데이터 생성이 취소 되었습니다.");
             }
         }
-
+*/
 
         // 조건 초기화
         private void button4_Click(object sender, EventArgs e)
         {
             resetCon();
             button1_Click(sender, e);
+        }
+
+        private void ToolStrip1_Click(object sender, EventArgs e)
+        {
+            new Form2().ShowDialog();
+        }
+
+        private void ToolStrip2_Click(object sender, EventArgs e)
+        {
+            new Form3().ShowDialog();
+        }
+
+        private void ToolStrip3_Click(object sender, EventArgs e)
+        {
+            new Form4().ShowDialog();
+        }
+
+        private void ToolStrip4_Click(object sender, EventArgs e)
+        {
+            new Form5().ShowDialog();
+        }
+
+        private void ToolStrip0_Click(object sender, EventArgs e)
+        {
+
         }
     }     
 }
