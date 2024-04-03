@@ -127,7 +127,7 @@
             this.Controls.Add(this.plotView2);
             this.Controls.Add(this.plotView1);
             this.Name = "Form5";
-            this.Text = "Form5";
+            this.Text = "QC 차트";
             this.ResumeLayout(false);
             this.PerformLayout();
 

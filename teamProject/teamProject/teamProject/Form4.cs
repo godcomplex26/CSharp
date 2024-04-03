@@ -100,6 +100,11 @@ namespace teamProject
             plotView4.Model = DrawGraph(PDataFields.ReactD_Temp.ToString());
             plotView5.Model = DrawGraph(PDataFields.ReactE_Temp.ToString());
             plotView6.Model = DrawGraph(PDataFields.ReactF_Temp.ToString());
+            plotView7.Model = DrawGraph(PDataFields.ReactF_PH.ToString());
+            plotView8.Model = DrawGraph(PDataFields.Power.ToString());
+            plotView9.Model = DrawGraph(PDataFields.CurrentA.ToString());
+            plotView10.Model = DrawGraph(PDataFields.CurrentB.ToString());
+            plotView11.Model = DrawGraph(PDataFields.CurrentC.ToString());
         }
     }
 }
