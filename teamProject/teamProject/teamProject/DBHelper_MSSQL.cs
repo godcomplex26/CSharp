@@ -151,13 +151,85 @@ namespace teamProject
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
                 string sql = "";
-                sql = "insert into QC_Data values (@datetime, @weight, @water, @material, @HSO, @pH);";
+                sql = "insert into QC_Data values (@date, @weight, @water, @material, @HSO, @pH);";
                 cmd.Parameters.AddWithValue("@date", data.date);
                 cmd.Parameters.AddWithValue("@weight", data.weight);
-                cmd.Parameters.AddWithValue("@date", data.water);
+                cmd.Parameters.AddWithValue("@water", data.water);
                 cmd.Parameters.AddWithValue("@material", data.material);
                 cmd.Parameters.AddWithValue("@HSO", data.HSO);
                 cmd.Parameters.AddWithValue("@pH", data.pH);
+
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                DataManager.PrintLog(ex.Message);
+                DataManager.PrintLog(ex.StackTrace);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        // 데이터 수정 PData
+        public override void DoQueryUP(PData data, string select)
+        {
+            try
+            {
+                ConnectDB();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                string sql = "";
+                sql = "update Process_Data set ReactA_Temp=@ReactA_Temp, ReactB_Temp=@ReactB_Temp, ReactC_Temp=@ReactC_Temp, "
+                        + "ReactD_Temp=@ReactD_Temp, ReactE_Temp=@ReactE_Temp, ReactF_Temp=@ReactF_Temp, ReactF_PH=@ReactF_PH, Power=@Power, "
+                        + "CurrentA=@CurrentA, CurrentB=@CurrentB, CurrentC=@CurrentC where datetime=@datetime;";
+                cmd.Parameters.AddWithValue("@ReactA_Temp", data.ReactA_Temp);
+                cmd.Parameters.AddWithValue("@ReactB_Temp", data.ReactB_Temp);
+                cmd.Parameters.AddWithValue("@ReactC_Temp", data.ReactC_Temp);
+                cmd.Parameters.AddWithValue("@ReactD_Temp", data.ReactD_Temp);
+                cmd.Parameters.AddWithValue("@ReactE_Temp", data.ReactE_Temp);
+                cmd.Parameters.AddWithValue("@ReactF_Temp", data.ReactF_Temp);
+                cmd.Parameters.AddWithValue("@ReactF_PH", data.ReactF_PH);
+                cmd.Parameters.AddWithValue("@Power", data.Power);
+                cmd.Parameters.AddWithValue("@CurrentA", data.CurrentA);
+                cmd.Parameters.AddWithValue("@CurrentB", data.CurrentB);
+                cmd.Parameters.AddWithValue("@CurrentC", data.CurrentC);
+                cmd.Parameters.AddWithValue("@datetime", select);
+
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                DataManager.PrintLog(ex.Message);
+                DataManager.PrintLog(ex.StackTrace);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        // 데이터 수정 QData
+        public override void DoQueryUQ(QData data, string select)
+        {
+            try
+            {
+                ConnectDB();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                string sql = "";
+                sql = "update QC_Data set weight=@weight, water=@water, material=@material, HSO=@HSO, pH=@pH where date=@date;";
+                cmd.Parameters.AddWithValue("@weight", data.weight);
+                cmd.Parameters.AddWithValue("@water", data.water);
+                cmd.Parameters.AddWithValue("@material", data.material);
+                cmd.Parameters.AddWithValue("@HSO", data.HSO);
+                cmd.Parameters.AddWithValue("@pH", data.pH);
+                cmd.Parameters.AddWithValue("@date", select);
 
                 cmd.CommandText = sql;
                 cmd.ExecuteNonQuery();

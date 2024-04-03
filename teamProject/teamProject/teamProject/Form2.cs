@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -16,14 +17,18 @@ namespace teamProject
         public Form2()
         {
             InitializeComponent();
+            textBox1.Enabled = false;
             Utils.reScreen(dataGridView1, "PData");
         }
+
+        string select;
 
         // 셀 선택 시 textBox에 선택값 할당
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             PData data = dataGridView1.CurrentRow.DataBoundItem as PData;
-            textBox1.Text = data.datetime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            select = data.datetime.ToString("yyyy-MM-dd HH:mm:ss.fffffff"); // 수정에 사용
+            textBox1.Text = data.datetime.ToString("yyyy-MM-dd HH:mm:ss.fffffff");
             textBox2.Text = data.ReactA_Temp.ToString();
             textBox3.Text = data.ReactB_Temp.ToString();
             textBox4.Text = data.ReactC_Temp.ToString();
@@ -36,12 +41,57 @@ namespace teamProject
             textBox11.Text = data.CurrentB.ToString();
             textBox12.Text = data.CurrentC.ToString();
         }
+        
+        // 데이터 추가
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PData data = new PData();
+            data.datetime = DateTime.Now;
+            data.ReactA_Temp = double.Parse(textBox2.Text);
+            data.ReactB_Temp = double.Parse(textBox3.Text);
+            data.ReactC_Temp = double.Parse(textBox4.Text);
+            data.ReactD_Temp = double.Parse(textBox5.Text);
+            data.ReactE_Temp = double.Parse(textBox6.Text);
+            data.ReactF_Temp = double.Parse(textBox7.Text);
+            data.ReactF_PH = double.Parse(textBox8.Text);
+            data.Power = double.Parse(textBox9.Text);
+            data.CurrentA = double.Parse(textBox10.Text);
+            data.CurrentB = double.Parse(textBox11.Text);
+            data.CurrentC = double.Parse(textBox12.Text);
+
+            DataManager.Save(data);
+            MessageBox.Show($"{data.datetime} 데이터가 추가 되었습니다.");
+            Utils.reScreen(dataGridView1, "PData");
+        }
+
+        // 데이터 수정
+        private void button2_Click(object sender, EventArgs e)
+        {
+            PData data = new PData();
+
+            data.ReactA_Temp = double.Parse(textBox2.Text);
+            data.ReactB_Temp = double.Parse(textBox3.Text);
+            data.ReactC_Temp = double.Parse(textBox4.Text);
+            data.ReactD_Temp = double.Parse(textBox5.Text);
+            data.ReactE_Temp = double.Parse(textBox6.Text);
+            data.ReactF_Temp = double.Parse(textBox7.Text);
+            data.ReactF_PH = double.Parse(textBox8.Text);
+            data.Power = double.Parse(textBox9.Text);
+            data.CurrentA = double.Parse(textBox10.Text);
+            data.CurrentB = double.Parse(textBox11.Text);
+            data.CurrentC = double.Parse(textBox12.Text);
+
+            // 데이터베이스 업데이트
+            DataManager.Update(data, select);
+            MessageBox.Show($"{select} 데이터가 수정 되었습니다.");
+            Utils.reScreen(dataGridView1, "PData");
+        }
 
         // 선택 데이터 삭제
         private void button3_Click(object sender, EventArgs e)
         {
             // textBox1.Text와 동일한 datetime을 갖는 PData 객체 찾기
-            PData data = DataManager.datasP.SingleOrDefault(x => x.datetime.ToString("yyyy-MM-dd HH:mm:ss.fff") == textBox1.Text);
+            PData data = DataManager.datasP.SingleOrDefault(x => x.datetime.ToString("yyyy-MM-dd HH:mm:ss.fffffff") == textBox1.Text);
             if (data != null)
             {
                 DataManager.Delete(data);
@@ -111,6 +161,23 @@ namespace teamProject
             {
                 MessageBox.Show("테스트 데이터 생성이 취소 되었습니다.");
             }
+        }
+
+        // 텍스트 박스 초기화
+        private void button5_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
+            textBox5.Text = "";
+            textBox6.Text = "";
+            textBox7.Text = "";
+            textBox8.Text = "";
+            textBox9.Text = "";
+            textBox10.Text = "";
+            textBox11.Text = "";
+            textBox12.Text = "";
         }
     }
 }

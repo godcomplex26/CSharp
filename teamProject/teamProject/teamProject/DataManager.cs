@@ -210,6 +210,21 @@ namespace teamProject
             PrintLog(data.date.ToString() + " 데이터 추가");
         }
 
+        // 데이터 수정 PData
+        public static void Update(PData data, string select)
+        {
+            mssql.DoQueryUP(data, select);
+            PrintLog(data.datetime.ToString() + " 데이터 수정");
+        }
+
+        // 데이터 수정 QData
+        public static void Update(QData data, string select)
+        {
+            mssql.DoQueryUQ(data, select);
+            PrintLog(data.date.ToString() + " 데이터 수정");
+        }
+
+
         // 데이터 삭제 PData
         public static void Delete(PData data)
         {

@@ -19,7 +19,8 @@ namespace teamProject
 
         public abstract void DoQueryRP(string sql = "-1"); // PData select 용
         public abstract void DoQueryRQ(string sql = "-1"); // QData select 용
-
+        public abstract void DoQueryUP(PData data, string select); // PData update 용
+        public abstract void DoQueryUQ(QData data, string select); // QData update 용
         public abstract void DoQueryCP(PData data); // PData insert용
         public abstract void DoQueryCQ(QData data); // QData insert용
 
