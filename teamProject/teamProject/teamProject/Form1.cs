@@ -16,7 +16,8 @@ namespace teamProject
 {
     public partial class Form1 : Form
     {
-        // 데이터 표시 포맷, 시간은 초까지, 소수점은 두 자리까지
+/*        
+         // 데이터 표시 포맷, 시간은 초까지, 소수점은 두 자리까지
         public void Format()
         {
             dataGridView1.Columns["datetime"].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
@@ -37,7 +38,7 @@ namespace teamProject
                 dataGridView2.Columns[columns2[i]].DefaultCellStyle.Format = "N2";
             }
 
-            /*
+            *//*
             // 소수점 이하 두 자리까지만 표시되도록 설정
             dataGridView1.Columns["ReactA_Temp"].DefaultCellStyle.Format = "N2";
             dataGridView1.Columns["ReactB_Temp"].DefaultCellStyle.Format = "N2";
@@ -50,9 +51,9 @@ namespace teamProject
             dataGridView1.Columns["CurrentA"].DefaultCellStyle.Format = "N2";
             dataGridView1.Columns["CurrentB"].DefaultCellStyle.Format = "N2";
             dataGridView1.Columns["CurrentC"].DefaultCellStyle.Format = "N2";
-            */
-        }
-
+            *//*
+        }*/
+/*
         // 화면 리프레시
         public void reScreen()
         {   
@@ -77,6 +78,7 @@ namespace teamProject
                 Format();
             }
         }
+*/
 /*
         // 랜덤 데이터 생성
         public PData makeRandom()
@@ -118,7 +120,7 @@ namespace teamProject
             */
             
             label1.Text = "현재 선택 : ";
-            reScreen();
+            Utils.reScreen(dataGridView1, dataGridView2);
         }
 
         // 데이터 조회
@@ -142,7 +144,7 @@ namespace teamProject
                 c3 = "-1";
             }
 
-            reScreen(c1, c2, c3);
+            Utils.reScreen(dataGridView1, "PData", c1, c2, c3);
         }
 /*
         // 셀 선택 시 할당되는 값

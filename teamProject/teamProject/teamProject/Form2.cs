@@ -13,6 +13,7 @@ namespace teamProject
 {
     public partial class Form2 : Form
     {
+/*
         // 데이터 표시 포맷, 시간은 초까지, 소수점은 두 자리까지
         public void Format()
         {
@@ -49,10 +50,11 @@ namespace teamProject
                 Format();
             }
         }
+*/
         public Form2()
         {
             InitializeComponent();
-            reScreen();
+            Utils.reScreen(dataGridView1, "PData");
         }
 
         // 셀 선택 시 textBox에 선택값 할당
@@ -82,7 +84,7 @@ namespace teamProject
             {
                 DataManager.Delete(data);
                 MessageBox.Show($"{textBox1.Text} 데이터가 삭제 되었습니다.");
-                reScreen();
+                Utils.reScreen(dataGridView1, "PData");
             }
             else
             {
@@ -137,7 +139,7 @@ namespace teamProject
                 }
 
                 // 데이터 그리드뷰 다시 불러오기
-                reScreen();
+                Utils.reScreen(dataGridView1, "PData");
 
                 // 사용자에게 완료 메시지 표시
                 textBox13.Text = "";
