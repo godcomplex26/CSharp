@@ -18,6 +18,7 @@ namespace teamProject
         protected abstract void ConnectDB();
 
         public abstract void DoQueryR(string c1 = "-1", string c2 = "-1", string c3 = "-1"); // select 용
+        public abstract void DoQueryR2(string c1 = "-1", string c2 = "-1", string c3 = "-1"); // select 용
 
         public abstract void DoQueryC(PData data); // insert용
         public abstract void DoQueryD(PData data); // delete 용

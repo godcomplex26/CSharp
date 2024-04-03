@@ -77,6 +77,47 @@ namespace teamProject
             }
         }
 
+        public override void DoQueryR2(string c1 = "-1", string c2 = "-1", string c3 = "-1")
+        {
+            try
+            {
+                ConnectDB();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+
+                if (c1.Equals("-1")) // 추가 조건 없는 경우
+                {
+                    cmd.CommandText = "select * from QC_Data";
+                }
+                else if (c2.Equals("-1")) // 추가 조건 1개인 경우
+                {
+                    cmd.CommandText = "select * from QC_Data where " + c1; // sql로 직접 검색
+                }
+                else if (c3.Equals("-1")) // 추가 조건 2개인 경우
+                {
+                    cmd.CommandText = "select * from QC_Data where " + c1 + " and " + c2; // sql로 직접 검색
+                }
+                else // 추가 조건 3개인 경우
+                {
+                    cmd.CommandText = "select * from QC_Data where " + c1 + " and " + c2 + " and " + c3; // sql로 직접 검색
+                }
+
+                da = new SqlDataAdapter(cmd);
+                ds = new DataSet();
+                da.Fill(ds, "QC_Data");
+                dt = ds.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                DataManager.PrintLog(ex.Message);
+                DataManager.PrintLog(ex.StackTrace);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         // 데이터 추가
         public override void DoQueryC(PData data)
         {

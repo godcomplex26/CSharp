@@ -12,6 +12,7 @@ namespace teamProject
     public class DataManager
     {
         public static List<PData> datas = new List<PData>();
+        public static List<QData> datas2 = new List<QData>();
 
         // 앞으로 DB와의 연락은 mssql이 모두 수행
         private static DBHelper_MSSQL mssql = DBHelper_MSSQL.getInstance; // 싱글톤
@@ -26,10 +27,12 @@ namespace teamProject
         {
             try
             {
-                mssql.DoQueryR(); // 전체 조회
+                // Process_Data
+                mssql.DoQueryR(); // Process_Data 전체 조회
                 datas.Clear(); // datas 초기화
                 foreach (DataRow item in mssql.dt.Rows)
                 {
+                    // Process_Data
                     PData data = new PData();
                     // datetime2 값을 밀리세컨드까지 포함하여 가져옴
                     if (item["datetime"] != DBNull.Value)
@@ -53,6 +56,22 @@ namespace teamProject
                     data.CurrentB = double.Parse(item["CurrentB"].ToString());
                     data.CurrentC = double.Parse(item["CurrentC"].ToString());
                     datas.Add(data);
+                }
+
+                // QC_Data
+                mssql.DoQueryR2(); // QC_Data 전체 조회
+                datas2.Clear(); // datas2 초기화
+                foreach (DataRow item in mssql.dt.Rows)
+                {
+                    QData data2 = new QData();
+                    data2.date = (DateTime)item["date"];
+
+                    data2.weight = item["weight"] != DBNull.Value && item["weight"] != null ? double.Parse(item["weight"].ToString()) : 0; // 혹은 다른 기본값 사용
+                    data2.water = item["water"] != DBNull.Value && item["water"] != null ? double.Parse(item["water"].ToString()) : 0;
+                    data2.material = item["material"] != DBNull.Value && item["material"] != null ? double.Parse(item["material"].ToString()) : 0;
+                    data2.HSO = item["HSO"] != DBNull.Value && item["HSO"] != null ? double.Parse(item["HSO"].ToString()) : 0;
+                    data2.pH = item["pH"] != DBNull.Value && item["pH"] != null ? double.Parse(item["pH"].ToString()) : 0;
+                    datas2.Add(data2);
                 }
             }
             catch (Exception ex)

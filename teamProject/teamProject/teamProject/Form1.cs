@@ -20,13 +20,21 @@ namespace teamProject
         public void Format()
         {
             dataGridView1.Columns["datetime"].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
+            dataGridView2.Columns["date"].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
 
-            // 소수점 이하 두 자리까지만 표시되도록 설정
+            // gridview1 소수점 이하 두 자리까지만 표시되도록 설정
             string[] columns = { "ReactA_Temp", "ReactB_Temp", "ReactC_Temp", "ReactD_Temp", "ReactE_Temp",
             "ReactF_Temp", "ReactF_PH", "Power", "CurrentA", "CurrentB","CurrentC"};
             for (int i = 0; i < columns.Length; i++)
             {
                 dataGridView1.Columns[columns[i]].DefaultCellStyle.Format = "N2";
+            }
+
+            // gridview2 소수점 이하 두 자리까지만 표시되도록 설정
+            string[] columns2 = { "weight", "water", "material", "HSO", "pH"};
+            for (int i = 0; i < columns2.Length; i++)
+            {
+                dataGridView2.Columns[columns2[i]].DefaultCellStyle.Format = "N2";
             }
 
             /*
@@ -49,10 +57,12 @@ namespace teamProject
         public void reScreen()
         {   
             dataGridView1.DataSource = null;
+            dataGridView2.DataSource = null;
             DataManager.Load();
             if (DataManager.datas.Count > 0)
             {
                 dataGridView1.DataSource = DataManager.datas;
+                dataGridView2.DataSource = DataManager.datas2;
                 Format();
             }
         }

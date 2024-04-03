@@ -42,7 +42,9 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.testCount = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -51,7 +53,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(12, 133);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1486, 949);
+            this.dataGridView1.Size = new System.Drawing.Size(1486, 489);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -168,11 +170,21 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(12, 643);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowTemplate.Height = 23;
+            this.dataGridView2.Size = new System.Drawing.Size(1486, 535);
+            this.dataGridView2.TabIndex = 15;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1510, 1214);
+            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.testCount);
             this.Controls.Add(this.textBox4);
@@ -190,6 +202,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,6 +224,7 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label testCount;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }
 
