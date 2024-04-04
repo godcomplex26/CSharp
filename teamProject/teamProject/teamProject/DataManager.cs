@@ -22,7 +22,7 @@ namespace teamProject
             LoadP();
             LoadQ();
         }
-        
+
         // PData 전체 불러오기
         public static void LoadP()
         {

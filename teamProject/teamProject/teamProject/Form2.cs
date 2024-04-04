@@ -14,11 +14,13 @@ namespace teamProject
 {
     public partial class Form2 : Form
     {
+        List<string> errors = new List<string>();
+
         public Form2()
         {
             InitializeComponent();
             textBox1.Enabled = false;
-            Utils.reScreen(dataGridView1, "PData");
+            Utils.reScreen(dataGridView1, "PData", Form1.digit);
         }
 
         string select;
@@ -41,7 +43,59 @@ namespace teamProject
             textBox11.Text = data.CurrentB.ToString();
             textBox12.Text = data.CurrentC.ToString();
         }
-        
+
+        // 데이터 유효성 검사와 데이터 처리
+        private PData ValidateAndCreateDataObject()
+        {
+            PData data = new PData();
+            data.datetime = DateTime.Now;
+            double tempValue;
+            if (!double.TryParse(textBox2.Text, out tempValue))
+                errors.Add("ReactA_Temp");
+            if (!double.TryParse(textBox3.Text, out tempValue))
+                errors.Add("ReactB_Temp");
+            if (!double.TryParse(textBox4.Text, out tempValue))
+                errors.Add("ReactC_Temp");
+            if (!double.TryParse(textBox5.Text, out tempValue))
+                errors.Add("ReactD_Temp");
+            if (!double.TryParse(textBox6.Text, out tempValue))
+                errors.Add("ReactE_Temp");
+            if (!double.TryParse(textBox7.Text, out tempValue))
+                errors.Add("ReactF_Temp");
+            if (!double.TryParse(textBox8.Text, out tempValue))
+                errors.Add("ReactF_PH");
+            if (!double.TryParse(textBox9.Text, out tempValue))
+                errors.Add("Power");
+            if (!double.TryParse(textBox10.Text, out tempValue))
+                errors.Add("CurrentA");
+            if (!double.TryParse(textBox11.Text, out tempValue))
+                errors.Add("CurrentB");
+            if (!double.TryParse(textBox12.Text, out tempValue))
+                errors.Add("CurrentC");
+
+            if (errors.Count > 0)
+            {
+                MessageBox.Show($"{string.Join(", ", errors.ToArray())}에 알맞은 데이터 값을 입력하세요");
+                errors.Clear();
+                return null;
+            }
+            else
+            {
+                data.ReactA_Temp = double.Parse(textBox2.Text);
+                data.ReactB_Temp = double.Parse(textBox3.Text);
+                data.ReactC_Temp = double.Parse(textBox4.Text);
+                data.ReactD_Temp = double.Parse(textBox5.Text);
+                data.ReactE_Temp = double.Parse(textBox6.Text);
+                data.ReactF_Temp = double.Parse(textBox7.Text);
+                data.ReactF_PH = double.Parse(textBox8.Text);
+                data.Power = double.Parse(textBox9.Text);
+                data.CurrentA = double.Parse(textBox10.Text);
+                data.CurrentB = double.Parse(textBox11.Text);
+                data.CurrentC = double.Parse(textBox12.Text);
+            }
+            return data;
+        }
+        /*
         // 데이터 추가
         private void button1_Click(object sender, EventArgs e)
         {
@@ -61,7 +115,7 @@ namespace teamProject
 
             DataManager.Save(data);
             MessageBox.Show($"{data.datetime.ToString("yyyy-MM-dd HH:mm:ss.fffffff")} 데이터가 추가 되었습니다.");
-            Utils.reScreen(dataGridView1, "PData");
+            Utils.reScreen(dataGridView1, "PData", Form1.digit);
         }
 
         // 데이터 수정
@@ -84,7 +138,41 @@ namespace teamProject
             // 데이터베이스 업데이트
             DataManager.Update(data, select);
             MessageBox.Show($"{select} 데이터가 수정 되었습니다.");
-            Utils.reScreen(dataGridView1, "PData");
+            Utils.reScreen(dataGridView1, "PData", Form1.digit);
+        }
+        */
+
+
+        // 데이터 추가
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PData data = ValidateAndCreateDataObject();
+            if (data != null)
+            {
+                DataManager.Save(data);
+                MessageBox.Show($"{data.datetime.ToString("yyyy-MM-dd HH:mm:ss.fffffff")} 데이터가 추가 되었습니다.");
+                Utils.reScreen(dataGridView1, "PData", Form1.digit);
+            }
+        }
+
+        // 데이터 수정
+        private void button2_Click(object sender, EventArgs e)
+        {
+            PData data = ValidateAndCreateDataObject();
+            if (data != null)
+            {
+                // 수정을 위해 select 값을 사용할 수 있어야 합니다.
+                if (!string.IsNullOrEmpty(select))
+                {
+                    DataManager.Update(data, select);
+                    MessageBox.Show($"{select} 데이터가 수정 되었습니다.");
+                    Utils.reScreen(dataGridView1, "PData", Form1.digit);
+                }
+                else
+                {
+                    MessageBox.Show("수정할 데이터를 선택하세요.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
 
         // 선택 데이터 삭제
@@ -96,7 +184,7 @@ namespace teamProject
             {
                 DataManager.Delete(data);
                 MessageBox.Show($"{textBox1.Text} 데이터가 삭제 되었습니다.");
-                Utils.reScreen(dataGridView1, "PData");
+                Utils.reScreen(dataGridView1, "PData", Form1.digit);
             }
             else
             {
@@ -151,7 +239,7 @@ namespace teamProject
                 }
 
                 // 데이터 그리드뷰 다시 불러오기
-                Utils.reScreen(dataGridView1, "PData");
+                Utils.reScreen(dataGridView1, "PData", Form1.digit);
 
                 // 사용자에게 완료 메시지 표시
                 textBox13.Text = "";
