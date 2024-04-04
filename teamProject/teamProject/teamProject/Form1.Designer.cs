@@ -158,7 +158,7 @@
             this.ToolStrip4});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1170, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(1171, 25);
             this.menuStrip1.TabIndex = 18;
             this.menuStrip1.Text = "데이터 관리";
             // 
@@ -201,8 +201,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1170, 1214);
+            this.ClientSize = new System.Drawing.Size(1171, 1108);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
