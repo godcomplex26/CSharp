@@ -319,9 +319,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 12);
+            this.label1.Size = new System.Drawing.Size(54, 12);
             this.label1.TabIndex = 0;
-            this.label1.Text = "DateTime";
+            this.label1.Text = "Datetime";
             // 
             // textBox6
             // 

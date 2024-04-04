@@ -47,6 +47,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.placeholder = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -74,6 +75,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.placeholder);
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.button2);
@@ -205,6 +207,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(181, 21);
             this.textBox1.TabIndex = 5;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label3
             // 
@@ -232,6 +235,17 @@
             this.label1.Size = new System.Drawing.Size(29, 12);
             this.label1.TabIndex = 0;
             this.label1.Text = "date";
+            // 
+            // placeholder
+            // 
+            this.placeholder.AutoSize = true;
+            this.placeholder.BackColor = System.Drawing.SystemColors.Window;
+            this.placeholder.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.placeholder.Location = new System.Drawing.Point(72, 28);
+            this.placeholder.Name = "placeholder";
+            this.placeholder.Size = new System.Drawing.Size(71, 12);
+            this.placeholder.TabIndex = 24;
+            this.placeholder.Text = "placeholder";
             // 
             // Form3
             // 
@@ -271,5 +285,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label placeholder;
     }
 }

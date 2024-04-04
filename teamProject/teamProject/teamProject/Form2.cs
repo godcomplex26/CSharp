@@ -60,7 +60,7 @@ namespace teamProject
             data.CurrentC = double.Parse(textBox12.Text);
 
             DataManager.Save(data);
-            MessageBox.Show($"{data.datetime} 데이터가 추가 되었습니다.");
+            MessageBox.Show($"{data.datetime.ToString("yyyy-MM-dd HH:mm:ss.fffffff")} 데이터가 추가 되었습니다.");
             Utils.reScreen(dataGridView1, "PData");
         }
 
