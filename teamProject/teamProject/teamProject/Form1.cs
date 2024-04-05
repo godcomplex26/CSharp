@@ -36,7 +36,6 @@ namespace teamProject
             dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; // 가운데 정렬
             */
 
-            label1.Text = $"{digit}";
             button2.Text = "←.0\n.00";
             button3.Text = ".00\n→.0";
             Utils.reScreen(dataGridView1, dataGridView2, digit);
@@ -195,7 +194,6 @@ namespace teamProject
             if (digit > 1)
             {
                 digit--;
-                label1.Text = $"{digit}";
                 Utils.reScreen(dataGridView1, dataGridView2, digit);
             }
             else
@@ -210,7 +208,6 @@ namespace teamProject
             if (digit < 9)
             {
                 digit++;
-                label1.Text = $"{digit}";
                 Utils.reScreen(dataGridView1, dataGridView2 , digit);
             }
             else
