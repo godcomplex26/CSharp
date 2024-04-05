@@ -61,6 +61,8 @@ namespace teamProject
             data.date = DateTime.Now;
             double tempValue;
 
+            if (!DateTime.TryParse(textBox1.Text, out _))
+                errors.Add("date");
             if (!double.TryParse(textBox2.Text, out tempValue))
                 errors.Add("weight");
             if (!double.TryParse(textBox3.Text, out tempValue))
@@ -80,6 +82,7 @@ namespace teamProject
             }
             else
             {
+                data.date = DateTime.Parse(textBox1.Text);
                 data.weight = double.Parse(textBox2.Text);
                 data.water = double.Parse(textBox3.Text);
                 data.material = double.Parse(textBox4.Text);
@@ -97,7 +100,7 @@ namespace teamProject
             {
                 DataManager.Save(data);
                 MessageBox.Show($"{data.date.ToString("yyyy-MM-dd HH:mm:ss.fffffff")} 데이터가 추가 되었습니다.");
-                Utils.reScreen(dataGridView1, "PData", Form1.digit);
+                Utils.reScreen(dataGridView1, "QData", Form1.digit);
             }
         }
 
@@ -112,7 +115,7 @@ namespace teamProject
                 {
                     DataManager.Update(data, select);
                     MessageBox.Show($"{select} 데이터가 수정 되었습니다.");
-                    Utils.reScreen(dataGridView1, "PData", Form1.digit);
+                    Utils.reScreen(dataGridView1, "QData", Form1.digit);
                 }
                 else
                 {
