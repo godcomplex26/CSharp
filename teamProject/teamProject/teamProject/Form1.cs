@@ -20,12 +20,14 @@ namespace teamProject
         public static int digit = 3;
         private List<string> conditions = new List<string>();
 
+/*        
         // 조건 초기화
         public void resetCon()
         {
             Utils.reScreen(dataGridView1, dataGridView2, digit);
             MessageBox.Show("조건이 초기화되었습니다.");
         }
+*/
 
         public Form1()
         {
@@ -151,8 +153,8 @@ namespace teamProject
         // 전체 조회
         private void button4_Click(object sender, EventArgs e)
         {
-            resetCon();
-            button1_Click(sender, e);
+//            resetCon();
+            Utils.reScreen(dataGridView1, dataGridView2, digit);
         }
 
         // 공정 데이터 관리

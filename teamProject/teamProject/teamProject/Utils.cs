@@ -77,12 +77,14 @@ namespace teamProject
                 DataManager.LoadQ();
             }
 
-            if (data.Equals("PData") && DataManager.datasP.Count > 0)
+            //if (data.Equals("PData") && DataManager.datasP.Count > 0)
+            if (data.Equals("PData"))
             {
                 dgv.DataSource = DataManager.datasP;
                 dgv.Columns[0].Width = 150;
             }
-            if (data.Equals("QData") && DataManager.datasQ.Count > 0)
+            //if (data.Equals("QData") && DataManager.datasQ.Count > 0)
+            if (data.Equals("QData"))
             {
                 dgv.DataSource = DataManager.datasQ;
                 dgv.Columns[0].Width = 100;
@@ -97,6 +99,7 @@ namespace teamProject
             dgv2.DataSource = null;
             DataManager.LoadP();
             DataManager.LoadQ();
+/*
             if (DataManager.datasP.Count > 0 && DataManager.datasQ.Count > 0)
             {
                 dgv1.DataSource = DataManager.datasP;
@@ -105,6 +108,12 @@ namespace teamProject
                 dgv2.Columns[0].Width = 100;
                 Format(dgv1, dgv2, digit);
             }
+*/
+            dgv1.DataSource = DataManager.datasP;
+            dgv1.Columns[0].Width = 150;
+            dgv2.DataSource = DataManager.datasQ;
+            dgv2.Columns[0].Width = 100;
+            Format(dgv1, dgv2, digit);
         }
 
         // 화면 리프레시 - 조건
@@ -120,12 +129,15 @@ namespace teamProject
                 DataManager.LoadQ(sql);
             }
 
-            if (data.Equals("PData") && DataManager.datasP.Count > 0)
+            // if (data.Equals("PData") && DataManager.datasP.Count > 0)
+            if (data.Equals("PData"))
             {
                 dgv.DataSource = DataManager.datasP;
                 dgv.Columns[0].Width = 150;
             }
-            if (data.Equals("QData") && DataManager.datasQ.Count > 0)
+
+            // if (data.Equals("QData") && DataManager.datasQ.Count > 0)
+            if (data.Equals("QData"))
             {
                 dgv.DataSource = DataManager.datasQ;
                 dgv.Columns[0].Width = 100;
