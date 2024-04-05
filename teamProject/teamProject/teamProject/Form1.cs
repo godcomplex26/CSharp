@@ -219,12 +219,32 @@ namespace teamProject
             }
         }
 
-        // 셀 클릭
+        // 셀 클릭 GridView1
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0) // 유효한 셀이 클릭되었는지 확인합니다.
             {
                 DataGridViewCell clickedCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                // 클릭된 셀의 정보를 가져옵니다.
+                string value = clickedCell.Value.ToString(); // 셀의 값
+                int rowIdx = e.RowIndex; // 행 인덱스
+                int colIdx = e.ColumnIndex; // 열 인덱스
+
+                /*
+                // 가져온 정보를 사용하여 원하는 작업을 수행합니다.
+                MessageBox.Show($"클릭된 셀: 행 {rowIdx}, 열 {colIdx}, 값 {value}");
+                */
+
+                textBox3.Text = value;
+            }
+        }
+
+        // 셀 클릭 GridView2
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0) // 유효한 셀이 클릭되었는지 확인합니다.
+            {
+                DataGridViewCell clickedCell = dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 // 클릭된 셀의 정보를 가져옵니다.
                 string value = clickedCell.Value.ToString(); // 셀의 값
                 int rowIdx = e.RowIndex; // 행 인덱스
