@@ -220,12 +220,14 @@ namespace teamProject
             calendar.BringToFront();
         }
 
+        // 조건 전체 삭제
         private void button8_Click(object sender, EventArgs e)
         {
             conditions.Clear();
             condListRefresher();
         }
 
+        // 조건 생성
         private void finalQueryGen()
         {
             int len = conditions.Count();

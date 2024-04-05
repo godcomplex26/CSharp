@@ -34,9 +34,9 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -45,8 +45,8 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.button30 = new System.Windows.Forms.Button();
+            this.button20 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.menuStrip1 = new System.Windows.Forms.ToolStrip();
@@ -109,9 +109,9 @@
             this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Controls.Add(this.textBox3);
             this.groupBox1.Controls.Add(this.button5);
-            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.button30);
             this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.button20);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Location = new System.Drawing.Point(12, 28);
             this.groupBox1.Name = "groupBox1";
@@ -122,9 +122,9 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.button10);
-            this.groupBox4.Controls.Add(this.button9);
             this.groupBox4.Controls.Add(this.button8);
+            this.groupBox4.Controls.Add(this.button3);
+            this.groupBox4.Controls.Add(this.button2);
             this.groupBox4.Controls.Add(this.button7);
             this.groupBox4.Controls.Add(this.button6);
             this.groupBox4.Controls.Add(this.textBox4);
@@ -138,35 +138,35 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "조건 설정";
             // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(622, 44);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(119, 23);
-            this.button10.TabIndex = 8;
-            this.button10.Text = "조건전체삭제";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(497, 44);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(119, 23);
-            this.button9.TabIndex = 7;
-            this.button9.Text = "날짜입력";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(622, 17);
+            this.button8.Location = new System.Drawing.Point(622, 44);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(119, 23);
-            this.button8.TabIndex = 6;
-            this.button8.Text = "조건추가";
+            this.button8.TabIndex = 8;
+            this.button8.Text = "조건전체삭제";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(497, 44);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(119, 23);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "날짜입력";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(622, 17);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(119, 23);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "조건추가";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button7
             // 
@@ -239,25 +239,25 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // button3
+            // button30
             // 
-            this.button3.Location = new System.Drawing.Point(1030, 19);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(56, 46);
-            this.button3.TabIndex = 19;
-            this.button3.Text = "자리수늘리기";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button30.Location = new System.Drawing.Point(1030, 19);
+            this.button30.Name = "button30";
+            this.button30.Size = new System.Drawing.Size(56, 46);
+            this.button30.TabIndex = 19;
+            this.button30.Text = "자리수늘리기";
+            this.button30.UseVisualStyleBackColor = true;
+            this.button30.Click += new System.EventHandler(this.button30_Click);
             // 
-            // button2
+            // button20
             // 
-            this.button2.Location = new System.Drawing.Point(968, 19);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(56, 46);
-            this.button2.TabIndex = 18;
-            this.button2.Text = "자리수줄이기";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button20.Location = new System.Drawing.Point(968, 19);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(56, 46);
+            this.button20.TabIndex = 18;
+            this.button20.Text = "자리수줄이기";
+            this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
             // groupBox2
             // 
@@ -372,17 +372,17 @@
         private System.Windows.Forms.ToolStripLabel ToolStrip4;
         private System.Windows.Forms.ToolStripLabel ToolStrip0;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button30;
+        private System.Windows.Forms.Button button20;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.ListBox listBox3;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button6;
     }

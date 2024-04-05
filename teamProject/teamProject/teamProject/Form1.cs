@@ -36,8 +36,8 @@ namespace teamProject
             dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; // 가운데 정렬
             */
 
-            button2.Text = "←.0\n.00";
-            button3.Text = ".00\n→.0";
+            button20.Text = "←.0\n.00";
+            button30.Text = ".00\n→.0";
             Utils.reScreen(dataGridView1, dataGridView2, digit);
 
             // 조회 조건 리스트
@@ -148,7 +148,7 @@ namespace teamProject
                 }
         */
 
-        // 조건 초기화
+        // 전체 조회
         private void button4_Click(object sender, EventArgs e)
         {
             resetCon();
@@ -189,7 +189,7 @@ namespace teamProject
         }
 
         // 자릿수 줄이기(최소 1자리 까지)
-        private void button2_Click(object sender, EventArgs e)
+        private void button20_Click(object sender, EventArgs e)
         {
             if (digit > 1)
             {
@@ -203,7 +203,7 @@ namespace teamProject
         }
 
         // 자릿수 늘리기(최대 9자리 까지)
-        private void button3_Click(object sender, EventArgs e)
+        private void button30_Click(object sender, EventArgs e)
         {
             if (digit < 9)
             {
@@ -256,8 +256,8 @@ namespace teamProject
             }
         }
 
-        // 조건 조회
-        private void button8_Click(object sender, EventArgs e)
+        // 조건 추가
+        private void button2_Click(object sender, EventArgs e)
         {
             string column = listBox1.SelectedItem.ToString();
             string op = listBox2.SelectedItem.ToString();
@@ -296,6 +296,7 @@ namespace teamProject
             condListRefresher();
         }
 
+        // 유효성 검사
         public bool IsValidWhereClause(string whereClause)
         {
             string pattern = @"^(?:\s*\w+\s*(?:=|<>|>|<|>=|<=|LIKE|BETWEEN)\s*(?:'[^']*'|[\w\d%_\-\.]+(?:\.\d+)?)(?:\s*AND\s*(?:'[\w\d%_\-\.]+(?:\.\d+)?'))?(?:\s*ESCAPE\s*'\w')?(?:\s*AND\s*(?:'[\w\d%_\-\.]+(?:\.\d+)?'))?(?:\s*ESCAPE\s*'\w')?\s*(?:AND|OR)?\s*)*$";
@@ -308,6 +309,7 @@ namespace teamProject
             listBox3.Items.AddRange(conditions.ToArray());
         }
 
+        // 딜리트로 조건 삭제
         private void listBox3_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
@@ -335,7 +337,7 @@ namespace teamProject
             condListRefresher();
         }
 
-        private void button9_Click(object sender, EventArgs e) // 날짜 입력
+        private void button3_Click(object sender, EventArgs e) // 날짜 입력
         {
             Point buttonLocation = button6.PointToScreen(Point.Empty);
 
@@ -367,12 +369,14 @@ namespace teamProject
             calendar.BringToFront();
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        // 조건 전체 삭제
+        private void button8_Click(object sender, EventArgs e)
         {
             conditions.Clear();
             condListRefresher();
         }
 
+        // 조건 생성
         private void finalQueryGen()
         {
             int len = conditions.Count();
