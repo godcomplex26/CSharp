@@ -19,7 +19,11 @@ namespace teamProject
         public Form3()
         {
             InitializeComponent();
-            Utils.reScreen(dataGridView1, "QData", Form1.digit);
+
+            progressBar1.Style = ProgressBarStyle.Marquee; // Marquee 스타일은 애니메이션 형태의 로딩바입니다.
+            progressBar1.MarqueeAnimationSpeed = 30; // 로딩바의 애니메이션 속도를 조절합니다.
+
+            Utils.reScreen(dataGridView1, "QData", Form1.digit, progressBar1);
             placeholder.Text = placeholderText;
             placeholder.Enabled = false;
         }
@@ -108,7 +112,7 @@ namespace teamProject
 
                     DataManager.Save(data);
                     MessageBox.Show($"{data.date.ToString("yyyy-MM-dd")} 데이터가 추가 되었습니다.");
-                    Utils.reScreen(dataGridView1, "QData", Form1.digit);
+                    Utils.reScreen(dataGridView1, "QData", Form1.digit, progressBar1);
                 }
             }
             catch 
@@ -128,7 +132,7 @@ namespace teamProject
                 {
                     DataManager.Update(data, select);
                     MessageBox.Show($"{select} 데이터가 수정 되었습니다.");
-                    Utils.reScreen(dataGridView1, "QData", Form1.digit);
+                    Utils.reScreen(dataGridView1, "QData", Form1.digit, progressBar1);
                 }
                 else
                 {
@@ -180,7 +184,7 @@ namespace teamProject
             {
                 DataManager.Delete(data);
                 MessageBox.Show($"{textBox1.Text} 데이터가 삭제 되었습니다.");
-                Utils.reScreen(dataGridView1, "QData", Form1.digit);
+                Utils.reScreen(dataGridView1, "QData", Form1.digit, progressBar1);
             }
             else
             {

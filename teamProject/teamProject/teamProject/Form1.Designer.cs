@@ -43,6 +43,7 @@
             this.ToolStrip4 = new System.Windows.Forms.ToolStripLabel();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -186,6 +187,13 @@
             this.panel1.Size = new System.Drawing.Size(1548, 119);
             this.panel1.TabIndex = 22;
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(1145, 286);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(285, 23);
+            this.progressBar1.TabIndex = 23;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -193,6 +201,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1548, 1104);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.textBox3);
@@ -231,8 +240,8 @@
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button1;
-//        public System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 

@@ -20,7 +20,11 @@ namespace teamProject
         {
             InitializeComponent();
             textBox1.Enabled = false;
-            Utils.reScreen(dataGridView1, "PData", Form1.digit);
+
+            progressBar1.Style = ProgressBarStyle.Marquee; // Marquee 스타일은 애니메이션 형태의 로딩바입니다.
+            progressBar1.MarqueeAnimationSpeed = 30; // 로딩바의 애니메이션 속도를 조절합니다.
+
+            Utils.reScreen(dataGridView1, "PData", Form1.digit, progressBar1);
         }
 
         string select;
@@ -151,7 +155,7 @@ namespace teamProject
             {
                 DataManager.Save(data);
                 MessageBox.Show($"{data.datetime.ToString("yyyy-MM-dd HH:mm:ss.fffffff")} 데이터가 추가 되었습니다.");
-                Utils.reScreen(dataGridView1, "PData", Form1.digit);
+                Utils.reScreen(dataGridView1, "PData", Form1.digit, progressBar1);
             }
         }
 
@@ -166,7 +170,7 @@ namespace teamProject
                 {
                     DataManager.Update(data, select);
                     MessageBox.Show($"{select} 데이터가 수정 되었습니다.");
-                    Utils.reScreen(dataGridView1, "PData", Form1.digit);
+                    Utils.reScreen(dataGridView1, "PData", Form1.digit, progressBar1);
                 }
                 else
                 {
@@ -184,7 +188,7 @@ namespace teamProject
             {
                 DataManager.Delete(data);
                 MessageBox.Show($"{textBox1.Text} 데이터가 삭제 되었습니다.");
-                Utils.reScreen(dataGridView1, "PData", Form1.digit);
+                Utils.reScreen(dataGridView1, "PData", Form1.digit, progressBar1);
             }
             else
             {
@@ -239,7 +243,7 @@ namespace teamProject
                 }
 
                 // 데이터 그리드뷰 다시 불러오기
-                Utils.reScreen(dataGridView1, "PData", Form1.digit);
+                Utils.reScreen(dataGridView1, "PData", Form1.digit, progressBar1);
 
                 // 사용자에게 완료 메시지 표시
                 textBox13.Text = "";

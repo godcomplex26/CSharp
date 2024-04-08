@@ -63,6 +63,7 @@
             this.testCount = new System.Windows.Forms.Label();
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -360,6 +361,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.progressBar1);
             this.groupBox3.Controls.Add(this.testCount);
             this.groupBox3.Controls.Add(this.textBox13);
             this.groupBox3.Controls.Add(this.button4);
@@ -395,6 +397,13 @@
             this.button4.Text = "테스트데이터 생성";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(79, 103);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(100, 23);
+            this.progressBar1.TabIndex = 5;
             // 
             // Form2
             // 
@@ -453,5 +462,6 @@
         private System.Windows.Forms.TextBox textBox13;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }

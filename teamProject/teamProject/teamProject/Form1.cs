@@ -39,13 +39,15 @@ namespace teamProject
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells; // 열 너비 맞춤
             dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; // 가운데 정렬
             */
+            progressBar1.Style = ProgressBarStyle.Marquee; // Marquee 스타일은 애니메이션 형태의 로딩바입니다.
+            progressBar1.MarqueeAnimationSpeed = 30; // 로딩바의 애니메이션 속도를 조절합니다.
 
             button20.Text = "←.0\n.00";
             button30.Text = ".00\n→.0";
 
             ShowForm7AsChildForm();
 
-            Utils.reScreen(dataGridView1, dataGridView2, digit);
+            Utils.reScreen(dataGridView1, dataGridView2, digit, progressBar1);
 
             button1.Location = new Point(form7.getLocationX() + 12, form7.getLocationY() + 20);
         }
@@ -65,18 +67,18 @@ namespace teamProject
             Console.WriteLine("test");
             if (form7.conditions.Count == 0)
             {
-                Utils.reScreen(dataGridView1, dataGridView2, digit);
+                Utils.reScreen(dataGridView1, dataGridView2, digit, progressBar1);
             }
             else
             {
                 form7.finalQueryGen();
                 if (form7.getCurrentTab().Equals("PData"))
                 {
-                    Utils.reScreen(dataGridView1, form7.getCurrentTab(), string.Join(" ", form7.conditions), digit);
+                    Utils.reScreen(dataGridView1, form7.getCurrentTab(), string.Join(" ", form7.conditions), digit, progressBar1);
                 }
                 else if (form7.getCurrentTab().Equals("QData"))
                 {
-                    Utils.reScreen(dataGridView2, form7.getCurrentTab(), string.Join(" ", form7.conditions), digit);
+                    Utils.reScreen(dataGridView2, form7.getCurrentTab(), string.Join(" ", form7.conditions), digit, progressBar1);
                 }
             }
         }
@@ -157,14 +159,14 @@ namespace teamProject
         private void ToolStrip1_Click(object sender, EventArgs e)
         {
             new Form2().ShowDialog();
-            Utils.reScreen(dataGridView1, "PData", digit);
+            Utils.reScreen(dataGridView1, "PData", digit, progressBar1);
         }
 
         // QC 데이터 관리
         private void ToolStrip2_Click(object sender, EventArgs e)
         {
             new Form3().ShowDialog();
-            Utils.reScreen( dataGridView2, "QData", digit);
+            Utils.reScreen( dataGridView2, "QData", digit, progressBar1);
         }
 
 
@@ -183,7 +185,7 @@ namespace teamProject
         // 메인
         private void ToolStrip0_Click(object sender, EventArgs e)
         {
-            Utils.reScreen(dataGridView1, dataGridView2, digit);
+            Utils.reScreen(dataGridView1, dataGridView2, digit, progressBar1);
         }
 
         // 자릿수 줄이기(최소 1자리 까지)
@@ -192,7 +194,7 @@ namespace teamProject
             if (digit > 1)
             {
                 digit--;
-                Utils.reScreen(dataGridView1, dataGridView2, digit);
+                Utils.reScreen(dataGridView1, dataGridView2, digit, progressBar1);
             }
             else
             {
@@ -206,7 +208,7 @@ namespace teamProject
             if (digit < 9)
             {
                 digit++;
-                Utils.reScreen(dataGridView1, dataGridView2 , digit);
+                Utils.reScreen(dataGridView1, dataGridView2 , digit, progressBar1);
             }
             else
             {

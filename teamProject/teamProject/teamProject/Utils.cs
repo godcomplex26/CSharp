@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Threading;
 
 namespace teamProject
 {
@@ -65,16 +66,30 @@ namespace teamProject
         }
 
         // 화면 리프레시 - 1개(Form2, 3)
-        public static void reScreen(DataGridView dgv, string data, int digit)
+        public static async Task reScreen(DataGridView dgv, string data, int digit, System.Windows.Forms.ProgressBar pb)
         {
             dgv.DataSource = null;
+
+            pb.Visible = true; // 로딩 바 표시
+
             if (data.Equals("PData"))
             {
-                DataManager.LoadP();
+                // 비동기적으로 데이터 로드
+                await Task.Run(() =>
+                {
+//                    Thread.Sleep(10000); // 10초 대기
+                    DataManager.LoadP();
+                });
             }
+
             if (data.Equals("QData"))
             {
-                DataManager.LoadQ();
+                // 비동기적으로 데이터 로드
+                await Task.Run(() =>
+                {
+//                    Thread.Sleep(10000); // 10초 대기
+                    DataManager.LoadQ();
+                });
             }
 
             //if (data.Equals("PData") && DataManager.datasP.Count > 0)
@@ -90,45 +105,87 @@ namespace teamProject
                 dgv.Columns[0].Width = 100;
             }
             Format(dgv, data, digit);
+
+            pb.Visible = false; // 로딩 바 숨김
         }
 
-        // 화면 리프레시 - 2개(Form1)
-        public static void reScreen(DataGridView dgv1, DataGridView dgv2, int digit)
+        public static async Task reScreen(DataGridView dgv1, DataGridView dgv2, int digit, System.Windows.Forms.ProgressBar pb)
         {
             dgv1.DataSource = null;
             dgv2.DataSource = null;
-            DataManager.LoadP();
-            DataManager.LoadQ();
-/*
-            if (DataManager.datasP.Count > 0 && DataManager.datasQ.Count > 0)
+
+            pb.Visible = true; // 로딩 바 표시
+
+            // 비동기적으로 데이터 로드
+            await Task.Run(() =>
             {
-                dgv1.DataSource = DataManager.datasP;
-                dgv1.Columns[0].Width = 150;
-                dgv2.DataSource = DataManager.datasQ;
-                dgv2.Columns[0].Width = 100;
-                Format(dgv1, dgv2, digit);
-            }
-*/
+//                Thread.Sleep(10000); // 10초 대기
+                DataManager.LoadP();
+                DataManager.LoadQ();
+            });
+
+            // 데이터 로드 후 화면 갱신
             dgv1.DataSource = DataManager.datasP;
             dgv1.Columns[0].Width = 150;
             dgv2.DataSource = DataManager.datasQ;
             dgv2.Columns[0].Width = 100;
             Format(dgv1, dgv2, digit);
+
+            pb.Visible = false; // 로딩 바 숨김
         }
 
+        /*        // 화면 리프레시 - 2개(Form1)
+                public static void reScreen(DataGridView dgv1, DataGridView dgv2, int digit)
+                {
+                    dgv1.DataSource = null;
+                    dgv2.DataSource = null;
+                    DataManager.LoadP();
+                    DataManager.LoadQ();
+        *//*
+                    if (DataManager.datasP.Count > 0 && DataManager.datasQ.Count > 0)
+                    {
+                        dgv1.DataSource = DataManager.datasP;
+                        dgv1.Columns[0].Width = 150;
+                        dgv2.DataSource = DataManager.datasQ;
+                        dgv2.Columns[0].Width = 100;
+                        Format(dgv1, dgv2, digit);
+                    }
+        *//*
+                    dgv1.DataSource = DataManager.datasP;
+                    dgv1.Columns[0].Width = 150;
+                    dgv2.DataSource = DataManager.datasQ;
+                    dgv2.Columns[0].Width = 100;
+                    Format(dgv1, dgv2, digit);
+                }*/
+
         // 화면 리프레시 - 조건
-        public static void reScreen(DataGridView dgv, string data, string sql, int digit)
+        public static async Task reScreen(DataGridView dgv, string data, string sql, int digit, System.Windows.Forms.ProgressBar pb)
         {
             dgv.DataSource = null;
+
+            pb.Visible = true; // 로딩 바 표시
+
             if (data.Equals("PData"))
             {
-                DataManager.LoadP(sql);
-            }
-            if (data.Equals("QData"))
-            {
-                DataManager.LoadQ(sql);
+                // 비동기적으로 데이터 로드
+                await Task.Run(() =>
+                {
+//                    Thread.Sleep(10000); // 10초 대기
+                    DataManager.LoadP(sql);
+                });
             }
 
+            if (data.Equals("QData"))
+            {
+                // 비동기적으로 데이터 로드
+                await Task.Run(() =>
+                {
+//                    Thread.Sleep(10000); // 10초 대기
+                    DataManager.LoadQ(sql);
+                });
+            }
+
+            // 데이터 로드 후 화면 갱신
             // if (data.Equals("PData") && DataManager.datasP.Count > 0)
             if (data.Equals("PData"))
             {
@@ -136,6 +193,7 @@ namespace teamProject
                 dgv.Columns[0].Width = 150;
             }
 
+            // 데이터 로드 후 화면 갱신
             // if (data.Equals("QData") && DataManager.datasQ.Count > 0)
             if (data.Equals("QData"))
             {
@@ -143,8 +201,10 @@ namespace teamProject
                 dgv.Columns[0].Width = 100;
             }
             Format(dgv, data, digit);
-        }
 
+            pb.Visible = false; // 로딩 바 숨김
+        }
+/*
         // sql 컨버터
         public static string sqlQueryConverter(string text)
         {
@@ -204,6 +264,7 @@ namespace teamProject
             string query = "";
             return query;
         }
+*/
 
         public static string[] pdata = new string[] { "datetime", "ReactA_Temp", "ReactB_Temp", "ReactC_Temp", "ReactD_Temp", "ReactE_Temp", "ReactF_Temp", "ReactF_PH", "Power", "CurrentA", "CurrentB", "CurrentC" };
         public static string[] qdata = new string[] { "date", "weight", "water", "material", "HSO", "pH" };
