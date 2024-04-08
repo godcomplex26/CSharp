@@ -341,6 +341,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = "화장품 생산 관리 프로그램";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.groupBox1.ResumeLayout(false);

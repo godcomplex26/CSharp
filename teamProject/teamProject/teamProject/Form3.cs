@@ -95,12 +95,25 @@ namespace teamProject
         // 데이터 추가
         private void button1_Click(object sender, EventArgs e)
         {
-            QData data = ValidateAndCreateDataObject();
-            if (data != null)
+            try
             {
-                DataManager.Save(data);
-                MessageBox.Show($"{data.date.ToString("yyyy-MM-dd HH:mm:ss.fffffff")} 데이터가 추가 되었습니다.");
-                Utils.reScreen(dataGridView1, "QData", Form1.digit);
+                QData data = ValidateAndCreateDataObject();
+                if (data != null)
+                {
+                    if (DataManager.datasQ.Any(d => d.date.Date == data.date.Date))
+                    {
+                        MessageBox.Show("이미 동일한 날짜에 데이터가 입력되었습니다.");
+                        return;
+                    }
+
+                    DataManager.Save(data);
+                    MessageBox.Show($"{data.date.ToString("yyyy-MM-dd")} 데이터가 추가 되었습니다.");
+                    Utils.reScreen(dataGridView1, "QData", Form1.digit);
+                }
+            }
+            catch 
+            {
+                MessageBox.Show("이미 동일한 날짜에 데이터가 있습니다.");
             }
         }
 

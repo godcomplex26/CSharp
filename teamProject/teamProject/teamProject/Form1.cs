@@ -392,5 +392,12 @@ namespace teamProject
             }
             condListRefresher();
         }
+
+        // Form1 종료 시 Form0도 함께 종료
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Form0를 종료합니다.
+            Application.OpenForms["Form0"].Close();
+        }
     }
 }

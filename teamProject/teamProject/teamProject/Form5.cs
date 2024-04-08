@@ -1,6 +1,6 @@
-﻿using OxyPlot;
-using OxyPlot.Axes;
+﻿using OxyPlot.Axes;
 using OxyPlot.Series;
+using OxyPlot;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,15 +8,20 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
+using System.Windows.Forms.DataVisualization.Charting;
+using System.Data.Common;
+using System.Globalization;
+using teamProject;
 
-namespace teamProject
-{
+namespace teamProject 
+{ 
     public partial class Form5 : Form
     {
-        private List<string> conditions = new List<string>();
+        Form7 form7 = new Form7();
+        List<Chart> charts = new List<Chart>();
         public enum QDataFields
         {
             date,
@@ -30,216 +35,161 @@ namespace teamProject
         public Form5()
         {
             InitializeComponent();
-            listBox1.Items.AddRange(Utils.qdata);
-            listBox2.Items.AddRange(Utils.operators);
+            ShowForm7AsChildForm();
 
             DataManager.LoadQ();
+            DataManager.LoadP();
             // datetime between '2022-04-02' and '2022-04-09'
-            loadCharts();
-        }
-
-        private PlotModel DrawGraph(string column)
-        {
-            // 데이터 생성
-            var model = new PlotModel { Title = column };
-            //var model = new PlotModel ();
-            var series = new LineSeries
+            //loadCharts();
+            //DrawChart(chart1, "ReactA_Temp");
+            for (int i = 0; i < Utils.qdata.Count(); i++)
             {
-                Title = "Data",
-                MarkerType = MarkerType.Circle
-            };
-
-            if (DataManager.datasQ.Count > 0)
-            {
-                foreach (var data in DataManager.datasQ)
-                {
-                    series.Points.Add(
-                        new DataPoint(
-                            DateTimeAxis.ToDouble(data.date),
-                            Convert.ToDouble(data.GetType().GetProperty(column).GetValue(data))
-                            ));
-                }
+                charts.Add(new Chart());
             }
+            button1.Location = new Point(form7.getLocationX() + 12, form7.getLocationY() + 20);
+            DrawCharts(charts);
 
-            // 시리즈를 모델에 추가
-            model.Series.Add(series);
-
-            var dateTimeAxis = new DateTimeAxis
-            {
-                Position = AxisPosition.Bottom,
-                Title = "Date",
-                IntervalType = DateTimeIntervalType.Days,
-                StringFormat = "yyyy-MM-dd"
-            };
-            model.Axes.Add(dateTimeAxis);
-
-            model.Axes.Add(new LinearAxis
-            {
-                Position = AxisPosition.Left,
-                Title = column
-            });
-
-            // PlotView 컨트롤에 모델 할당
-            return model;
         }
 
-        // 조회 버튼
-        private void button1_Click(object sender, EventArgs e)
+        private void ShowForm7AsChildForm()
         {
-/*            
-            string where = textBox1.Text.ToString();
-            DataManager.LoadQ(where);
-            loadCharts();
-*/
+            form7.TopLevel = false;
+            form7.FormBorderStyle = FormBorderStyle.None;
+            form7.Dock = DockStyle.Fill;
 
-            finalQueryGen();
-            DataManager.LoadQ(string.Join(" ", conditions));
-            loadCharts();
+            this.Controls.Add(form7);
+            form7.Show();
+            //groupBox2.Size = new Size(form7.getGroupBox().Width, form7.Height);
         }
 
-        // 차트 생성
+
+
         private void loadCharts()
         {
-            plotView1.Model = DrawGraph(QDataFields.weight.ToString());
-            plotView2.Model = DrawGraph(QDataFields.water.ToString());
-            plotView3.Model = DrawGraph(QDataFields.material.ToString());
-            plotView4.Model = DrawGraph(QDataFields.HSO.ToString());
-            plotView5.Model = DrawGraph(QDataFields.pH.ToString());
+            //plotView1.Model = DrawGraph(QDataFields.weight.ToString());
+            //plotView2.Model = DrawGraph(QDataFields.water.ToString());
+            //plotView3.Model = DrawGraph(QDataFields.material.ToString());
+            //plotView4.Model = DrawGraph(QDataFields.HSO.ToString());
+            //plotView5.Model = DrawGraph(QDataFields.pH.ToString());
+            DrawCharts(charts);
         }
 
-        // 조건 추가
-        private void button2_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            string column = listBox1.SelectedItem.ToString();
-            string op = listBox2.SelectedItem.ToString();
-            string val = textBox4.Text;
+            form7.finalQueryGen();
+            DataManager.LoadQ(string.Join(" ", form7.conditions));
+            loadCharts();
+        }
 
-            if (op.Equals("LIKE"))
-                val += "%";
-            if (column.Equals("datetime") || column.Equals("date"))
-                val = $"'{val}'";
-
-            string condition = $"{column} {op} {val}";
-            if (IsValidWhereClause(condition))
+        private void DrawChart(Chart chart, string column)
+        {
+            chart.Series[0].Name = column;
+            if (DataManager.datasP.Count > 0)
             {
-                if (conditions.Count != 0)
+                foreach (var data in DataManager.datasP)
                 {
-                    if (conditions.Last().ToString().Equals("AND") || conditions.Last().ToString().Equals("OR"))
+                    chart.Series[column].Points.AddXY(data.datetime,
+                            Convert.ToDouble(data.GetType().GetProperty(column).GetValue(data)));
+                }
+            }
+        }
+
+        private void DrawCharts()
+        {
+            for (int i = 1; i < Utils.qdata.Count(); i++)
+            {
+
+                Chart chart = new Chart();
+                ChartArea chartArea = new ChartArea();
+                Legend legend = new Legend();
+                System.Windows.Forms.DataVisualization.Charting.Series series = new System.Windows.Forms.DataVisualization.Charting.Series();
+
+                chart.Series.Add(Utils.qdata[i]);
+                chart.ChartAreas.Add(chartArea);
+                chart.Series[Utils.qdata[i]].ChartType = SeriesChartType.FastLine;
+
+                chart.Name = "QData";
+                legend.Name = "legend1";
+                legend.Docking = Docking.Top;
+                chartArea.Name = "ChartArea1";
+                series.Name = Utils.qdata[i];
+
+                series.ChartArea = chartArea.Name;
+                series.Legend = "Legend1";
+
+                int xSize = this.Size.Width / 2;
+                int ySize = 200;
+                int marginTop = 0;
+                chart.Size = new Size(xSize, ySize);
+                chart.Location = new Point(((i - 1) % 2) * xSize, marginTop + (((i - 1) / 2) * ySize));
+
+
+                chart.Legends.Add(legend);
+
+
+                //chart.Series[0].Name = Utils.qdata[i];
+                if (DataManager.datasQ.Count > 0)
+                {
+                    foreach (var data in DataManager.datasQ)
                     {
-                        conditions.Add(condition);
+                        chart.Series[Utils.qdata[i]].Points.AddXY(data.date,
+                                Convert.ToDouble(data.GetType().GetProperty(Utils.qdata[i]).GetValue(data)));
                     }
-                    else
+                }
+                panel1.Controls.Add(chart);
+                //chart.Show();
+            }
+        }
+
+        private void DrawCharts(List<Chart> charts)
+        {
+            panel1.Controls.Clear();
+            for (int i = 1; i < Utils.qdata.Count(); i++)
+            {
+                Chart chart = charts[i];
+                chart.Series.Clear();
+                chart.ChartAreas.Clear();
+                chart.Legends.Clear();
+                chart.Titles.Clear();
+                ChartArea chartArea = new ChartArea();
+                Legend legend = new Legend();
+                System.Windows.Forms.DataVisualization.Charting.Series series = new System.Windows.Forms.DataVisualization.Charting.Series();
+
+                chart.Series.Add(Utils.qdata[i]);
+                chart.ChartAreas.Add(chartArea);
+                chart.Series[Utils.qdata[i]].ChartType = SeriesChartType.FastLine;
+
+                chart.Name = "QData";
+                legend.Name = "legend1";
+                legend.Docking = Docking.Top;
+                chartArea.Name = "ChartArea1";
+                series.Name = Utils.qdata[i];
+
+                series.ChartArea = chartArea.Name;
+                series.Legend = "Legend1";
+
+                int xSize = (panel1.Size.Width / 2) - 10;
+                int ySize = 200;
+                int marginTop = 0;
+                chart.Size = new Size(xSize, ySize);
+                chart.Location = new Point(((i - 1) % 2) * xSize, marginTop + (((i - 1) / 2) * ySize));
+
+
+                chart.Legends.Add(legend);
+
+
+                //chart.Series[0].Name = Utils.qdata[i];
+                if (DataManager.datasQ.Count > 0)
+                {
+                    foreach (var data in DataManager.datasQ)
                     {
-                        conditions.Add("AND");
-                        conditions.Add(condition);
+                        chart.Series[Utils.qdata[i]].Points.AddXY(data.date,
+                                Convert.ToDouble(data.GetType().GetProperty(Utils.qdata[i]).GetValue(data)));
                     }
                 }
-                else
-                {
-                    conditions.Add(condition);
-                }
+                panel1.Controls.Add(chart);
+                //chart.Show();
             }
-            else
-            {
-                MessageBox.Show("조건 구성이 올바르지 않습니다.");
-            }
-            textBox4.Clear();
-            condListRefresher();
-        }
-
-        // 유효성 검사
-        public bool IsValidWhereClause(string whereClause)
-        {
-            string pattern = @"^(?:\s*\w+\s*(?:=|<>|>|<|>=|<=|LIKE|BETWEEN)\s*(?:'[^']*'|[\w\d%_\-\.]+(?:\.\d+)?)(?:\s*AND\s*(?:'[\w\d%_\-\.]+(?:\.\d+)?'))?(?:\s*ESCAPE\s*'\w')?(?:\s*AND\s*(?:'[\w\d%_\-\.]+(?:\.\d+)?'))?(?:\s*ESCAPE\s*'\w')?\s*(?:AND|OR)?\s*)*$";
-            return Regex.IsMatch(whereClause, pattern, RegexOptions.IgnoreCase);
-        }
-
-        private void condListRefresher()
-        {
-            listBox3.Items.Clear();
-            listBox3.Items.AddRange(conditions.ToArray());
-        }
-
-        // 딜리트로 조건 삭제
-        private void listBox3_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Delete)
-            {
-                if (listBox3.SelectedItem != null)
-                {
-                    string selectedItem = listBox3.SelectedItem.ToString();
-                    conditions.Remove(selectedItem);
-                    condListRefresher();
-                }
-            }
-        }
-
-        private void button6_Click(object sender, EventArgs e) // AND
-        {
-            if (conditions.Count != 0)
-                conditions.Add("AND");
-            condListRefresher();
-        }
-
-        private void button7_Click(object sender, EventArgs e) // OR
-        {
-            if (conditions.Count != 0)
-                conditions.Add("OR");
-            condListRefresher();
-        }
-
-        private void button3_Click(object sender, EventArgs e) // 날짜 입력
-        {
-            Point buttonLocation = button6.PointToScreen(Point.Empty);
-
-            // MonthCalendar 컨트롤 생성
-            MonthCalendar calendar = new MonthCalendar();
-
-            // MonthCalendar의 속성 설정
-            calendar.Location = new Point(buttonLocation.X, buttonLocation.Y + button1.Height);
-            calendar.ShowToday = true;
-            calendar.ShowTodayCircle = true;
-
-            // MonthCalendar의 DateSelected 이벤트 처리
-            calendar.DateSelected += (s, args) =>
-            {
-                // 선택한 날짜를 yyyy-MM-dd 형식으로 가져오기
-                string selectedDate = args.Start.ToString("yyyy-MM-dd");
-
-                // 선택한 날짜를 TextBox에 추가
-                textBox4.Text = selectedDate;
-
-                // MonthCalendar 제거
-                this.Controls.Remove(calendar);
-            };
-
-            // MonthCalendar를 폼에 추가
-            this.Controls.Add(calendar);
-
-            // MonthCalendar를 맨 위로 가져오기
-            calendar.BringToFront();
-        }
-
-        // 조건 전체 삭제
-        private void button8_Click(object sender, EventArgs e)
-        {
-            conditions.Clear();
-            condListRefresher();
-        }
-
-        // 조건 생성
-        private void finalQueryGen()
-        {
-            int len = conditions.Count();
-
-            if (len != 0)
-            {
-                if (conditions[len - 1].Equals("AND") || conditions[len - 1].Equals("OR"))
-                {
-                    conditions.RemoveAt(len - 1);
-                }
-            }
-            condListRefresher();
         }
     }
 }
