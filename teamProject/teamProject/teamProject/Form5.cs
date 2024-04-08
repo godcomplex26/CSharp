@@ -14,7 +14,6 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Data.Common;
 using System.Globalization;
-using teamProject;
 
 namespace teamProject 
 { 
@@ -62,8 +61,6 @@ namespace teamProject
             //groupBox2.Size = new Size(form7.getGroupBox().Width, form7.Height);
         }
 
-
-
         private void loadCharts()
         {
             //plotView1.Model = DrawGraph(QDataFields.weight.ToString());
@@ -93,7 +90,6 @@ namespace teamProject
                 }
             }
         }
-
         private void DrawCharts()
         {
             for (int i = 1; i < Utils.qdata.Count(); i++)
@@ -123,9 +119,7 @@ namespace teamProject
                 chart.Size = new Size(xSize, ySize);
                 chart.Location = new Point(((i - 1) % 2) * xSize, marginTop + (((i - 1) / 2) * ySize));
 
-
                 chart.Legends.Add(legend);
-
 
                 //chart.Series[0].Name = Utils.qdata[i];
                 if (DataManager.datasQ.Count > 0)
@@ -174,9 +168,7 @@ namespace teamProject
                 chart.Size = new Size(xSize, ySize);
                 chart.Location = new Point(((i - 1) % 2) * xSize, marginTop + (((i - 1) / 2) * ySize));
 
-
                 chart.Legends.Add(legend);
-
 
                 //chart.Series[0].Name = Utils.qdata[i];
                 if (DataManager.datasQ.Count > 0)

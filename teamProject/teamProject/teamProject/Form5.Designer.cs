@@ -71,7 +71,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form5";
-            this.Text = "Form5";
+            this.Text = "QC 차트";
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
