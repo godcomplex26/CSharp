@@ -15,6 +15,7 @@ namespace teamProject
     public partial class Form0 : Form
     {
         private Form1 form1;
+//        private Form7 form7;
         private Thread loadingThread;
 
         private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
@@ -43,6 +44,12 @@ namespace teamProject
             currentIndex = (currentIndex + 1) % images.Length;
             pictureBox2.Image = images[currentIndex];
         }
+/*        private void button1_Click(object sender, EventArgs e)
+        {
+            form1 = new Form1();
+            form1.Show();
+        }*/
+
 
         private async void button1_Click(object sender, EventArgs e)
         {
@@ -55,18 +62,21 @@ namespace teamProject
             await Task.Run(() =>
             {
 
-                // 시간이 걸리는 작업 수행, Form1 생성
+                // 시간이 걸리는 작업 수행, Form1, 7 생성
 //             Thread.Sleep(5000); // 5초 동안 대기
-                form1 = new Form1();
+                
 
-                // Form1을 UI 스레드에서 표시합니다.
+/*                
+                 // Form1을 UI 스레드에서 표시합니다.
                 this.Invoke((MethodInvoker)delegate
                 {
                     form1.Show();
                 });
+*/
             });
 
             // Form0을 숨깁니다.
+            form1.Show();
             this.Hide();
         }
     }

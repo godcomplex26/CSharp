@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 
 namespace teamProject
 {
@@ -20,8 +21,9 @@ namespace teamProject
         public static int digit = 3;
         private List<string> conditions = new List<string>();
 
-/*        
-        // 조건 초기화
+        Form7 form7 = new Form7();
+   
+/*        // 조건 초기화
         public void resetCon()
         {
             Utils.reScreen(dataGridView1, dataGridView2, digit);
@@ -40,45 +42,46 @@ namespace teamProject
 
             button20.Text = "←.0\n.00";
             button30.Text = ".00\n→.0";
+
+            ShowForm7AsChildForm();
+
             Utils.reScreen(dataGridView1, dataGridView2, digit);
 
-            // 조회 조건 리스트
-            listBox1.Items.AddRange(Utils.pdata);
-            listBox1.Items.AddRange(Utils.qdata);
-            listBox2.Items.AddRange(Utils.operators);
+            button1.Location = new Point(form7.getLocationX() + 12, form7.getLocationY() + 20);
         }
 
-        // PData 데이터 조회
+        private void ShowForm7AsChildForm()
+        {
+            form7.TopLevel = false;
+            form7.FormBorderStyle = FormBorderStyle.None;
+            form7.Dock = DockStyle.Fill;
+
+            panel1.Controls.Add(form7);
+            form7.Show();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            string sql;
-
-            finalQueryGen();
-
-            sql = Utils.sqlQueryConverter(string.Join(" ", conditions));
-
-            if (conditions.Count == 0)
+            Console.WriteLine("test");
+            if (form7.conditions.Count == 0)
             {
-                sql = "-1";
+                Utils.reScreen(dataGridView1, dataGridView2, digit);
             }
-
-            Utils.reScreen(dataGridView1, "PData", sql, digit);
+            else
+            {
+                form7.finalQueryGen();
+                if (form7.getCurrentTab().Equals("PData"))
+                {
+                    Utils.reScreen(dataGridView1, form7.getCurrentTab(), string.Join(" ", form7.conditions), digit);
+                }
+                else if (form7.getCurrentTab().Equals("QData"))
+                {
+                    Utils.reScreen(dataGridView2, form7.getCurrentTab(), string.Join(" ", form7.conditions), digit);
+                }
+            }
         }
 
-        // QData 데이터 조회
-        private void button5_Click(object sender, EventArgs e)
-        {
-            string sql;
-            finalQueryGen();
-            sql = Utils.sqlQueryConverter(string.Join(" ", conditions));
 
-            if (conditions.Count == 0)
-            {
-                sql = "-1";
-            }
-
-            Utils.reScreen(dataGridView2, "QData", sql, digit);
-        }
         /*
                 // 셀 선택 시 할당되는 값
                 string select = "";
@@ -149,13 +152,6 @@ namespace teamProject
                     }
                 }
         */
-
-        // 전체 조회
-        private void button4_Click(object sender, EventArgs e)
-        {
-//            resetCon();
-            Utils.reScreen(dataGridView1, dataGridView2, digit);
-        }
 
         // 공정 데이터 관리
         private void ToolStrip1_Click(object sender, EventArgs e)
@@ -256,141 +252,6 @@ namespace teamProject
 
                 textBox3.Text = value;
             }
-        }
-
-        // 조건 추가
-        private void button2_Click(object sender, EventArgs e)
-        {
-            string column = listBox1.SelectedItem.ToString();
-            string op = listBox2.SelectedItem.ToString();
-            string val = textBox4.Text;
-
-            if (op.Equals("LIKE"))
-                val += "%";
-            if (column.Equals("datetime") || column.Equals("date"))
-                val = $"'{val}'";
-
-            string condition = $"{column} {op} {val}";
-            if (IsValidWhereClause(condition))
-            {
-                if (conditions.Count != 0)
-                {
-                    if (conditions.Last().ToString().Equals("AND") || conditions.Last().ToString().Equals("OR"))
-                    {
-                        conditions.Add(condition);
-                    }
-                    else
-                    {
-                        conditions.Add("AND");
-                        conditions.Add(condition);
-                    }
-                }
-                else
-                {
-                    conditions.Add(condition);
-                }
-            }
-            else
-            {
-                MessageBox.Show("조건 구성이 올바르지 않습니다.");
-            }
-            textBox4.Clear();
-            condListRefresher();
-        }
-
-        // 유효성 검사
-        public bool IsValidWhereClause(string whereClause)
-        {
-            string pattern = @"^(?:\s*\w+\s*(?:=|<>|>|<|>=|<=|LIKE|BETWEEN)\s*(?:'[^']*'|[\w\d%_\-\.]+(?:\.\d+)?)(?:\s*AND\s*(?:'[\w\d%_\-\.]+(?:\.\d+)?'))?(?:\s*ESCAPE\s*'\w')?(?:\s*AND\s*(?:'[\w\d%_\-\.]+(?:\.\d+)?'))?(?:\s*ESCAPE\s*'\w')?\s*(?:AND|OR)?\s*)*$";
-            return Regex.IsMatch(whereClause, pattern, RegexOptions.IgnoreCase);
-        }
-
-        private void condListRefresher()
-        {
-            listBox3.Items.Clear();
-            listBox3.Items.AddRange(conditions.ToArray());
-        }
-
-        // 딜리트로 조건 삭제
-        private void listBox3_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Delete)
-            {
-                if (listBox3.SelectedItem != null)
-                {
-                    string selectedItem = listBox3.SelectedItem.ToString();
-                    conditions.Remove(selectedItem);
-                    condListRefresher();
-                }
-            }
-        }
-
-        private void button6_Click(object sender, EventArgs e) // AND
-        {
-            if (conditions.Count != 0)
-                conditions.Add("AND");
-            condListRefresher();
-        }
-
-        private void button7_Click(object sender, EventArgs e) // OR
-        {
-            if (conditions.Count != 0)
-                conditions.Add("OR");
-            condListRefresher();
-        }
-
-        private void button3_Click(object sender, EventArgs e) // 날짜 입력
-        {
-            Point buttonLocation = button6.PointToScreen(Point.Empty);
-
-            // MonthCalendar 컨트롤 생성
-            MonthCalendar calendar = new MonthCalendar();
-
-            // MonthCalendar의 속성 설정
-            calendar.Location = new Point(buttonLocation.X, buttonLocation.Y + button1.Height);
-            calendar.ShowToday = true;
-            calendar.ShowTodayCircle = true;
-
-            // MonthCalendar의 DateSelected 이벤트 처리
-            calendar.DateSelected += (s, args) =>
-            {
-                // 선택한 날짜를 yyyy-MM-dd 형식으로 가져오기
-                string selectedDate = args.Start.ToString("yyyy-MM-dd");
-
-                // 선택한 날짜를 TextBox에 추가
-                textBox4.Text = selectedDate;
-
-                // MonthCalendar 제거
-                this.Controls.Remove(calendar);
-            };
-
-            // MonthCalendar를 폼에 추가
-            this.Controls.Add(calendar);
-
-            // MonthCalendar를 맨 위로 가져오기
-            calendar.BringToFront();
-        }
-
-        // 조건 전체 삭제
-        private void button8_Click(object sender, EventArgs e)
-        {
-            conditions.Clear();
-            condListRefresher();
-        }
-
-        // 조건 생성
-        private void finalQueryGen()
-        {
-            int len = conditions.Count();
-
-            if (len != 0)
-            {
-                if (conditions[len - 1].Equals("AND") || conditions[len - 1].Equals("OR"))
-                {
-                    conditions.RemoveAt(len - 1);
-                }
-            }
-            condListRefresher();
         }
 
         // Form1 종료 시 Form0도 함께 종료

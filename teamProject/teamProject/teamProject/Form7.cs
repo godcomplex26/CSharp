@@ -274,6 +274,11 @@ namespace teamProject
             return groupBox1.Location.Y;
         }
 
+        public string getCurrentTab()
+        {
+            return tabControl1.SelectedTab.Text;
+        }
+
         Dictionary<string, string> operatorDict = new Dictionary<string, string>
         {
             {"정확히 일치", "="},
