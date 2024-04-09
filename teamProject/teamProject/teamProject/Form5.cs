@@ -96,66 +96,6 @@ namespace teamProject
             loadCharts();
         }
 
-        private void DrawChart(Chart chart, string column)
-        {
-            chart.Series[0].Name = column;
-            if (DataManager.datasP.Count > 0)
-            {
-                foreach (var data in DataManager.datasP)
-                {
-                    chart.Series[column].Points.AddXY(data.datetime,
-                            Convert.ToDouble(data.GetType().GetProperty(column).GetValue(data)));
-                }
-            }
-        }
-
-        private void DrawCharts()
-        {
-            for (int i = 1; i < Utils.qdata.Count(); i++)
-            {
-
-                Chart chart = new Chart();
-                ChartArea chartArea = new ChartArea();
-                Legend legend = new Legend();
-                System.Windows.Forms.DataVisualization.Charting.Series series = new System.Windows.Forms.DataVisualization.Charting.Series();
-
-                chart.Series.Add(Utils.qdata[i]);
-                chart.ChartAreas.Add(chartArea);
-                chart.Series[Utils.qdata[i]].ChartType = SeriesChartType.FastLine;
-
-                chart.Name = "QData";
-                legend.Name = "legend1";
-                legend.Docking = Docking.Top;
-                chartArea.Name = "ChartArea1";
-                series.Name = Utils.qdata[i];
-
-                series.ChartArea = chartArea.Name;
-                series.Legend = "Legend1";
-
-                int xSize = this.Size.Width / 2;
-                int ySize = 200;
-                int marginTop = 0;
-                chart.Size = new Size(xSize, ySize);
-                chart.Location = new Point(((i - 1) % 2) * xSize, marginTop + (((i - 1) / 2) * ySize));
-
-
-                chart.Legends.Add(legend);
-
-
-                //chart.Series[0].Name = Utils.qdata[i];
-                if (DataManager.datasQ.Count > 0)
-                {
-                    foreach (var data in DataManager.datasQ)
-                    {
-                        chart.Series[Utils.qdata[i]].Points.AddXY(data.date,
-                                Convert.ToDouble(data.GetType().GetProperty(Utils.qdata[i]).GetValue(data)));
-                    }
-                }
-                panel1.Controls.Add(chart);
-                //chart.Show();
-            }
-        }
-
         private void DrawCharts(List<Chart> charts)
         {
             panel1.Controls.Clear();
@@ -184,7 +124,7 @@ namespace teamProject
                 series.Legend = "Legend1";
 
                 int xSize = (panel1.Size.Width / 2) - 10;
-                int ySize = 200;
+                int ySize = 250;
                 int marginTop = 0;
                 chart.Size = new Size(xSize, ySize);
                 chart.Location = new Point(((i - 1) % 2) * xSize, marginTop + (((i - 1) / 2) * ySize));
