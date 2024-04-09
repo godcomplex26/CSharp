@@ -201,11 +201,16 @@ namespace teamProject
                     }
                     else
                     {
+                        string value = "";
                         if (c.Contains("%"))
                         {
-                            c.Replace("%", "");
+                            value = c.Replace("%", "");
                         }
-                        textBox4.Text = c;
+                        if (c.Contains("'"))
+                        {
+                            value = c.Replace("'", "");
+                        }
+                        textBox4.Text = value;
                     }
                     //string a =
                     //(string)(i == 0 ? listBox1.SelectedItem = c :
