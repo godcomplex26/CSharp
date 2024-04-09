@@ -14,9 +14,11 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Data.Common;
 using System.Globalization;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using teamProject;
 
-namespace teamProject 
-{ 
+namespace teamProject
+{
     public partial class Form5 : Form
     {
         Form7 form7 = new Form7();
@@ -45,7 +47,7 @@ namespace teamProject
             {
                 charts.Add(new Chart());
             }
-            button1.Location = new Point(form7.getLocationX() + 12, form7.getLocationY() + 20);
+            //button1.Location = new Point(form7.getLocationX() +12 , form7.getLocationY() +20);
             DrawCharts(charts);
 
         }
@@ -56,10 +58,14 @@ namespace teamProject
             form7.FormBorderStyle = FormBorderStyle.None;
             form7.Dock = DockStyle.Fill;
 
-            this.Controls.Add(form7);
+            tableLayoutPanel1.Controls.Add(form7, 0, 0);
+            form7.submitButton().Click += button1_Click;
+            form7.setDataType("QData");
             form7.Show();
             //groupBox2.Size = new Size(form7.getGroupBox().Width, form7.Height);
         }
+
+
 
         private void loadCharts()
         {
@@ -74,7 +80,17 @@ namespace teamProject
         private void button1_Click(object sender, EventArgs e)
         {
             form7.finalQueryGen();
-            DataManager.LoadQ(string.Join(" ", form7.conditions));
+            //DataManager.LoadQ(string.Join(" ", form7.conditions));
+            //loadCharts();
+
+            if (form7.conditions.Count == 0)
+            {
+                DataManager.LoadQ();
+            }
+            else
+            {
+                DataManager.LoadQ(string.Join(" ", form7.conditions));
+            }
             loadCharts();
         }
 
@@ -90,6 +106,7 @@ namespace teamProject
                 }
             }
         }
+
         private void DrawCharts()
         {
             for (int i = 1; i < Utils.qdata.Count(); i++)
@@ -119,7 +136,9 @@ namespace teamProject
                 chart.Size = new Size(xSize, ySize);
                 chart.Location = new Point(((i - 1) % 2) * xSize, marginTop + (((i - 1) / 2) * ySize));
 
+
                 chart.Legends.Add(legend);
+
 
                 //chart.Series[0].Name = Utils.qdata[i];
                 if (DataManager.datasQ.Count > 0)
@@ -168,7 +187,9 @@ namespace teamProject
                 chart.Size = new Size(xSize, ySize);
                 chart.Location = new Point(((i - 1) % 2) * xSize, marginTop + (((i - 1) / 2) * ySize));
 
+
                 chart.Legends.Add(legend);
+
 
                 //chart.Series[0].Name = Utils.qdata[i];
                 if (DataManager.datasQ.Count > 0)

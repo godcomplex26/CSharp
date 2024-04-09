@@ -1,6 +1,6 @@
-﻿using OxyPlot;
-using OxyPlot.Axes;
+﻿using OxyPlot.Axes;
 using OxyPlot.Series;
+using OxyPlot;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,17 +8,20 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
+using OxyPlot.WindowsForms;
+using System.Text.RegularExpressions;
+using System.Windows.Forms.DataVisualization.Charting;
+using System.Runtime.InteropServices;
+using teamProject;
 
 namespace teamProject
 {
     public partial class Form4 : Form
     {
-        private List<string> conditions = new List<string>();
+        Form7 form7 = new Form7();
+        List<Chart> charts = new List<Chart>();
         public enum PDataFields
         {
             datetime,
@@ -38,221 +41,146 @@ namespace teamProject
         public Form4()
         {
             InitializeComponent();
-            listBox1.Items.AddRange(Utils.pdata);
-            listBox2.Items.AddRange(Utils.operators);
+            ShowForm7AsChildForm();
             DataManager.LoadP();
-            // datetime between '2022-04-02' and '2022-04-09'
-            loadCharts();
-        }
-
-        private PlotModel DrawGraph(string column)
-        {
-            // 데이터 생성
-            var model = new PlotModel { Title = column };
-            //var model = new PlotModel ();
-            var series = new LineSeries
+            for (int i = 0; i < Utils.pdata.Count(); i++)
             {
-                Title = "Data",
-                MarkerType = MarkerType.Circle
-            };
-
-            if (DataManager.datasP.Count > 0)
-            {
-                foreach (var data in DataManager.datasP)
-                {
-                    series.Points.Add(
-                    new DataPoint(
-                    DateTimeAxis.ToDouble(data.datetime),
-                    Convert.ToDouble(data.GetType().GetProperty(column).GetValue(data))
-                    ));
-                }
+                charts.Add(new Chart());
             }
-
-            // 시리즈를 모델에 추가
-            model.Series.Add(series);
-
-            var dateTimeAxis = new DateTimeAxis
-            {
-                Position = AxisPosition.Bottom,
-                Title = "Date",
-                IntervalType = DateTimeIntervalType.Days,
-                StringFormat = "yyyy-MM-dd"
-            };
-            model.Axes.Add(dateTimeAxis);
-
-            model.Axes.Add(new LinearAxis
-            {
-                Position = AxisPosition.Left,
-                Title = column
-            });
-
-            // PlotView 컨트롤에 모델 할당
-            return model;
+            //button1.Location = new Point(form7.getLocationX() + 12, form7.getLocationY() + 20);
+            DrawCharts(charts);
         }
-
-        // 조회 버튼
-        private void button1_Click(object sender, EventArgs e)
+        private void ShowForm7AsChildForm()
         {
-/*            
-            string where = textBox1.Text.ToString();
-            DataManager.LoadP(where);
-            loadCharts();
-*/
+            form7.TopLevel = false;
+            form7.FormBorderStyle = FormBorderStyle.None;
+            form7.Dock = DockStyle.Fill;
 
-            finalQueryGen();
-            DataManager.LoadP(string.Join(" ", conditions));
-            loadCharts();
+            tableLayoutPanel1.Controls.Add(form7, 0, 0);
+            form7.submitButton().Click += button1_Click;
+            form7.setDataType("PData");
+            form7.Show();
         }
-
-        // 차트 생성
         private void loadCharts()
         {
-            plotView1.Model = DrawGraph(PDataFields.ReactA_Temp.ToString());
-            plotView2.Model = DrawGraph(PDataFields.ReactB_Temp.ToString());
-            plotView3.Model = DrawGraph(PDataFields.ReactC_Temp.ToString());
-            plotView4.Model = DrawGraph(PDataFields.ReactD_Temp.ToString());
-            plotView5.Model = DrawGraph(PDataFields.ReactE_Temp.ToString());
-            plotView6.Model = DrawGraph(PDataFields.ReactF_Temp.ToString());
-            plotView7.Model = DrawGraph(PDataFields.ReactF_PH.ToString());
-            plotView8.Model = DrawGraph(PDataFields.Power.ToString());
-            plotView9.Model = DrawGraph(PDataFields.CurrentA.ToString());
-            plotView10.Model = DrawGraph(PDataFields.CurrentB.ToString());
-            plotView11.Model = DrawGraph(PDataFields.CurrentC.ToString());
+            DrawCharts(charts);
         }
 
-        // 조건 추가
-        private void button2_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            string column = listBox1.SelectedItem.ToString();
-            string op = listBox2.SelectedItem.ToString();
-            string val = textBox4.Text;
+            form7.finalQueryGen();
+            //DataManager.LoadQ(string.Join(" ", form7.conditions));
+            //loadCharts();
 
-            if (op.Equals("LIKE"))
-                val += "%";
-            if (column.Equals("datetime") || column.Equals("date"))
-                val = $"'{val}'";
-
-            string condition = $"{column} {op} {val}";
-            if (IsValidWhereClause(condition))
+            if (form7.conditions.Count == 0)
             {
-                if (conditions.Count != 0)
-                {
-                    if (conditions.Last().ToString().Equals("AND") || conditions.Last().ToString().Equals("OR"))
-                    {
-                        conditions.Add(condition);
-                    }
-                    else
-                    {
-                        conditions.Add("AND");
-                        conditions.Add(condition);
-                    }
-                }
-                else
-                {
-                    conditions.Add(condition);
-                }
+                DataManager.LoadP();
             }
             else
             {
-                MessageBox.Show("조건 구성이 올바르지 않습니다.");
+                DataManager.LoadP(string.Join(" ", form7.conditions));
             }
-            textBox4.Clear();
-            condListRefresher();
+            loadCharts();
         }
 
-        // 유효성 검사
-        public bool IsValidWhereClause(string whereClause)
+        private void DrawCharts(List<Chart> charts)
         {
-            string pattern = @"^(?:\s*\w+\s*(?:=|<>|>|<|>=|<=|LIKE|BETWEEN)\s*(?:'[^']*'|[\w\d%_\-\.]+(?:\.\d+)?)(?:\s*AND\s*(?:'[\w\d%_\-\.]+(?:\.\d+)?'))?(?:\s*ESCAPE\s*'\w')?(?:\s*AND\s*(?:'[\w\d%_\-\.]+(?:\.\d+)?'))?(?:\s*ESCAPE\s*'\w')?\s*(?:AND|OR)?\s*)*$";
-            return Regex.IsMatch(whereClause, pattern, RegexOptions.IgnoreCase);
-        }
-
-        private void condListRefresher()
-        {
-            listBox3.Items.Clear();
-            listBox3.Items.AddRange(conditions.ToArray());
-        }
-
-        // 딜리트로 조건 삭제
-        private void listBox3_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Delete)
+            panel1.Controls.Clear();
+            for (int i = 1; i < Utils.pdata.Count(); i++)
             {
-                if (listBox3.SelectedItem != null)
+                Chart chart = charts[i];
+                chart.Series.Clear();
+                chart.ChartAreas.Clear();
+                chart.Legends.Clear();
+                chart.Titles.Clear();
+                ChartArea chartArea = new ChartArea();
+                Legend legend = new Legend();
+                System.Windows.Forms.DataVisualization.Charting.Series series = new System.Windows.Forms.DataVisualization.Charting.Series();
+
+                chart.Series.Add(Utils.pdata[i]);
+                chart.ChartAreas.Add(chartArea);
+                chart.Series[Utils.pdata[i]].ChartType = SeriesChartType.FastLine;
+
+                chart.Name = "PData";
+                legend.Name = "legend1";
+                legend.Docking = Docking.Top;
+                chartArea.Name = "ChartArea1";
+                series.Name = Utils.pdata[i];
+
+                series.ChartArea = chartArea.Name;
+                series.Legend = "Legend1";
+
+                int xSize = (panel1.Size.Width / 2) - 10;
+                int ySize = 200;
+                int marginTop = 0;
+                chart.Size = new Size(xSize, ySize);
+                chart.Location = new Point(((i - 1) % 2) * xSize, marginTop + (((i - 1) / 2) * ySize));
+
+
+                chart.Legends.Add(legend);
+
+
+                //chart.Series[0].Name = Utils.pdata[i];
+                if (DataManager.datasP.Count > 0)
                 {
-                    string selectedItem = listBox3.SelectedItem.ToString();
-                    conditions.Remove(selectedItem);
-                    condListRefresher();
+                    foreach (var data in DataManager.datasP)
+                    {
+                        chart.Series[Utils.pdata[i]].Points.AddXY(data.datetime,
+                                Convert.ToDouble(data.GetType().GetProperty(Utils.pdata[i]).GetValue(data)));
+                    }
                 }
+                panel1.Controls.Add(chart);
             }
         }
 
-        private void button6_Click(object sender, EventArgs e) // AND
-        {
-            if (conditions.Count != 0)
-                conditions.Add("AND");
-            condListRefresher();
-        }
+        //private void DrawChartsOnTable(List<Chart> charts)
+        //{
+        //    panel1.Controls.Clear();
+        //    for (int i = 1; i < Utils.pdata.Count(); i++)
+        //    {
+        //        Chart chart = charts[i];
+        //        chart.Series.Clear();
+        //        chart.ChartAreas.Clear();
+        //        chart.Legends.Clear();
+        //        chart.Titles.Clear();
+        //        ChartArea chartArea = new ChartArea();
+        //        Legend legend = new Legend();
+        //        System.Windows.Forms.DataVisualization.Charting.Series series = new System.Windows.Forms.DataVisualization.Charting.Series();
 
-        private void button7_Click(object sender, EventArgs e) // OR
-        {
-            if (conditions.Count != 0)
-                conditions.Add("OR");
-            condListRefresher();
-        }
+        //        chart.Series.Add(Utils.pdata[i]);
+        //        chart.ChartAreas.Add(chartArea);
+        //        chart.Series[Utils.pdata[i]].ChartType = SeriesChartType.FastLine;
 
-        private void button3_Click(object sender, EventArgs e) // 날짜 입력
-        {
-            Point buttonLocation = button6.PointToScreen(Point.Empty);
+        //        chart.Name = "PData";
+        //        legend.Name = "legend1";
+        //        legend.Docking = Docking.Top;
+        //        chartArea.Name = "ChartArea1";
+        //        series.Name = Utils.pdata[i];
 
-            // MonthCalendar 컨트롤 생성
-            MonthCalendar calendar = new MonthCalendar();
+        //        series.ChartArea = chartArea.Name;
+        //        series.Legend = "Legend1";
 
-            // MonthCalendar의 속성 설정
-            calendar.Location = new Point(buttonLocation.X, buttonLocation.Y + button1.Height);
-            calendar.ShowToday = true;
-            calendar.ShowTodayCircle = true;
+        //        int xSize = (panel1.Size.Width / 2) - 10;
+        //        int ySize = 200;
+        //        int marginTop = 0;
+        //        chart.Size = new Size(xSize, ySize);
+        //        chart.Location = new Point(((i - 1) % 2) * xSize, marginTop + (((i - 1) / 2) * ySize));
 
-            // MonthCalendar의 DateSelected 이벤트 처리
-            calendar.DateSelected += (s, args) =>
-            {
-                // 선택한 날짜를 yyyy-MM-dd 형식으로 가져오기
-                string selectedDate = args.Start.ToString("yyyy-MM-dd");
 
-                // 선택한 날짜를 TextBox에 추가
-                textBox4.Text = selectedDate;
+        //        chart.Legends.Add(legend);
 
-                // MonthCalendar 제거
-                this.Controls.Remove(calendar);
-            };
 
-            // MonthCalendar를 폼에 추가
-            this.Controls.Add(calendar);
-
-            // MonthCalendar를 맨 위로 가져오기
-            calendar.BringToFront();
-        }
-
-        // 조건 전체 삭제
-        private void button8_Click(object sender, EventArgs e)
-        {
-            conditions.Clear();
-            condListRefresher();
-        }
-
-        // 조건 생성
-        private void finalQueryGen()
-        {
-            int len = conditions.Count();
-
-            if (len != 0)
-            {
-                if (conditions[len - 1].Equals("AND") || conditions[len - 1].Equals("OR"))
-                {
-                    conditions.RemoveAt(len - 1);
-                }
-            }
-            condListRefresher();
-        }
+        //        //chart.Series[0].Name = Utils.pdata[i];
+        //        if (DataManager.datasP.Count > 0)
+        //        {
+        //            foreach (var data in DataManager.datasP)
+        //            {
+        //                chart.Series[Utils.pdata[i]].Points.AddXY(data.datetime,
+        //                        Convert.ToDouble(data.GetType().GetProperty(Utils.pdata[i]).GetValue(data)));
+        //            }
+        //        }
+        //        panel1.Controls.Add(chart, 0, 1);
+        //    }
+        //}
     }
 }

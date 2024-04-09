@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using teamProject;
 
 namespace teamProject
 {
@@ -18,6 +19,8 @@ namespace teamProject
         //DataGridView dataGridView1;
         //DataGridView dataGridView2;
         public List<string> conditions = new List<string>();
+        public ListBox listBox1 = new ListBox();
+        public TabControl dataTypeTab = new TabControl();
 
         public Form7()
         {
@@ -27,11 +30,9 @@ namespace teamProject
             //this.Dock = DockStyle.Fill;
             //control.Controls.Add(this);
             //this.Show();
+            //groupBox1.Dock = DockStyle.Fill;
+            panel1.Controls.Add(dataTypeTab);
 
-            tabPage1.Text = "PData";
-            tabPage2.Text = "QData";
-
-            listBox1.Items.AddRange(Utils.pdata);
             listBox2.Items.AddRange(operatorDict.Keys.ToArray());
         }
 
@@ -53,6 +54,7 @@ namespace teamProject
         {
             if (!textBox4.Text.Equals("") && listBox1.SelectedItem != null && listBox2.SelectedItem != null)
             {
+
                 string column = listBox1.SelectedItem.ToString();
                 string op = operatorDict[listBox2.SelectedItem.ToString()];
                 string val = textBox4.Text;
@@ -73,8 +75,13 @@ namespace teamProject
                         }
                         else
                         {
-                            conditions.Add("AND");
-                            conditions.Add(condition);
+                            string andor = "";
+                            if (conditions.Count != 0)
+                            {
+                                andor = selectAndOr();
+                            }
+                            //conditions.Add("AND");
+                            conditions.Add(andor + condition);
                         }
                     }
                     else
@@ -100,6 +107,13 @@ namespace teamProject
         public void condListRefresher()
         {
             listBox3.Items.Clear();
+            if (conditions.Count != 0)
+            {
+                if (conditions[0].Contains("AND "))
+                    conditions[0] = conditions[0].Replace("AND ", "");
+                if (conditions[0].Contains("OR "))
+                    conditions[0] = conditions[0].Replace("OR ", "");
+            }
             listBox3.Items.AddRange(conditions.ToArray());
         }
 
@@ -116,27 +130,126 @@ namespace teamProject
             }
         }
 
-        public void button6_Click(object sender, EventArgs e) // AND
+        public string selectAndOr()
         {
-            if (conditions.Count != 0)
-                conditions.Add("AND");
-            condListRefresher();
+            string result = "AND ";
+            Form andorForm = new Form();
+            andorForm.Size = new Size(200, 100);
+            andorForm.FormBorderStyle = FormBorderStyle.FixedDialog;
+            andorForm.MaximizeBox = false;
+            andorForm.MinimizeBox = false;
+            andorForm.StartPosition = FormStartPosition.CenterParent;
+            andorForm.Text = "Select AND OR";
+
+            TableLayoutPanel tableLayoutPanel = new TableLayoutPanel();
+            tableLayoutPanel.Dock = DockStyle.Fill;
+            tableLayoutPanel.ColumnCount = 2;
+            tableLayoutPanel.RowCount = 1;
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+
+            Button and = new Button();
+            Button or = new Button();
+            and.Margin = new Padding(10, 10, 5, 10);
+            or.Margin = new Padding(5, 10, 10, 10);
+            and.Dock = DockStyle.Fill;
+            or.Dock = DockStyle.Fill;
+            and.Text = "AND";
+            or.Text = "OR";
+
+            and.Click += (s, e) => { result = "AND "; andorForm.Close(); };
+            or.Click += (s, e) => { result = "OR "; andorForm.Close(); };
+
+            andorForm.Controls.Add(tableLayoutPanel);
+            tableLayoutPanel.Controls.Add(and, 0, 0);
+            tableLayoutPanel.Controls.Add(or, 1, 0);
+
+            andorForm.ShowDialog(this);
+            and.Focus();
+
+            return result;
         }
 
-        public void button7_Click(object sender, EventArgs e) // OR
-        {
-            if (conditions.Count != 0)
-                conditions.Add("OR");
-            condListRefresher();
-        }
+        //public void button6_Click(object sender, EventArgs e) // AND
+        //{
+        //    if (conditions.Count != 0)
+        //        conditions.Add("AND");
+        //    condListRefresher();
+        //}
+
+        //public void button7_Click(object sender, EventArgs e) // OR
+        //{
+        //    if (conditions.Count != 0)
+        //        conditions.Add("OR");
+        //    condListRefresher();
+        //}
+
+        //public void button3_Click(object sender, EventArgs e) // 날짜 입력
+        //{
+        //    Point buttonLocation = button3.PointToScreen(this.PointToScreen(Point.Empty));
+        //    MonthCalendar calendar1 = new MonthCalendar();
+
+        //// MonthCalendar의 속성 설정
+        //    calendar1.Location = new Point(button3.Location.X, 0);
+        //    calendar1.ShowToday = true;
+        //    calendar1.ShowTodayCircle = true;
+
+        //    // MonthCalendar의 DateSelected 이벤트 처리
+        //    calendar1.DateSelected += (s, args) =>
+        //    {
+        //        // 선택한 날짜를 yyyy-MM-dd 형식으로 가져오기
+        //        string selectedDate = args.Start.ToString("yyyy-MM-dd");
+
+        //        // 선택한 날짜를 TextBox에 추가
+        //        textBox4.Text = selectedDate;
+
+        //        // MonthCalendar 제거
+        //        Controls.Remove(calendar1);
+        //    };
+        //    calendar1.KeyDown += (s, args) =>
+        //    {
+        //        if (args.KeyCode == Keys.Escape)
+        //        {
+        //            Controls.Remove(calendar1);
+        //        }
+        //    };
+
+
+        //    System.Windows.Forms.Button xbutton = new System.Windows.Forms.Button();
+        //    xbutton.Text = "x";
+        //    xbutton.BackColor = Color.Transparent;
+        //    xbutton.FlatStyle = FlatStyle.Flat;
+        //    xbutton.Size = new System.Drawing.Size(20, 20);
+        //    xbutton.Location = new Point(calendar1.Width + 20, calendar1.Height - 14);
+        //    xbutton.Click += (s, args) =>
+        //    {
+        //        Controls.Remove(calendar1);
+        //    };
+        //    calendar1.Controls.Add(xbutton);
+
+        //    // MonthCalendar를 폼에 추가
+
+        //    this.Controls.Add(calendar1);
+
+        //    // MonthCalendar를 맨 위로 가져오기
+        //    calendar1.BringToFront();
+        //    calendar1.Focus();
+        //}
 
         public void button3_Click(object sender, EventArgs e) // 날짜 입력
         {
-            Point buttonLocation = button3.PointToScreen(this.PointToScreen(Point.Empty));
+            // 새로운 Form 생성
+            Form calendarForm = new Form();
+            calendarForm.Size = new Size(400, 400);
+            calendarForm.FormBorderStyle = FormBorderStyle.FixedDialog;
+            calendarForm.MaximizeBox = false;
+            calendarForm.MinimizeBox = false;
+            calendarForm.StartPosition = FormStartPosition.CenterParent;
+            calendarForm.Text = "Select Date";
+
             MonthCalendar calendar1 = new MonthCalendar();
 
             // MonthCalendar의 속성 설정
-            calendar1.Location = new Point(button3.Location.X, 0);
             calendar1.ShowToday = true;
             calendar1.ShowTodayCircle = true;
 
@@ -149,36 +262,40 @@ namespace teamProject
                 // 선택한 날짜를 TextBox에 추가
                 textBox4.Text = selectedDate;
 
-                // MonthCalendar 제거
-                Controls.Remove(calendar1);
+                // 대화상자 닫기
+                calendarForm.Close();
             };
+
             calendar1.KeyDown += (s, args) =>
             {
                 if (args.KeyCode == Keys.Escape)
                 {
-                    Controls.Remove(calendar1);
+                    calendarForm.Close();
                 }
             };
 
+            // 닫기 버튼 생성
+            System.Windows.Forms.Button closeButton = new Button();
+            closeButton.Text = "Close";
+            closeButton.DialogResult = DialogResult.Cancel;
 
-            System.Windows.Forms.Button xbutton = new System.Windows.Forms.Button();
-            xbutton.Text = "x";
-            xbutton.BackColor = Color.Transparent;
-            xbutton.FlatStyle = FlatStyle.Flat;
-            xbutton.Size = new System.Drawing.Size(20, 20);
-            xbutton.Location = new Point(calendar1.Width + 20, calendar1.Height - 14);
-            xbutton.Click += (s, args) =>
-            {
-                Controls.Remove(calendar1);
-            };
-            calendar1.Controls.Add(xbutton);
+            // 컨트롤 배치를 위한 TableLayoutPanel 생성
+            TableLayoutPanel layoutPanel = new TableLayoutPanel();
+            layoutPanel.RowCount = 2;
+            layoutPanel.ColumnCount = 1;
+            layoutPanel.Dock = DockStyle.Fill;
+            layoutPanel.Controls.Add(calendar1, 0, 0);
+            layoutPanel.Controls.Add(closeButton, 0, 1);
 
-            // MonthCalendar를 폼에 추가
-            this.Controls.Add(calendar1);
+            // TableLayoutPanel을 Form에 추가
+            calendarForm.Controls.Add(layoutPanel);
 
-            // MonthCalendar를 맨 위로 가져오기
-            calendar1.BringToFront();
-            calendar1.Focus();
+            // 대화상자 크기 조정
+
+            calendarForm.ClientSize = new Size(calendar1.Width + 60, calendar1.Height + closeButton.Height + 40);
+
+            // 대화상자 표시
+            calendarForm.ShowDialog(this);
         }
 
         public void button8_Click(object sender, EventArgs e)
@@ -204,13 +321,13 @@ namespace teamProject
 
         public void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 0)
+            if (dataTypeTab.SelectedTab.Text.Equals("PData"))
             {
                 listBox1.Items.Clear();
                 listBox1.Items.AddRange(Utils.pdata);
                 //groupBox1.Controls.Add(button1);
                 //groupBox1.Controls.Remove(button5);
-                tabPage1.Controls.Add(listBox1);
+                dataTypeTab.SelectedTab.Controls.Add(listBox1);
                 conditions.Clear();
                 condListRefresher();
             }
@@ -220,7 +337,7 @@ namespace teamProject
                 listBox1.Items.AddRange(Utils.qdata);
                 //groupBox1.Controls.Add(button5);
                 //groupBox1.Controls.Remove(button1);
-                tabPage2.Controls.Add(listBox1);
+                dataTypeTab.SelectedTab.Controls.Add(listBox1);
                 conditions.Clear();
                 condListRefresher();
             }
@@ -256,7 +373,7 @@ namespace teamProject
 
         public Control getTab()
         {
-            return tabControl1;
+            return dataTypeTab;
         }
 
         public Control getGroupBox()
@@ -276,7 +393,45 @@ namespace teamProject
 
         public string getCurrentTab()
         {
-            return tabControl1.SelectedTab.Text;
+            return dataTypeTab.SelectedTab.Text;
+        }
+
+        public Button submitButton()
+        {
+            return button1;
+        }
+
+        public void setDataType(string dataType)
+        {
+            if (dataType.Equals("PData"))
+            {
+                TabPage tabPage = new TabPage();
+                tabPage.Text = "PData";
+                dataTypeTab.TabPages.Add(tabPage);
+                listBox1.Items.AddRange(Utils.pdata);
+                tabPage.Controls.Add(listBox1);
+            }
+            else if (dataType.Equals("QData"))
+            {
+                TabPage tabPage = new TabPage();
+                tabPage.Text = "QData";
+                dataTypeTab.TabPages.Add(tabPage);
+                listBox1.Items.AddRange(Utils.qdata);
+                tabPage.Controls.Add(listBox1);
+            }
+        }
+
+        public void setDataType()
+        {
+            TabPage tabPage1 = new TabPage();
+            TabPage tabPage2 = new TabPage();
+            tabPage1.Text = "PData";
+            tabPage2.Text = "QData";
+            dataTypeTab.TabPages.Add(tabPage1);
+            dataTypeTab.TabPages.Add(tabPage2);
+            listBox1.Items.AddRange(Utils.pdata);
+            tabPage1.Controls.Add(listBox1);
+            dataTypeTab.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
         }
 
         Dictionary<string, string> operatorDict = new Dictionary<string, string>

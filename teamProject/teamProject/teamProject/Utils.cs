@@ -119,7 +119,7 @@ namespace teamProject
             // 비동기적으로 데이터 로드
             await Task.Run(() =>
             {
-//                Thread.Sleep(10000); // 10초 대기
+ //               Thread.Sleep(10000); // 10초 대기
                 DataManager.LoadP();
                 DataManager.LoadQ();
             });

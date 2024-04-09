@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using teamProject;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace teamProject
@@ -16,9 +17,11 @@ namespace teamProject
     {
         List<string> errors = new List<string>();
         string placeholderText = "ex. 2024-01-01";
+        Form7 form7 = new Form7();
         public Form3()
         {
             InitializeComponent();
+            ShowForm7AsChildForm();
 
             progressBar1.Style = ProgressBarStyle.Marquee; // Marquee 스타일은 애니메이션 형태의 로딩바입니다.
             progressBar1.MarqueeAnimationSpeed = 30; // 로딩바의 애니메이션 속도를 조절합니다.
@@ -26,6 +29,31 @@ namespace teamProject
             Utils.reScreen(dataGridView1, "QData", Form1.digit, progressBar1);
             placeholder.Text = placeholderText;
             placeholder.Enabled = false;
+        }
+        private void ShowForm7AsChildForm()
+        {
+            form7.TopLevel = false;
+            form7.FormBorderStyle = FormBorderStyle.None;
+            form7.Dock = DockStyle.Fill;
+
+            tableLayoutPanel1.Controls.Add(form7, 0, 0);
+            form7.submitButton().Click += submit_Click;
+            form7.setDataType("QData");
+            form7.Show();
+        }
+
+        private void submit_Click(object sender, EventArgs e)
+        {
+            form7.finalQueryGen();
+
+            if (form7.conditions.Count == 0)
+            {
+                Utils.reScreen(dataGridView1, "QData", Form1.digit, progressBar1);
+            }
+            else
+            {
+                Utils.reScreen(dataGridView1, "QData", string.Join(" ", form7.conditions), Form1.digit, progressBar1);
+            }
         }
 
         // 글자 입력되면 플레이스홀더 제거
@@ -115,7 +143,7 @@ namespace teamProject
                     Utils.reScreen(dataGridView1, "QData", Form1.digit, progressBar1);
                 }
             }
-            catch 
+            catch
             {
                 MessageBox.Show("이미 동일한 날짜에 데이터가 있습니다.");
             }

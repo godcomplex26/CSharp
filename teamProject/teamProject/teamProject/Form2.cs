@@ -9,22 +9,50 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using teamProject;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace teamProject
 {
     public partial class Form2 : Form
     {
         List<string> errors = new List<string>();
+        Form7 form7 = new Form7();
 
         public Form2()
         {
             InitializeComponent();
+            ShowForm7AsChildForm();
             textBox1.Enabled = false;
-
             progressBar1.Style = ProgressBarStyle.Marquee; // Marquee 스타일은 애니메이션 형태의 로딩바입니다.
             progressBar1.MarqueeAnimationSpeed = 30; // 로딩바의 애니메이션 속도를 조절합니다.
-
             Utils.reScreen(dataGridView1, "PData", Form1.digit, progressBar1);
+        }
+
+        private void ShowForm7AsChildForm()
+        {
+            form7.TopLevel = false;
+            form7.FormBorderStyle = FormBorderStyle.None;
+            form7.Dock = DockStyle.Fill;
+
+            panel1.Controls.Add(form7);
+            form7.submitButton().Click += submit_Click;
+            form7.setDataType("PData");
+            form7.Show();
+        }
+
+        private void submit_Click(object sender, EventArgs e)
+        {
+            form7.finalQueryGen();
+
+            if (form7.conditions.Count == 0)
+            {
+                Utils.reScreen(dataGridView1, "PData", Form1.digit, progressBar1);
+            }
+            else
+            {
+                Utils.reScreen(dataGridView1, "PData", string.Join(" ", form7.conditions), Form1.digit, progressBar1);
+            }
         }
 
         string select;
@@ -241,6 +269,7 @@ namespace teamProject
                     Thread.Sleep(100);
                     DataManager.Save(random);
                 }
+
                 // 데이터 그리드뷰 다시 불러오기
                 Utils.reScreen(dataGridView1, "PData", Form1.digit, progressBar1);
 

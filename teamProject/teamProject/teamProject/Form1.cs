@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using teamProject;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
@@ -22,19 +23,18 @@ namespace teamProject
         private List<string> conditions = new List<string>();
 
         Form7 form7 = new Form7();
-   
-/*        // 조건 초기화
-        public void resetCon()
-        {
-            Utils.reScreen(dataGridView1, dataGridView2, digit);
-            MessageBox.Show("조건이 초기화되었습니다.");
-        }
-*/
+
+        /*        // 조건 초기화
+                public void resetCon()
+                {
+                    Utils.reScreen(dataGridView1, dataGridView2, digit);
+                    MessageBox.Show("조건이 초기화되었습니다.");
+                }
+        */
 
         public Form1()
         {
             InitializeComponent();
-            CenterToScreen(); // 폼을 화면의 정중앙에 배치합니다.
 
             /* 너무 느려져서 기각
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells; // 열 너비 맞춤
@@ -42,6 +42,7 @@ namespace teamProject
             */
             progressBar1.Style = ProgressBarStyle.Marquee; // Marquee 스타일은 애니메이션 형태의 로딩바입니다.
             progressBar1.MarqueeAnimationSpeed = 30; // 로딩바의 애니메이션 속도를 조절합니다.
+            progressBar1.BringToFront();
 
             button20.Text = "←.0\n.00";
             button30.Text = ".00\n→.0";
@@ -50,7 +51,8 @@ namespace teamProject
 
             Utils.reScreen(dataGridView1, dataGridView2, digit, progressBar1);
 
-            button1.Location = new Point(form7.getLocationX() + 12, form7.getLocationY() + 20);
+            //button1.Location = new Point(form7.getLocationX() + 12, form7.getLocationY() + 20);
+            menuStrip1.Focus();
         }
 
         private void ShowForm7AsChildForm()
@@ -60,6 +62,8 @@ namespace teamProject
             form7.Dock = DockStyle.Fill;
 
             panel1.Controls.Add(form7);
+            form7.submitButton().Click += button1_Click;
+            form7.setDataType();
             form7.Show();
         }
 
@@ -167,7 +171,7 @@ namespace teamProject
         private void ToolStrip2_Click(object sender, EventArgs e)
         {
             new Form3().ShowDialog();
-            Utils.reScreen( dataGridView2, "QData", digit, progressBar1);
+            Utils.reScreen(dataGridView2, "QData", digit, progressBar1);
         }
 
 
@@ -209,7 +213,7 @@ namespace teamProject
             if (digit < 9)
             {
                 digit++;
-                Utils.reScreen(dataGridView1, dataGridView2 , digit, progressBar1);
+                Utils.reScreen(dataGridView1, dataGridView2, digit, progressBar1);
             }
             else
             {
