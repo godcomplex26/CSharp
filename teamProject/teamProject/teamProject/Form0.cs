@@ -15,7 +15,6 @@ namespace teamProject
     public partial class Form0 : Form
     {
         private Form1 form1;
-//        private Form7 form7;
         private Thread loadingThread;
 
         private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
@@ -27,6 +26,7 @@ namespace teamProject
         public Form0()
         {
             InitializeComponent();
+            CenterToScreen(); // 폼을 화면의 정중앙에 배치합니다.
 
             // 타이머 설정
             timer.Interval = 1000; // 1초마다 변경

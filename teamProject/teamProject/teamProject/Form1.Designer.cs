@@ -1,4 +1,6 @@
-﻿namespace teamProject
+﻿using System.Windows.Forms;
+
+namespace teamProject
 {
     partial class Form1
     {
@@ -28,6 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -44,28 +47,35 @@
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 20);
+            this.dataGridView1.GridColor = System.Drawing.Color.Black;
+            this.dataGridView1.Location = new System.Drawing.Point(6, 25);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1080, 485);
+            this.dataGridView1.Size = new System.Drawing.Size(1080, 480);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // dataGridView2
             // 
+            this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 20);
+            this.dataGridView2.GridColor = System.Drawing.Color.Black;
+            this.dataGridView2.Location = new System.Drawing.Point(6, 24);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 23;
             this.dataGridView2.Size = new System.Drawing.Size(1080, 404);
@@ -74,14 +84,14 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(1145, 222);
+            this.textBox3.Location = new System.Drawing.Point(12, 122);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(191, 21);
+            this.textBox3.Size = new System.Drawing.Size(191, 25);
             this.textBox3.TabIndex = 20;
             // 
             // button30
             // 
-            this.button30.Location = new System.Drawing.Point(1280, 170);
+            this.button30.Location = new System.Drawing.Point(74, 70);
             this.button30.Name = "button30";
             this.button30.Size = new System.Drawing.Size(56, 46);
             this.button30.TabIndex = 19;
@@ -91,7 +101,7 @@
             // 
             // button20
             // 
-            this.button20.Location = new System.Drawing.Point(1218, 170);
+            this.button20.Location = new System.Drawing.Point(12, 70);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(56, 46);
             this.button20.TabIndex = 18;
@@ -102,7 +112,8 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dataGridView1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 150);
+            this.groupBox2.ForeColor = System.Drawing.Color.White;
+            this.groupBox2.Location = new System.Drawing.Point(12, 209);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1096, 511);
             this.groupBox2.TabIndex = 17;
@@ -112,7 +123,8 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.dataGridView2);
-            this.groupBox3.Location = new System.Drawing.Point(12, 667);
+            this.groupBox3.ForeColor = System.Drawing.Color.White;
+            this.groupBox3.Location = new System.Drawing.Point(12, 726);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1096, 430);
             this.groupBox3.TabIndex = 17;
@@ -121,6 +133,8 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(113)))), ((int)(((byte)(255)))));
+            this.menuStrip1.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStrip0,
             this.ToolStrip1,
@@ -129,42 +143,42 @@
             this.ToolStrip4});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1548, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(1141, 25);
             this.menuStrip1.TabIndex = 18;
             this.menuStrip1.Text = "데이터 관리";
             // 
             // ToolStrip0
             // 
             this.ToolStrip0.Name = "ToolStrip0";
-            this.ToolStrip0.Size = new System.Drawing.Size(39, 22);
+            this.ToolStrip0.Size = new System.Drawing.Size(42, 22);
             this.ToolStrip0.Text = "[메인]";
             this.ToolStrip0.Click += new System.EventHandler(this.ToolStrip0_Click);
             // 
             // ToolStrip1
             // 
             this.ToolStrip1.Name = "ToolStrip1";
-            this.ToolStrip1.Size = new System.Drawing.Size(107, 22);
+            this.ToolStrip1.Size = new System.Drawing.Size(105, 22);
             this.ToolStrip1.Text = "[공정 데이터 관리]";
             this.ToolStrip1.Click += new System.EventHandler(this.ToolStrip1_Click);
             // 
             // ToolStrip2
             // 
             this.ToolStrip2.Name = "ToolStrip2";
-            this.ToolStrip2.Size = new System.Drawing.Size(100, 22);
+            this.ToolStrip2.Size = new System.Drawing.Size(104, 22);
             this.ToolStrip2.Text = "[QC 데이터 관리]";
             this.ToolStrip2.Click += new System.EventHandler(this.ToolStrip2_Click);
             // 
             // ToolStrip3
             // 
             this.ToolStrip3.Name = "ToolStrip3";
-            this.ToolStrip3.Size = new System.Drawing.Size(67, 22);
+            this.ToolStrip3.Size = new System.Drawing.Size(68, 22);
             this.ToolStrip3.Text = "[공정 차트]";
             this.ToolStrip3.Click += new System.EventHandler(this.ToolStrip3_Click);
             // 
             // ToolStrip4
             // 
             this.ToolStrip4.Name = "ToolStrip4";
-            this.ToolStrip4.Size = new System.Drawing.Size(60, 22);
+            this.ToolStrip4.Size = new System.Drawing.Size(67, 22);
             this.ToolStrip4.Text = "[QC 차트]";
             this.ToolStrip4.Click += new System.EventHandler(this.ToolStrip4_Click);
             // 
@@ -174,41 +188,54 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 21;
-            this.button1.Text = "button1";
+            this.button1.Text = "조회";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 25);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1548, 119);
+            this.panel1.Size = new System.Drawing.Size(784, 178);
             this.panel1.TabIndex = 22;
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(1145, 286);
+            this.progressBar1.Location = new System.Drawing.Point(12, 149);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(285, 23);
             this.progressBar1.TabIndex = 23;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button20);
+            this.groupBox1.Controls.Add(this.progressBar1);
+            this.groupBox1.Controls.Add(this.button30);
+            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
+            this.groupBox1.Location = new System.Drawing.Point(790, 25);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(318, 178);
+            this.groupBox1.TabIndex = 24;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1548, 1104);
-            this.Controls.Add(this.progressBar1);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(113)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(1158, 764);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.button30);
-            this.Controls.Add(this.button20);
+            this.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ForeColor = System.Drawing.Color.White;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "화장품 생산 관리 프로그램";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -219,9 +246,10 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
@@ -242,6 +270,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

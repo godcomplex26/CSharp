@@ -72,6 +72,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.progressBar1);
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Location = new System.Drawing.Point(16, 226);
             this.groupBox2.Name = "groupBox2";
@@ -361,7 +362,6 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.progressBar1);
             this.groupBox3.Controls.Add(this.testCount);
             this.groupBox3.Controls.Add(this.textBox13);
             this.groupBox3.Controls.Add(this.button4);
@@ -400,9 +400,10 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(79, 103);
+            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.progressBar1.Location = new System.Drawing.Point(3, 17);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(100, 23);
+            this.progressBar1.Size = new System.Drawing.Size(1009, 23);
             this.progressBar1.TabIndex = 5;
             // 
             // Form2

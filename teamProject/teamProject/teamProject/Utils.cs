@@ -134,30 +134,6 @@ namespace teamProject
             pb.Visible = false; // 로딩 바 숨김
         }
 
-        /*        // 화면 리프레시 - 2개(Form1)
-                public static void reScreen(DataGridView dgv1, DataGridView dgv2, int digit)
-                {
-                    dgv1.DataSource = null;
-                    dgv2.DataSource = null;
-                    DataManager.LoadP();
-                    DataManager.LoadQ();
-        *//*
-                    if (DataManager.datasP.Count > 0 && DataManager.datasQ.Count > 0)
-                    {
-                        dgv1.DataSource = DataManager.datasP;
-                        dgv1.Columns[0].Width = 150;
-                        dgv2.DataSource = DataManager.datasQ;
-                        dgv2.Columns[0].Width = 100;
-                        Format(dgv1, dgv2, digit);
-                    }
-        *//*
-                    dgv1.DataSource = DataManager.datasP;
-                    dgv1.Columns[0].Width = 150;
-                    dgv2.DataSource = DataManager.datasQ;
-                    dgv2.Columns[0].Width = 100;
-                    Format(dgv1, dgv2, digit);
-                }*/
-
         // 화면 리프레시 - 조건
         public static async Task reScreen(DataGridView dgv, string data, string sql, int digit, System.Windows.Forms.ProgressBar pb)
         {
@@ -204,67 +180,6 @@ namespace teamProject
 
             pb.Visible = false; // 로딩 바 숨김
         }
-/*
-        // sql 컨버터
-        public static string sqlQueryConverter(string text)
-        {
-            string query = "";
-            string pattern = @"BETWEEN\((.+?),(.+?),(.+?)\)";
-
-            char[] separators = { ';' };
-
-            List<string> resultList = text.Split(separators, StringSplitOptions.RemoveEmptyEntries)
-                                                  .ToList();
-
-            for (int i = 0; i < resultList.Count; i++)
-            {
-                Match match = Regex.Match(resultList[i], pattern);
-                string tempQ;
-
-                if (match.Success)
-                {
-                    string value1 = match.Groups[1].Value;
-                    string value2 = match.Groups[2].Value;
-                    string value3 = match.Groups[3].Value;
-                    tempQ = Between(value1, value2, value3);
-                }
-                else
-                {
-                    tempQ = resultList[i].ToString();
-                }
-
-                if (i == resultList.Count - 1)
-                {
-                    // 마지막 항목에 대한 처리
-                    query += tempQ;
-                }
-                else
-                {
-                    // 마지막 항목이 아닌 경우에 대한 처리
-                    query += tempQ + " AND ";
-                }
-            }
-            return query;
-        }
-
-        delegate int Operation(int a, int b);
-
-        static string Between(string q, string a, string b)
-        {
-            return $"{q} BETWEEN {a} AND {b}";
-        }
-
-        static void addQuery()
-        {
-
-        }
-
-        static string queryWizard(string text)
-        {
-            string query = "";
-            return query;
-        }
-*/
 
         public static string[] pdata = new string[] { "datetime", "ReactA_Temp", "ReactB_Temp", "ReactC_Temp", "ReactD_Temp", "ReactE_Temp", "ReactF_Temp", "ReactF_PH", "Power", "CurrentA", "CurrentB", "CurrentC" };
         public static string[] qdata = new string[] { "date", "weight", "water", "material", "HSO", "pH" };

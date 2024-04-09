@@ -243,6 +243,12 @@
             this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
+            // Design
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
+
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(113)))), ((int)(((byte)(255)))));
+            this.ForeColor = System.Drawing.Color.White;
+            this.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
         }
 
         #endregion

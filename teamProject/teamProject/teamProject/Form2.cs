@@ -241,7 +241,6 @@ namespace teamProject
                     Thread.Sleep(100);
                     DataManager.Save(random);
                 }
-
                 // 데이터 그리드뷰 다시 불러오기
                 Utils.reScreen(dataGridView1, "PData", Form1.digit, progressBar1);
 
