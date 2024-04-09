@@ -23,7 +23,7 @@ namespace teamProject
         private List<string> conditions = new List<string>();
 
         Form7 form7 = new Form7();
-        //testtest
+        // test branch test
         /*        // 조건 초기화
                 public void resetCon()
                 {
