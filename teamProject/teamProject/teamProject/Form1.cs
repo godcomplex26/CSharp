@@ -35,6 +35,7 @@ namespace teamProject
         public Form1()
         {
             InitializeComponent();
+            CenterToScreen(); // 폼을 화면의 정중앙에 배치합니다.
 
             /* 너무 느려져서 기각
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells; // 열 너비 맞춤

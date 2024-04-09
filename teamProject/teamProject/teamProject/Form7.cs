@@ -32,6 +32,10 @@ namespace teamProject
             //this.Show();
             //groupBox1.Dock = DockStyle.Fill;
             panel1.Controls.Add(dataTypeTab);
+            listBox3.SelectedValueChanged += selectCondition;
+
+            panel1.Height = panel1.Parent.Height - 45;
+            dataTypeTab.Dock = DockStyle.Fill;
 
             listBox2.Items.AddRange(operatorDict.Keys.ToArray());
         }
@@ -168,6 +172,48 @@ namespace teamProject
             and.Focus();
 
             return result;
+        }
+
+        //private string updateCondition(string condition)
+        //{
+        //    s
+        //}
+
+        private void selectCondition(object sender, EventArgs e)
+        {
+            string[] splitCon = listBox3.SelectedItem.ToString().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            int i = 0;
+            foreach (string c in splitCon)
+            {
+                if (c.Equals("AND") || c.Equals("OR"))
+                {
+
+                }
+                else
+                {
+                    if (i == 0)
+                    {
+                        listBox1.SelectedItem = c;
+                    }
+                    else if (i == 1)
+                    {
+                        listBox2.SelectedItem = operatorDict.FirstOrDefault(x => x.Value == c).Key;
+                    }
+                    else
+                    {
+                        if (c.Contains("%"))
+                        {
+                            c.Replace("%", "");
+                        }
+                        textBox4.Text = c;
+                    }
+                    //string a =
+                    //(string)(i == 0 ? listBox1.SelectedItem = c :
+                    //i == 1 ? listBox2.SelectedItem = operatorDict.FirstOrDefault(x => x.Value == c).Key :
+                    //textBox4.Text = c);
+                    i++;
+                }
+            }
         }
 
         //public void button6_Click(object sender, EventArgs e) // AND
@@ -443,5 +489,46 @@ namespace teamProject
             {"작음", "<"},
             {"작거나 같음", "<="}
         };
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (listBox3.SelectedItem != null)
+            {
+
+                string column = listBox1.SelectedItem.ToString();
+                string op = operatorDict[listBox2.SelectedItem.ToString()];
+                string val = textBox4.Text;
+
+                if (op.Equals("LIKE"))
+                    val += "%";
+                if (column.Equals("datetime") || column.Equals("date"))
+                    val = $"'{val}'";
+
+                string condition = $"{column} {op} {val}";
+                if (IsValidWhereClause(condition))
+                {
+                    if (listBox3.SelectedIndex != 0)
+                    {
+                        string andor = "";
+                        if (conditions.Count != 0)
+                        {
+                            andor = selectAndOr();
+                        }
+                        //conditions.Add("AND");
+                        conditions[listBox3.SelectedIndex] = andor + condition;
+                    }
+                    else
+                    {
+                        conditions[listBox3.SelectedIndex] = condition;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("조건 구성이 올바르지 않습니다.");
+                }
+                textBox4.Clear();
+            }
+            condListRefresher();
+        }
     }
 }

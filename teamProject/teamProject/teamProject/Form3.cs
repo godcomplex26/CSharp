@@ -21,6 +21,8 @@ namespace teamProject
         public Form3()
         {
             InitializeComponent();
+            CenterToScreen(); // 폼을 화면의 정중앙에 배치합니다.
+
             ShowForm7AsChildForm();
 
             progressBar1.Style = ProgressBarStyle.Marquee; // Marquee 스타일은 애니메이션 형태의 로딩바입니다.

@@ -36,6 +36,8 @@ namespace teamProject
         public Form5()
         {
             InitializeComponent();
+            CenterToScreen(); // 폼을 화면의 정중앙에 배치합니다.
+
             ShowForm7AsChildForm();
 
             DataManager.LoadQ();

@@ -41,6 +41,8 @@ namespace teamProject
         public Form4()
         {
             InitializeComponent();
+            CenterToScreen(); // 폼을 화면의 정중앙에 배치합니다.
+
             ShowForm7AsChildForm();
             DataManager.LoadP();
             for (int i = 0; i < Utils.pdata.Count(); i++)
@@ -115,7 +117,6 @@ namespace teamProject
                 int marginTop = 0;
                 chart.Size = new Size(xSize, ySize);
                 chart.Location = new Point(((i - 1) % 2) * xSize, marginTop + (((i - 1) / 2) * ySize));
-
 
                 chart.Legends.Add(legend);
 
