@@ -43,10 +43,12 @@ namespace teamProject
             */
             progressBar1.Style = ProgressBarStyle.Marquee; // Marquee 스타일은 애니메이션 형태의 로딩바입니다.
             progressBar1.MarqueeAnimationSpeed = 30; // 로딩바의 애니메이션 속도를 조절합니다.
-            progressBar1.BringToFront();
 
             button20.Text = "←.0\n.00";
             button30.Text = ".00\n→.0";
+
+            this.dataGridView1.ForeColor = Color.Black;
+            this.dataGridView2.ForeColor = Color.Black;
 
             ShowForm7AsChildForm();
 

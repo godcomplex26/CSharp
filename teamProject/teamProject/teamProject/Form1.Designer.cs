@@ -44,10 +44,10 @@ namespace teamProject
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button30 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button20 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.button20 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button30 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -63,10 +63,10 @@ namespace teamProject
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.GridColor = System.Drawing.Color.Black;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 21);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 31);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1022, 310);
+            this.dataGridView1.Size = new System.Drawing.Size(1022, 300);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -96,13 +96,13 @@ namespace teamProject
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "공정 데이터";
-            this.groupBox2.ForeColor = System.Drawing.Color.Black;
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(399, 137);
+            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.progressBar1.Location = new System.Drawing.Point(3, 21);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(285, 23);
+            this.progressBar1.Size = new System.Drawing.Size(1022, 10);
             this.progressBar1.TabIndex = 23;
             // 
             // groupBox3
@@ -117,11 +117,11 @@ namespace teamProject
             this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "QC 데이터";
-            this.groupBox3.ForeColor = System.Drawing.Color.Black;
             // 
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(113)))), ((int)(((byte)(255)))));
+            this.menuStrip1.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStrip0,
             this.ToolStrip1,
@@ -133,40 +133,39 @@ namespace teamProject
             this.menuStrip1.Size = new System.Drawing.Size(1034, 25);
             this.menuStrip1.TabIndex = 18;
             this.menuStrip1.Text = "데이터 관리";
-            this.menuStrip1.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             // 
             // ToolStrip0
             // 
             this.ToolStrip0.Name = "ToolStrip0";
-            this.ToolStrip0.Size = new System.Drawing.Size(39, 22);
+            this.ToolStrip0.Size = new System.Drawing.Size(42, 22);
             this.ToolStrip0.Text = "[메인]";
             this.ToolStrip0.Click += new System.EventHandler(this.ToolStrip0_Click);
             // 
             // ToolStrip1
             // 
             this.ToolStrip1.Name = "ToolStrip1";
-            this.ToolStrip1.Size = new System.Drawing.Size(107, 22);
+            this.ToolStrip1.Size = new System.Drawing.Size(105, 22);
             this.ToolStrip1.Text = "[공정 데이터 관리]";
             this.ToolStrip1.Click += new System.EventHandler(this.ToolStrip1_Click);
             // 
             // ToolStrip2
             // 
             this.ToolStrip2.Name = "ToolStrip2";
-            this.ToolStrip2.Size = new System.Drawing.Size(100, 22);
+            this.ToolStrip2.Size = new System.Drawing.Size(104, 22);
             this.ToolStrip2.Text = "[QC 데이터 관리]";
             this.ToolStrip2.Click += new System.EventHandler(this.ToolStrip2_Click);
             // 
             // ToolStrip3
             // 
             this.ToolStrip3.Name = "ToolStrip3";
-            this.ToolStrip3.Size = new System.Drawing.Size(67, 22);
+            this.ToolStrip3.Size = new System.Drawing.Size(68, 22);
             this.ToolStrip3.Text = "[공정 차트]";
             this.ToolStrip3.Click += new System.EventHandler(this.ToolStrip3_Click);
             // 
             // ToolStrip4
             // 
             this.ToolStrip4.Name = "ToolStrip4";
-            this.ToolStrip4.Size = new System.Drawing.Size(60, 22);
+            this.ToolStrip4.Size = new System.Drawing.Size(67, 22);
             this.ToolStrip4.Text = "[QC 차트]";
             this.ToolStrip4.Click += new System.EventHandler(this.ToolStrip4_Click);
             // 
@@ -202,31 +201,22 @@ namespace teamProject
             this.groupBox1.Controls.Add(this.button20);
             this.groupBox1.Controls.Add(this.textBox3);
             this.groupBox1.Controls.Add(this.button30);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(809, 25);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(219, 167);
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "데이터 도구";
-            this.groupBox1.ForeColor = System.Drawing.Color.White;
             // 
-            // button30
+            // label1
             // 
-            this.button30.ForeColor = System.Drawing.Color.Black;
-            this.button30.Location = new System.Drawing.Point(119, 56);
-            this.button30.Name = "button30";
-            this.button30.Size = new System.Drawing.Size(56, 46);
-            this.button30.TabIndex = 19;
-            this.button30.Text = "자리수늘리기";
-            this.button30.UseVisualStyleBackColor = true;
-            this.button30.Click += new System.EventHandler(this.button30_Click);
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(57, 29);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(156, 25);
-            this.textBox3.TabIndex = 20;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 18);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "실제 값";
             // 
             // button20
             // 
@@ -239,14 +229,23 @@ namespace teamProject
             this.button20.UseVisualStyleBackColor = true;
             this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
-            // label1
+            // textBox3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 18);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "실제 값";
+            this.textBox3.Location = new System.Drawing.Point(57, 29);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(156, 25);
+            this.textBox3.TabIndex = 20;
+            // 
+            // button30
+            // 
+            this.button30.ForeColor = System.Drawing.Color.Black;
+            this.button30.Location = new System.Drawing.Point(119, 56);
+            this.button30.Name = "button30";
+            this.button30.Size = new System.Drawing.Size(56, 46);
+            this.button30.TabIndex = 19;
+            this.button30.Text = "자리수늘리기";
+            this.button30.UseVisualStyleBackColor = true;
+            this.button30.Click += new System.EventHandler(this.button30_Click);
             // 
             // Form1
             // 

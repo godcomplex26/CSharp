@@ -26,6 +26,9 @@ namespace teamProject
 
             ShowForm7AsChildForm();
             textBox1.Enabled = false;
+
+            this.dataGridView1.ForeColor = Color.Black;
+
             progressBar1.Style = ProgressBarStyle.Marquee; // Marquee 스타일은 애니메이션 형태의 로딩바입니다.
             progressBar1.MarqueeAnimationSpeed = 30; // 로딩바의 애니메이션 속도를 조절합니다.
             Utils.reScreen(dataGridView1, "PData", Form1.digit, progressBar1);

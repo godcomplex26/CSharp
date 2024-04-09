@@ -89,7 +89,6 @@ namespace teamProject
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "공정 데이터";
-            this.groupBox2.ForeColor = System.Drawing.Color.Black;
             // 
             // progressBar1
             // 
@@ -145,16 +144,17 @@ namespace teamProject
             this.groupBox1.Controls.Add(this.textBox8);
             this.groupBox1.Controls.Add(this.textBox10);
             this.groupBox1.Controls.Add(this.textBox9);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(3, 178);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(717, 195);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "공정 데이터 관리";
-            this.groupBox1.ForeColor = System.Drawing.Color.White;
             // 
             // button5
             // 
+            this.button5.ForeColor = System.Drawing.Color.Black;
             this.button5.Location = new System.Drawing.Point(618, 114);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(86, 28);
@@ -165,6 +165,7 @@ namespace teamProject
             // 
             // button3
             // 
+            this.button3.ForeColor = System.Drawing.Color.Black;
             this.button3.Location = new System.Drawing.Point(618, 86);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(86, 28);
@@ -182,6 +183,7 @@ namespace teamProject
             // 
             // button2
             // 
+            this.button2.ForeColor = System.Drawing.Color.Black;
             this.button2.Location = new System.Drawing.Point(618, 58);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(86, 28);
@@ -199,6 +201,7 @@ namespace teamProject
             // 
             // button1
             // 
+            this.button1.ForeColor = System.Drawing.Color.Black;
             this.button1.Location = new System.Drawing.Point(618, 30);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(86, 28);
@@ -419,6 +422,7 @@ namespace teamProject
             // 
             // button4
             // 
+            this.button4.ForeColor = System.Drawing.Color.Black;
             this.button4.Location = new System.Drawing.Point(158, 27);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(129, 31);
@@ -475,12 +479,6 @@ namespace teamProject
             this.groupBox3.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
-
-            this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button2.ForeColor = System.Drawing.Color.Black;
-            this.button3.ForeColor = System.Drawing.Color.Black;
-            this.button4.ForeColor = System.Drawing.Color.Black;
-            this.button5.ForeColor = System.Drawing.Color.Black;
 
         }
 

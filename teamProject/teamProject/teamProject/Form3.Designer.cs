@@ -69,7 +69,6 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "QC 데이터";
-            this.groupBox2.ForeColor = System.Drawing.Color.Black;
             // 
             // progressBar1
             // 
