@@ -45,11 +45,13 @@
             this.listBox3 = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
             this.listBox2 = new System.Windows.Forms.ListBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button5);
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
@@ -91,7 +93,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(399, 30);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(19, 18);
+            this.label5.Size = new System.Drawing.Size(19, 15);
             this.label5.TabIndex = 36;
             this.label5.Text = "값";
             // 
@@ -100,7 +102,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(546, 30);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(30, 18);
+            this.label4.Size = new System.Drawing.Size(31, 15);
             this.label4.TabIndex = 35;
             this.label4.Text = "연산";
             // 
@@ -108,7 +110,7 @@
             // 
             this.textBox4.Location = new System.Drawing.Point(399, 48);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 25);
+            this.textBox4.Size = new System.Drawing.Size(100, 21);
             this.textBox4.TabIndex = 22;
             // 
             // label1
@@ -116,7 +118,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(358, 52);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 18);
+            this.label1.Size = new System.Drawing.Size(34, 15);
             this.label1.TabIndex = 30;
             this.label1.Text = "이/가";
             // 
@@ -125,7 +127,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(15, 30);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 18);
+            this.label3.Size = new System.Drawing.Size(31, 15);
             this.label3.TabIndex = 34;
             this.label3.Text = "조건";
             // 
@@ -134,7 +136,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(505, 52);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 18);
+            this.label2.Size = new System.Drawing.Size(34, 15);
             this.label2.TabIndex = 31;
             this.label2.Text = "와/과";
             // 
@@ -204,7 +206,7 @@
             // listBox3
             // 
             this.listBox3.FormattingEnabled = true;
-            this.listBox3.ItemHeight = 18;
+            this.listBox3.ItemHeight = 15;
             this.listBox3.Location = new System.Drawing.Point(17, 48);
             this.listBox3.Name = "listBox3";
             this.listBox3.Size = new System.Drawing.Size(165, 94);
@@ -225,20 +227,32 @@
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 18;
+            this.listBox2.ItemHeight = 15;
             this.listBox2.Location = new System.Drawing.Point(546, 48);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(120, 94);
             this.listBox2.TabIndex = 18;
             // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("굴림", 9F);
+            this.button5.ForeColor = System.Drawing.Color.Black;
+            this.button5.Location = new System.Drawing.Point(188, 106);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(24, 23);
+            this.button5.TabIndex = 38;
+            this.button5.Text = "❌";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // Form7
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(113)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(794, 168);
             this.Controls.Add(this.groupBox1);
-            this.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ForeColor = System.Drawing.Color.White;
             this.Name = "Form7";
             this.Text = "Form7";
@@ -269,5 +283,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }

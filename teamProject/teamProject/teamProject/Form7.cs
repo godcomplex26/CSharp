@@ -113,10 +113,20 @@ namespace teamProject
             listBox3.Items.Clear();
             if (conditions.Count != 0)
             {
+                string andorTemp = "";
                 if (conditions[0].Contains("AND "))
+                    andorTemp = "AND ";
                     conditions[0] = conditions[0].Replace("AND ", "");
                 if (conditions[0].Contains("OR "))
-                    conditions[0] = conditions[0].Replace("OR ", "");
+                    andorTemp = "OR ";
+                conditions[0] = conditions[0].Replace("OR ", "");
+                if (conditions.Count > 1)
+                {
+                    if (!conditions[1].Contains("AND ") || !conditions[1].Contains("OR "))
+                    {
+                        conditions[1] = andorTemp + conditions[1];
+                    }
+                }
             }
             listBox3.Items.AddRange(conditions.ToArray());
         }
@@ -206,11 +216,11 @@ namespace teamProject
                             string value = c;
                             if (c.Contains("%"))
                             {
-                                value = c.Replace("%", "");
+                                value = value.Replace("%", "");
                             }
                             if (c.Contains("'"))
                             {
-                                value = c.Replace("'", "");
+                                value = value.Replace("'", "");
                             }
                             textBox4.Text = value;
                         }
@@ -221,7 +231,6 @@ namespace teamProject
                         i++;
                     }
                 }
-
                 textBox4.Focus();
                 textBox4.SelectAll();
             }
@@ -540,6 +549,17 @@ namespace teamProject
                 textBox4.Clear();
             }
             condListRefresher();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (listBox3.SelectedItem != null)
+            {
+                string selectedItem = listBox3.SelectedItem.ToString();
+                conditions.Remove(selectedItem);
+                condListRefresher();
+                textBox4.Clear();
+            }
         }
     }
 }
