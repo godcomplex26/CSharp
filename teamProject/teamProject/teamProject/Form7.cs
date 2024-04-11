@@ -181,43 +181,49 @@ namespace teamProject
 
         private void selectCondition(object sender, EventArgs e)
         {
-            string[] splitCon = listBox3.SelectedItem.ToString().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            int i = 0;
-            foreach (string c in splitCon)
+            if (listBox3.SelectedItem != null)
             {
-                if (c.Equals("AND") || c.Equals("OR"))
+                string[] splitCon = listBox3.SelectedItem.ToString().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                int i = 0;
+                foreach (string c in splitCon)
                 {
+                    if (c.Equals("AND") || c.Equals("OR"))
+                    {
 
-                }
-                else
-                {
-                    if (i == 0)
-                    {
-                        listBox1.SelectedItem = c;
-                    }
-                    else if (i == 1)
-                    {
-                        listBox2.SelectedItem = operatorDict.FirstOrDefault(x => x.Value == c).Key;
                     }
                     else
                     {
-                        string value = "";
-                        if (c.Contains("%"))
+                        if (i == 0)
                         {
-                            value = c.Replace("%", "");
+                            listBox1.SelectedItem = c;
                         }
-                        if (c.Contains("'"))
+                        else if (i == 1)
                         {
-                            value = c.Replace("'", "");
+                            listBox2.SelectedItem = operatorDict.FirstOrDefault(x => x.Value == c).Key;
                         }
-                        textBox4.Text = value;
+                        else
+                        {
+                            string value = c;
+                            if (c.Contains("%"))
+                            {
+                                value = c.Replace("%", "");
+                            }
+                            if (c.Contains("'"))
+                            {
+                                value = c.Replace("'", "");
+                            }
+                            textBox4.Text = value;
+                        }
+                        //string a =
+                        //(string)(i == 0 ? listBox1.SelectedItem = c :
+                        //i == 1 ? listBox2.SelectedItem = operatorDict.FirstOrDefault(x => x.Value == c).Key :
+                        //textBox4.Text = c);
+                        i++;
                     }
-                    //string a =
-                    //(string)(i == 0 ? listBox1.SelectedItem = c :
-                    //i == 1 ? listBox2.SelectedItem = operatorDict.FirstOrDefault(x => x.Value == c).Key :
-                    //textBox4.Text = c);
-                    i++;
                 }
+
+                textBox4.Focus();
+                textBox4.SelectAll();
             }
         }
 
